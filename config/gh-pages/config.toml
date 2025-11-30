@@ -1,0 +1,7 @@
+baseurl = "https://data-illustrateur.dataviz.jp/"
+canonifyURLs = true
+disableAliases = true
+enableEmoji = true
+enableGitInfo = false
+enableRobotsTXT = true
+languageCode = "en-US"

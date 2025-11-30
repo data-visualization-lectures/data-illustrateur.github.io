@@ -24,6 +24,7 @@
     "start": "hugo server --bind=0.0.0.0 --disableFastRender",
     "prebuild": "npm run clean",
     "build": "hugo --gc --minify -d 'docs'",
+    "build:gh-pages": "hugo --gc --minify --config config/_default/config.toml,config/gh-pages/config.toml -d 'docs'",
     "build:functions": "netlify-lambda build assets/lambda",
     "build:preview": "npm run build -D -F",
     "clean": "rimraf public resources functions",
