@@ -2,6 +2,10 @@
   "name": "@data-illustrateur/data-illustrateur.github.io",
   "description": "Data Illustrateur",
   "version": "2.0",
+  "engines": {
+    "node": "15.5.1",
+    "npm": "7.3.0"
+  },
   "hugo-bin": {
     "buildTags": "extended"
   },
