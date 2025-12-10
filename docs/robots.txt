@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://data-illustrateur.github.io/sitemap.xml
+Sitemap: https://data-illustrateur.dataviz.jp/sitemap.xml
