@@ -89,13 +89,6 @@ class DatavizGlobalHeader {
     const existing = document.getElementById('dataviz-global-header-host');
     if (existing) existing.remove();
     document.body.prepend(this.host);
-
-    // 既存の固定ヘッダー(Bootstrap .fixed-top)を押し下げる
-    const fixedElements = document.querySelectorAll('.fixed-top');
-    fixedElements.forEach(el => {
-      el.style.top = '48px';
-    });
-
     this.render();
   }
 
@@ -111,10 +104,8 @@ class DatavizGlobalHeader {
         all: initial; /* 親スタイルの影響をリセット */
         display: block;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        z-index: 100000; /* 既存の99999より大きく */
-        position: sticky; /* スクロール追従 */
-        top: 0;
-        width: 100%;
+        z-index: 99999;
+        position: relative;
       }
       .dv-header {
         background-color: #111;
