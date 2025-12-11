@@ -14,16 +14,19 @@
     <script src="/js/supabase.js"></script>
     <script src="/js/dataviz-auth-client.js"></script>
     <style>
-        body {
-            padding-top: 48px !important;
-        }
-
         #dataviz-global-header-host {
             position: fixed !important;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 999999;
+            z-index: 2147483647;
+        }
+
+        #root {
+            margin-top: 48px;
+            height: calc(100vh - 48px);
+            overflow: hidden;
+            position: relative;
         }
     </style>
 </head>
