@@ -1,17 +1,17 @@
 ---
 title: "About"
-description: "Information about Data Illustrateur."
+description: "Data Illustrateurについての情報です。"
 date: 2020-08-27T19:23:18+02:00
 lastmod: 2020-08-27T19:23:18+02:00
 draft: false
 images: []
 ---
 
-Data Illustrateur is an academic project developed with the goal to democratize data visualization creation. It is free for personal and commerical use, and is provided on an "as is" basis without warranty of any kind. 
+Data Illustrateurは、データビジュアライゼーション作成の民主化を目指して開発された学術プロジェクトです。個人および商用利用ともに無料で、いかなる保証もない「現状のまま」で提供されます。
 
-Data Illustrateur is developed and maintained by the [Human-Data Interaction Group at University of Maryland, College Park](https://hdi.cs.umd.edu/). We welcome any feedback. Send your questions and comments to:
+Data Illustrateurは、[メリーランド大学カレッジパーク校のHuman-Data Interaction Group](https://hdi.cs.umd.edu/)によって開発および保守されています。皆様からのフィードバックをお待ちしております。ご質問やコメントは以下までお送りください：
 
 data.illustrateur<img width="18px" src="./at.png">gmail.com
 
-#### What happens to my data when I import it into Data Illustrateur?
-Data Illustrateur runs as a web app inside your browser. When you import your data, the data only resides in your browser memory and is not transmitted to any network device. 
+#### Data Illustrateurにインポートしたデータはどうなりますか？
+Data Illustrateurはブラウザ内で動作するWebアプリです。データをインポートしても、データはブラウザのメモリ内にのみ存在し、いかなるネットワークデバイスにも送信されません。
