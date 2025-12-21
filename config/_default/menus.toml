@@ -97,24 +97,24 @@
 #   url = "/tutorials/"
 
 [[main]]
-  name = "Get Started"
+  name = "始めよう"
   weight = 10
   identifier = "get-started"
   url = "/tutorials/interface/overview"
 
 [[main]]
-  name = "Gallery"
+  name = "ギャラリー"
   url = "/gallery/"
 # url = "/docs/1.0/prologue/introduction/"
   weight = 20
 
 # [[main]]
-#   name = "Tutorial"
+#   name = "チュートリアル"
 #   url = "/tutorial/lorem/ipsum/"
 #   weight = 15
 
 [[main]]
-  name = "About"
+  name = "このツールについて"
   url = "/about/"
   weight = 30
 
