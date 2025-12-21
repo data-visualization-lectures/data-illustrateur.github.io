@@ -5,37 +5,37 @@
 #   url = "/docs/global/func/"
 
 [[tutorials]]
-  name = "User Interface"
+  name = "ユーザー・インターフェイス"
   weight = 1
   identifier = "interface"
   url = "tutorials/interface"
 
 [[tutorials]]
-  name = "Data"
+  name = "データ"
   weight = 10
   identifier = "data"
   url = "tutorials/data"
 
 [[tutorials]]
-  name = "Shapes"
+  name = "図形"
   weight = 20
   identifier = "shapes"
   url = "tutorials/shapes"
 
 [[tutorials]]
-  name = "Generate Shapes with Data"
+  name = "データから図形を生成する"
   weight = 30
   identifier = "generate"
   url = "tutorials/generate"
 
 [[tutorials]]
-  name = "Groups"
+  name = "グループ"
   weight = 40
   identifier = "groups"
   url = "tutorials/groups"
 
 [[tutorials]]
-  name = "Encode"
+  name = "エンコード"
   weight = 50
   identifier = "encode"
   url = "tutorials/encode"
