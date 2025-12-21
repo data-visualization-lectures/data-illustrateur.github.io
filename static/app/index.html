@@ -11,7 +11,6 @@
     <link rel="manifest" href="/app/manifest.json" />
     <title>Data Illustrator</title>
     <link href="/app/static/css/main.18157aca.chunk.css" rel="stylesheet">
-    <link href="/main.css" rel="stylesheet">
     <script src="/js/supabase.js"></script>
     <script src="/js/dataviz-auth-client.js"></script>
     <style>
@@ -24,10 +23,55 @@
         }
 
         #root {
-            margin-top: 0;
-            height: 100vh;
+            margin-top: 108px;
+            height: calc(100vh - 108px);
             overflow: hidden;
             position: relative;
+        }
+
+        /* Header specific styles to replace Bootstrap */
+        header.navbar {
+            position: fixed;
+            top: 48px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: #fff;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            z-index: 1000;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        header.navbar *,
+        header.navbar *::before,
+        header.navbar *::after {
+            box-sizing: border-box;
+        }
+
+        header.navbar .container {
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+
+        header.navbar .navbar-brand {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1d2d35;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        header.navbar .menu-btn,
+        header.navbar .menu-icon,
+        header.navbar .navbar-nav {
+            display: none;
         }
     </style>
 </head>
