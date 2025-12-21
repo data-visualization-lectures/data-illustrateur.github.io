@@ -1,370 +1,370 @@
 {
     "BarChartHorz": {
-        "name": "Bar Chart (Horizontal)",
+        "name": "棒グラフ (横)",
         "mark": "Bars and Rectangles",
-        "title": "Real GDP Change in the US",
-        "about": "Percent Change of U.S. Real Gross Domestic Product from Preceding Period. Data source: U.S. Bureau of Economic Analysis"
+        "title": "米国の実質GDP変動",
+        "about": "前期比の米国実質国内総生産（GDP）の変化率。データソース: 米国経済分析局"
     },
     "BarChartHorzInteractive": {
-        "name": "Bar Chart (Interactive)",
+        "name": "棒グラフ (インタラクティブ)",
         "mark": "Bars and Rectangles",
-        "title": "Real GDP Change in the US",
+        "title": "米国の実質GDP変動",
         "draft": true,
-        "about": "Percent Change of U.S. Real Gross Domestic Product from Preceding Period. Data source: U.S. Bureau of Economic Analysis"
+        "about": "前期比の米国実質国内総生産（GDP）の変化率。データソース: 米国経済分析局"
     },
     "BarChartVert": {
-        "name": "Bar Chart (Vertical)",
+        "name": "棒グラフ (縦)",
         "mark": "Bars and Rectangles",
-        "title": "Real GDP Change in the US",
-        "about": "Percent Change of U.S. Real Gross Domestic Product from Preceding Period. Data source: U.S. Bureau of Economic Analysis"
+        "title": "米国の実質GDP変動",
+        "about": "前期比の米国実質国内総生産（GDP）の変化率。データソース: 米国経済分析局"
     },
     "BoxPlot": {
-        "name": "Box Plot",
+        "name": "箱ひげ図",
         "mark": "Bars and Rectangles",
-        "title": "Monthly gasoline sales Jan - Dec 2020",
-        "about": "Adjusted monthly gasoline sales in the U.S. in 2020.<br>Numbers are shown in millions of dollars.<br>Data source: <a href='https://www.census.gov/retail/mrts/historic_releases.html' target='_blank'>U.S. Census Bureau</a>"
+        "title": "2020年1月〜12月の月間ガソリン販売量",
+        "about": "2020年の米国における調整済み月間ガソリン販売量。<br>数値は百万ドル単位。<br>データソース: <a href='https://www.census.gov/retail/mrts/historic_releases.html' target='_blank'>米国国勢調査局</a>"
     },
     "BulletChart": {
-        "name": "Bullet Chart",
+        "name": "ブレットチャート",
         "mark": "Bars and Rectangles",
-        "title": "Revenue Performance & Target",
+        "title": "収益実績と目標",
         "about": ""
     },
     "DivergingBarChart": {
-        "name": "Diverging Bar Chart",
+        "name": "ダイバージング棒グラフ",
         "mark": "Bars and Rectangles",
-        "title": "Survey Responses by Age Group",
+        "title": "年齢層別の調査回答",
         "about": ""
     },
     "GanttChart": {
-        "name": "Gantt Chart",
+        "name": "ガントチャート",
         "mark": "Bars and Rectangles",
-        "title": "Timeline for Event Organization",
+        "title": "イベント開催のタイムライン",
         "about": ""
     },
     "GroupedBarChart": {
-        "name": "Grouped Bar Chart",
+        "name": "グループ化された棒グラフ",
         "mark": "Bars and Rectangles",
-        "title": "Olympic Medals by Country",
+        "title": "国別のオリンピックメダル数",
         "about": ""
     },
     "HeatMap": {
-        "name": "Heat Map",
+        "name": "ヒートマップ",
         "mark": "Bars and Rectangles",
-        "title": "Twenty Years of NBA Draft Picks",
-        "about": "This chart colors each player by VORP (Value over Replacement Player), which converts the BPM rate into an estimate of each player's overall contribution to the team, measured vs. what a theoretical 'replacement player' would provide, where the 'replacement player' is defined as a player onminimum salary or not a normal vmember of a team's rotation. A VORP of -20 is used for players that did not play enough minutes. Original visualization by <a href='http://russellgoldenberg.com/' target='_blank'>Russell Goldenberg</a> at <a href='https://pudding.cool/2017/03/redraft/' target='_blank'>The Pudding</a>."
+        "title": "NBAドラフト指名の20年",
+        "about": "このチャートは各選手をVORP（代替選手と比較した価値）で色分けしています。これはBPM率をチームへの全体的な貢献度の推定値に変換したもので、理論上の「代替選手」（最低年俸の選手や通常のチームローテーション外の選手と定義される）が提供するものと比較して測定されます。十分な出場時間がなかった選手には-20のVORPが使用されています。<a href='https://pudding.cool/2017/03/redraft/' target='_blank'>The Pudding</a>の<a href='http://russellgoldenberg.com/' target='_blank'>Russell Goldenberg</a>によるオリジナルの視覚化。"
     },
     "Histogram": {
-        "name": "Histogram",
+        "name": "ヒストグラム",
         "mark": "Bars and Rectangles",
-        "title": "Car Weight Distribution",
+        "title": "車の重量分布",
         "about": ""
     },
     "IciclePlot": {
-        "name": "Icicle Plot",
+        "name": "アイシクルプロット",
         "mark": "Bars and Rectangles",
         "draft": true,
-        "title": "ICU Processes",
+        "title": "ICUプロセス",
         "about": ""
     },
     "MosaicPlot": {
-        "name": "Mosaic Plot",
+        "name": "モザイクプロット",
         "mark": "Bars and Rectangles",
-        "title": "Share of Women in Job Levels",
-        "about": "This mosaic plot shows that the percentage of women declines as the job level goes higher. <a href='http://www.womanindata.co.uk/2017/02/workout-wednesday-week-8-marimekko.html' target='_blank'>Original visualization</a> by Emma Whyte."
+        "title": "職務レベルにおける女性の割合",
+        "about": "このモザイクプロットは、職務レベルが上がるにつれて女性の割合が減少することを示しています。Emma Whyteによる<a href='http://www.womanindata.co.uk/2017/02/workout-wednesday-week-8-marimekko.html' target='_blank'>オリジナルの視覚化</a>。"
     },
     "StackedBarChart": {
-        "name": "Stacked Bar Chart",
+        "name": "積み上げ棒グラフ",
         "mark": "Bars and Rectangles",
-        "title": "Olympic medals by country",
+        "title": "国別のオリンピックメダル数",
         "about": ""
     },
     "TowerChart": {
-        "name": "Tower Chart",
+        "name": "タワーチャート",
         "mark": "Bars and Rectangles",
-        "title": "Presidential Election 2020",
-        "about": "This tower chart shows the results of the 2020 presidential election.<br>Blue represents Biden, red represents Trump.<br>Each rectangle represents a state that a candidate has won.<br>The x axis represents the margin of victory for each candidate in terms of popular vote (%).<br>The y axis represents the number of electoral votes.<br>Data source: <a href='https://www.archives.gov/electoral-college/2020' target='_blank'>National Archives</a>"
+        "title": "2020年大統領選挙",
+        "about": "このタワーチャートは2020年大統領選挙の結果を示しています。<br>青はバイデン、赤はトランプを表しています。<br>各長方形は候補者が勝利した州を表しています。<br>X軸は一般投票（％）での各候補者の勝利差を表しています。<br>Y軸は選挙人の数を表しています。<br>データソース: <a href='https://www.archives.gov/electoral-college/2020' target='_blank'>国立公文書館</a>"
     },
     "Treemap": {
-        "name": "Treemap",
+        "name": "ツリーマップ",
         "mark": "Bars and Rectangles",
-        "title": "Population of Major Countries",
+        "title": "主要国の人口",
         "about": ""
     },
     "WaffleChart": {
-        "name": "Waffle Chart",
+        "name": "ワッフルチャート",
         "mark": "Bars and Rectangles",
-        "title": "Age Demographics in 100 People",
+        "title": "100人における年齢構成",
         "about": ""
     },
     "WaterfallChart": {
-        "name": "Waterfall Chart",
+        "name": "ウォーターフォールチャート",
         "mark": "Bars and Rectangles",
-        "title": "Monthly Changes in Account Balance",
+        "title": "口座残高の月次変動",
         "about": ""
     },
     "BubblePlot": {
-        "name": "Bubble Plot",
+        "name": "バブルプロット",
         "mark": "Circles and Pies",
-        "title": "Habitable Planets",
-        "about": "A visualization showing 1626 planets and which ones are habitable. Temperature should not be too hot or too cold. The mass also plays a role: a small planet can't have an atmosphere, while a large one will have a crushing atmosphere.<br> <a href='http://www.nationalgeographic.com/astrobiology/goldilocks-worlds/' target='_blank'>Original visualization</a> by John Tomanio and Xaquin G.V., NGM STAFF. <br>Source: Abel Méndez, Planetary Habitability Laboratory, University of Puerto Rico at Arecibo."
+        "title": "居住可能な惑星",
+        "about": "1626個の惑星を表示し、どれが居住可能かを示す視覚化。温度は暑すぎず寒すぎずである必要があります。質量も役割を果たします。小さな惑星は大気を持つことができず、一方で大きな惑星は破壊的な大気を持つことになります。<br> John TomanioとXaquin G.V., NGM STAFFによる<a href='http://www.nationalgeographic.com/astrobiology/goldilocks-worlds/' target='_blank'>オリジナルの視覚化</a>。<br>ソース: Abel Méndez, プエルトリコ大学アレシボ校 惑星居住可能性研究所。"
     },
     "CirclePacking": {
-        "name": "Circle Packing Chart",
+        "name": "サークルパッキングチャート",
         "mark": "Circles and Pies",
-        "title": "Population of Major Countries",
+        "title": "主要国の人口",
         "about": ""
     },
     "DotPlot": {
-        "name": "Dot Plot",
+        "name": "ドットプロット",
         "mark": "Circles and Pies",
-        "title": "Age Demographics of 100 People",
+        "title": "100人の年齢構成",
         "about": ""
     },
     "DoughnutChart": {
-        "name": "Doughnut Chart",
+        "name": "ドーナツチャート",
         "mark": "Circles and Pies",
-        "title": "How do Americans Spend Their Time?",
-        "about": "Average time spent across a number of common activities by Americans between 15 and 64. Data source: <a href='https://ourworldindata.org/time-use' target='_blank'>Our World in Data</a>"
+        "title": "アメリカ人の時間の使い方",
+        "about": "15歳から64歳までのアメリカ人が一般的な活動に費やす平均時間。データソース: <a href='https://ourworldindata.org/time-use' target='_blank'>Our World in Data</a>"
     },
     "PieChart": {
-        "name": "PieChart",
+        "name": "円グラフ",
         "mark": "Circles and Pies",
-        "title": "How do Americans Spend Their Time?",
-        "about": "Average time spent across a number of common activities by Americans between 15 and 64. Data source: <a href='https://ourworldindata.org/time-use' target='_blank'>Our World in Data</a>"
+        "title": "アメリカ人の時間の使い方",
+        "about": "15歳から64歳までのアメリカ人が一般的な活動に費やす平均時間。データソース: <a href='https://ourworldindata.org/time-use' target='_blank'>Our World in Data</a>"
     },
     "RadialBarChart": {
-        "name": "Radial Bar Chart",
+        "name": "ラジアル棒グラフ",
         "mark": "Circles and Pies",
-        "title": "Monthly Gasoline Sales",
-        "about": "Adjusted monthly gasoline sales in the U.S. in 2020.<br>Numbers are shown in millions of dollars.<br>Data source: <a href='https://www.census.gov/retail/mrts/historic_releases.html' target='_blank'>U.S. Census Bureau</a>"
+        "title": "月間ガソリン販売量",
+        "about": "2020年の米国における調整済み月間ガソリン販売量。<br>数値は百万ドル単位。<br>データソース: <a href='https://www.census.gov/retail/mrts/historic_releases.html' target='_blank'>米国国勢調査局</a>"
     },
     "RoseChart": {
-        "name": "Rose Chart",
+        "name": "ローズチャート",
         "mark": "Circles and Pies",
-        "title": "Nightingale's Rose Diagram",
-        "about": "A reproduction of <a href='https://www.historyofinformation.com/detail.php?entryid=3815' target='_blank'>Florence Nightingale’s rose diagram</a>. <br>Data Source: Nightingale, F., Farr, W., & Smith, A. (1859). A contribution to the sanitary history of the British army during the late war with Russia. John W. Parker and Son."
+        "title": "ナイチンゲールのローズダイアグラム",
+        "about": "<a href='https://www.historyofinformation.com/detail.php?entryid=3815' target='_blank'>フローレンス・ナイチンゲールのローズダイアグラム</a>の再現。<br>データソース: Nightingale, F., Farr, W., & Smith, A. (1859). A contribution to the sanitary history of the British army during the late war with Russia. John W. Parker and Son."
     },
     "Scatterplot": {
-        "name": "Scatterplot",
+        "name": "散布図",
         "mark": "Circles and Pies",
-        "title": "GDP per capita vs. Life expectancy",
+        "title": "一人当たりGDP対平均寿命",
         "about": ""
     },
     "Sunburst": {
-        "name": "Sunburst Chart",
+        "name": "サンバーストチャート",
         "mark": "Circles and Pies",
         "draft": true,
-        "title": "Population of Major Countries",
+        "title": "主要国の人口",
         "about": ""
     },
     "BumpChart": {
-        "name": "Bump Chart",
+        "name": "バンプチャート",
         "mark": "Lines and Paths",
-        "title": "Color popularity in new cars",
-        "about": "This bump chart shows how the rankings of new car colors change over the years in North America. The magenta color denotes 'other' colors. <br> <a href='https://public.tableau.com/profile/rody.zakovich#!/vizhome/TheUntanglingofColorPopularityamongNewCarsinNorthAmerica/TheUntanglingofColorPopularityforNewCars' target='_blank'>Original visualization</a> by Rody Zakovich"
+        "title": "新車の色の人気",
+        "about": "このバンプチャートは、北米における新車の色のランキングが年とともにどのように変化するかを示しています。マゼンタ色は「その他」の色を示します。<br> Rody Zakovichによる<a href='https://public.tableau.com/profile/rody.zakovich#!/vizhome/TheUntanglingofColorPopularityamongNewCarsinNorthAmerica/TheUntanglingofColorPopularityforNewCars' target='_blank'>オリジナルの視覚化</a>"
     },
     "ConnectedScatterPlot": {
-        "name": "Connected Scatter Plot",
+        "name": "コネクテッド散布図",
         "mark": "Lines and Paths",
-        "title": "Driving Shifts into Reverse",
-        "about": "the shifting relationship between the price of gas and the average number of miles driven in a year, adapted from <a href='http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html' target='_blank'>Driving Shifts Into Reverse</a> by Hannah Fairfield, The New York Times (May 2, 2010)"
+        "title": "運転の逆転現象",
+        "about": "ガソリン価格と年間の平均走行距離の間の変化する関係。The New York Times (2010年5月2日)のHannah Fairfieldによる<a href='http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html' target='_blank'>Driving Shifts Into Reverse</a>からの翻案"
     },
     "DumbbellChart": {
-        "name": "Dumbbell Chart",
+        "name": "ダンベルチャート",
         "mark": "Lines and Paths",
-        "title": "Partisan Reactions on Mass Shooting",
-        "about": "This infographics shows the topics mentioned by the two parties after the Orlando nightclub shooting with a focus on the differences in terms of the number of times these topics are mentioned. <br> <a href='https://public.tableau.com/profile/lindsey.poulter8872#!/vizhome/OrlandoKillings/Dashboard' target='_blank'>Original visualization</a> by Lindsey Poulter<br>Image credit: <a href='https://www.flickr.com/photos/donkeyhotey/' target='_blank'>DonkeyHotey</a>"
+        "title": "銃乱射事件に対する党派的な反応",
+        "about": "このインフォグラフィックは、オーランドのナイトクラブでの銃撃事件後に両党が言及したトピックを示しており、これらのトピックが言及された回数の違いに焦点を当てています。<br> Lindsey Poulterによる<a href='https://public.tableau.com/profile/lindsey.poulter8872#!/vizhome/OrlandoKillings/Dashboard' target='_blank'>オリジナルの視覚化</a><br>画像クレジット: <a href='https://www.flickr.com/photos/donkeyhotey/' target='_blank'>DonkeyHotey</a>"
     },
     "LineGraph": {
-        "name": "Line Graph 1",
+        "name": "折れ線グラフ 1",
         "mark": "Lines and Paths",
-        "title": "Temperature Forecast",
-        "about": "Monthly temperature forecast for Baltimore, MD from Aug 2021 to Aug 2022.<br>The light blue band represents the 99% confidence interval of the prediction.<br>The solid line represents the median temperature between 1981 and 2010 for each month.<br>Data source: <a href='https://www.noaa.gov/' target='_blank'>National Weather Service Forecast</a>"
+        "title": "気温予報",
+        "about": "2021年8月から2022年8月までのメリーランド州ボルチモアの月間気温予報。<br>水色の帯は予測の99%信頼区間を表しています。<br>実線は各月の1981年から2010年までの中央値気温を表しています。<br>データソース: <a href='https://www.noaa.gov/' target='_blank'>国立気象局予報</a>"
     },
     "LineGraph2": {
-        "name": "Line Graph 2",
+        "name": "折れ線グラフ 2",
         "mark": "Lines and Paths",
-        "title": "Covid Cases: Reported and Forecast",
-        "about": "Reported COVID-19 cases between 7/12/21 to 7/26/21 and forecase by four different models between 7/26/21 and 8/21/21.<br>The four models are: <a href='https://github.com/oskali/mit_cassandra' target='_blank'>MIT-Cassandra</a>, <a href='https://covid19.uclaml.org/' target='_blank'>UCLA</a>, <a href='https://systems.jhu.edu/research/public-health/predicting-covid-19-risk/' target='_blank'>JHU-CSSE</a>, and <a href='https://www.microsoft.com/en-us/ai/ai-for-health' target='_blank'>Microsoft</a>.<br>Data Source: Google Search for COVID-19 statistics and <a href='https://www.cdc.gov/coronavirus/2019-ncov/science/forecasting/forecasts-cases.html' target='_blank'>CDC</a>"
+        "title": "Covid症例: 報告と予測",
+        "about": "2021年7月12日から7月26日までに報告されたCOVID-19症例と、2021年7月26日から8月21日までの4つの異なるモデルによる予測。<br>4つのモデルは以下の通りです: <a href='https://github.com/oskali/mit_cassandra' target='_blank'>MIT-Cassandra</a>, <a href='https://covid19.uclaml.org/' target='_blank'>UCLA</a>, <a href='https://systems.jhu.edu/research/public-health/predicting-covid-19-risk/' target='_blank'>JHU-CSSE</a>, そして <a href='https://www.microsoft.com/en-us/ai/ai-for-health' target='_blank'>Microsoft</a>。<br>データソース: COVID-19統計のGoogle検索および<a href='https://www.cdc.gov/coronavirus/2019-ncov/science/forecasting/forecasts-cases.html' target='_blank'>CDC</a>"
     },
     "LollipopChart": {
-        "name": "Lollipop Chart",
+        "name": "ロリポップチャート",
         "mark": "Lines and Paths",
-        "title": "London Borough Crime Rate",
-        "about": "Overall crime rate (number of crimes per 1000 people) in London between May 2019 and April 2022. Data source: <a href='https://crimerate.co.uk/london' target='_blank'>crimerate.co.uk</a>"
+        "title": "ロンドン特別区の犯罪率",
+        "about": "2019年5月から2022年4月までのロンドンにおける全体的な犯罪率（人口1000人あたりの犯罪数）。データソース: <a href='https://crimerate.co.uk/london' target='_blank'>crimerate.co.uk</a>"
     },
     "MultiLineGraph": {
-        "name": "Multi-Line Graph",
+        "name": "多重折れ線グラフ",
         "mark": "Lines and Paths",
-        "title": "Stock Market",
-        "about": "Monthly Stock Prices of four companies: Amazon, Apple, IBM and Microsoft from Jan 1, 2000 to Mar 1, 2010. Original visualization was composed using d3.js on <a href='https://bl.ocks.org/d3noob/08af723fe615c08f9536f656b55755b4' target='_blank'>d3noob.org</a>"
+        "title": "株式市場",
+        "about": "2000年1月1日から2010年3月1日までの4社（Amazon, Apple, IBM, Microsoft）の月次株価。<a href='https://bl.ocks.org/d3noob/08af723fe615c08f9536f656b55755b4' target='_blank'>d3noob.org</a>でd3.jsを使用して構成されたオリジナルの視覚化"
     },
     "ParallelCoordinates": {
-        "name": "Parallel Coordinates",
+        "name": "平行座標",
         "mark": "Lines and Paths",
-        "title": "Features of Cars",
-        "about": "This visualization shows the the features of 406 cars. Original visualization appeared in Robert Spence's book <a href='https://books.google.com/books?id=uOosBQAAQBAJ&dq=406+cars+visualization&source=gbs_navlinks_s' target='_blank'>Information Visualization: an Introduction</a>, page 69."
+        "title": "車の特徴",
+        "about": "この視覚化は406台の車の特徴を示しています。オリジナルの視覚化はRobert Spenceの本<a href='https://books.google.com/books?id=uOosBQAAQBAJ&dq=406+cars+visualization&source=gbs_navlinks_s' target='_blank'>Information Visualization: an Introduction</a>の69ページに掲載されています。"
     },
     "RangeChart": {
-        "name": "Range Chart",
+        "name": "レンジチャート",
         "mark": "Lines and Paths",
-        "title": "Boston Weather",
-        "about": "This visualization shows daily maximum and minimum temperature for a year in Boston. <br> <a href='http://weather-radials.com/' target='_blank'>Original visualization</a> by <a href='http://kekeritz.com/' target='_blank'>Timm Kekeritz</a> of Raureif was in the Polar space, we demonstrate how to create similar designs in the Cartesian space."
+        "title": "ボストンの天気",
+        "about": "この視覚化はボストンにおける1年間の日別最高気温と最低気温を示しています。<br> Raureifの<a href='http://kekeritz.com/' target='_blank'>Timm Kekeritz</a>による<a href='http://weather-radials.com/' target='_blank'>オリジナルの視覚化</a>は極座標空間でしたが、ここではデカルト空間で同様のデザインを作成する方法を示しています。"
     },
     "SlopeGraph": {
-        "name": "Slope Graph",
+        "name": "スロープグラフ",
         "mark": "Lines and Paths",
-        "title": "Obesity and Education",
-        "about": "This visualization shows that on average, percentage of obesity is inversely correlated with the percentage of population having a bachelor degree or higher. Each line represents a U.S. state. The left axis represents the obesity percentages, the right axis represents the percentages of people with a higher education. <br> <a href='http://www.thefunctionalart.com/2012/03/functional-art-has-cover_21.html' target='_blank'>Original visualization</a> created by Alberto Cairo."
+        "title": "肥満と教育",
+        "about": "この視覚化は、平均して肥満の割合が学士号以上を持つ人口の割合と逆相関していることを示しています。各線は米国の州を表しています。左軸は肥満率を表し、右軸は高等教育を受けた人々の割合を表しています。<br> Alberto Cairoによって作成された<a href='http://www.thefunctionalart.com/2012/03/functional-art-has-cover_21.html' target='_blank'>オリジナルの視覚化</a>。"
     },
     "StringlineChart": {
-        "name": "Stringline Chart",
+        "name": "ストリングラインチャート",
         "mark": "Lines and Paths",
-        "title": "Caltrain Schedule",
-        "about": "This visualization shows the Caltrian timetable following the style of <a href='https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0003zP' target='_blank'>E. J. Marey's graphical schedule</a>. Each line is a train, and the slope represents the speed of the train. The lines are colored by the type of train."
+        "title": "カルトレイン時刻表",
+        "about": "この視覚化は、<a href='https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0003zP' target='_blank'>E. J. Mareyのグラフィカルな時刻表</a>のスタイルに従ったカルトレインの時刻表を示しています。各線は列車であり、傾きは列車の速度を表しています。線は列車の種類によって色分けされています。"
     },
     "AreaChart": {
-        "name": "Area Chart",
+        "name": "エリアチャート",
         "mark": "Polygons and Areas",
-        "title": "Bitcoin prices: 2013 to 2018",
-        "about": "This visualization shows the evolution of the bitcoin price from 2013-04-28 to 2018-04-23. The original visualization was composed using d3.js on <a href='https://www.d3-graph-gallery.com/graph/area_basic.html' target='_blank'>d3-graph-gallery.com</a>."
+        "title": "ビットコイン価格: 2013年〜2018年",
+        "about": "この視覚化は、2013年4月28日から2018年4月23日までのビットコイン価格の推移を示しています。オリジナルの視覚化は<a href='https://www.d3-graph-gallery.com/graph/area_basic.html' target='_blank'>d3-graph-gallery.com</a>でd3.jsを使用して構成されました。"
     },
     "DensityPlot": {
-        "name": "Density Plot",
+        "name": "密度プロット",
         "mark": "Polygons and Areas",
-        "title": "Car Weight Distribution",
+        "title": "車の重量分布",
         "about": ""
     },
     "RadarChart": {
-        "name": "Radar Chart",
+        "name": "レーダーチャート",
         "mark": "Polygons and Areas",
-        "title": "Monthly Gasoline Sales",
-        "about": "Adjusted monthly gasoline sales in the U.S. in 2020.<br>Numbers are shown in millions of dollars.<br>Data source: <a href='https://www.census.gov/retail/mrts/historic_releases.html' target='_blank'>U.S. Census Bureau</a>"
+        "title": "月間ガソリン販売量",
+        "about": "2020年の米国における調整済み月間ガソリン販売量。<br>数値は百万ドル単位。<br>データソース: <a href='https://www.census.gov/retail/mrts/historic_releases.html' target='_blank'>米国国勢調査局</a>"
     },
     "ridgelinePlot": {
-        "name": "Ridgeline Plot",
+        "name": "リッジラインプロット",
         "mark": "Polygons and Areas",
-        "title": "How People Perceive Probability",
-        "about": "On the /r/samplesize thread of reddit, questions like What probability would you assign to the phrase “Highly likely” were asked. Answers between 0 and 100 were recorded, and this visualization shows the distribution for each question. This idea originally comes from a <a href='https://www.cia.gov/library/center-for-the-study-of-intelligence/csi-publications/books-and-monographs/psychology-of-intelligence-analysis/art15.html' target='_blank'>publication of the CIA</a>. <a href='https://github.com/zonination' target='_blank'>Zoni Nation</a> <a href='https://github.com/zonination/perceptions' target='_blank'>reproduced it using R. </a> This visualization is based on an example from <a href='https://www.d3-graph-gallery.com/graph/ridgeline_basic.html' target='_blank'>d3-graph-gallery.com</a>"
+        "title": "人々が確率をどう認識するか",
+        "about": "redditの/r/samplesizeスレッドで、「可能性が高い」というフレーズにどのような確率を割り当てるかといった質問が行われました。0から100の間の回答が記録され、この視覚化は各質問の分布を示しています。このアイデアは元々<a href='https://www.cia.gov/library/center-for-the-study-of-intelligence/csi-publications/books-and-monographs/psychology-of-intelligence-analysis/art15.html' target='_blank'>CIAの出版物</a>から来ています。<a href='https://github.com/zonination' target='_blank'>Zoni Nation</a>が<a href='https://github.com/zonination/perceptions' target='_blank'>Rを使用して再現しました。</a> この視覚化は<a href='https://www.d3-graph-gallery.com/graph/ridgeline_basic.html' target='_blank'>d3-graph-gallery.com</a>の例に基づいています。"
     },
     "StackedAreaChart": {
-        "name": "Stacked Area Chart",
+        "name": "積み上げエリアチャート",
         "mark": "Polygons and Areas",
-        "title": "Unemployment by Industry",
-        "about": "This visualization shows the evolution of the number of unemployed people in four industries (Manufacturing, Leisure and hospitality, Business services and Construction) from 2000 to 2010. The original visualization was composed using d3.js on <a href='https://observablehq.com/@d3/stacked-area-chart' target='_blank'>observablehq.com</a>."
+        "title": "産業別失業",
+        "about": "この視覚化は、2000年から2010年までの4つの産業（製造業、レジャー・接客業、ビジネスサービス、建設業）における失業者数の推移を示しています。オリジナルの視覚化は<a href='https://observablehq.com/@d3/stacked-area-chart' target='_blank'>observablehq.com</a>でd3.jsを使用して構成されました。"
     },
     "StellarChart": {
-        "name": "Stellar Chart",
+        "name": "ステラチャート",
         "mark": "Polygons and Areas",
-        "title": "Monthly Gasoline Sales",
-        "about": "Adjusted monthly gasoline sales in the U.S. in 2020.<br>Numbers are shown in millions of dollars.<br>Data source: <a href='https://www.census.gov/retail/mrts/historic_releases.html' target='_blank'>U.S. Census Bureau</a>"
+        "title": "月間ガソリン販売量",
+        "about": "2020年の米国における調整済み月間ガソリン販売量。<br>数値は百万ドル単位。<br>データソース: <a href='https://www.census.gov/retail/mrts/historic_releases.html' target='_blank'>米国国勢調査局</a>"
     },
     "StreamGraph": {
-        "name": "StreamGraph",
+        "name": "ストリームグラフ",
         "mark": "Polygons and Areas",
-        "title": "Unemployment by Industry",
-        "about": "This visualization shows the evolution of the number of unemployed people in four industries (Manufacturing, Leisure and hospitality, Business services and Construction) from 2000 to 2010. The original visualization was composed using d3.js on <a href='https://observablehq.com/@d3/streamgraph' target='_blank'>observablehq.com</a>."
+        "title": "産業別失業",
+        "about": "この視覚化は、2000年から2010年までの4つの産業（製造業、レジャー・接客業、ビジネスサービス、建設業）における失業者数の推移を示しています。オリジナルの視覚化は<a href='https://observablehq.com/@d3/streamgraph' target='_blank'>observablehq.com</a>でd3.jsを使用して構成されました。"
     },
     "ViolinPlot": {
-        "name": "Violin Plot",
+        "name": "バイオリンプロット",
         "mark": "Polygons and Areas",
-        "title": "Setosa Sepal Length Distribution",
-        "about": "This visualization shows the distribution for the sepal length of setosa, a type of iris plant. The data is from <a href='https://archive.ics.uci.edu/ml/datasets/Iris' target='_blank'>Iris Data Set</a>."
+        "title": "セトサ種のガク片の長さの分布",
+        "about": "この視覚化は、アヤメ科植物の一種であるセトサのガク片の長さの分布を示しています。データは<a href='https://archive.ics.uci.edu/ml/datasets/Iris' target='_blank'>Iris Data Set</a>からのものです。"
     },
     "DirectedAcyclicGraph": {
-        "name": "Directed Acyclic Graph",
+        "name": "有向非巡回グラフ",
         "mark": "Nodes and Links",
         "draft": true,
         "title": "",
         "about": ""
     },
     "ForceDirected": {
-        "name": "Force-Directed Graph",
+        "name": "力指向グラフ",
         "mark": "Nodes and Links",
         "draft": true,
         "title": "",
         "about": ""
     },
     "SeedGraph": {
-        "name": "Graph Partitioning",
+        "name": "グラフ分割",
         "mark": "Nodes and Links",
         "draft": true,
         "title": "",
         "about": ""
     },
     "SeqSynopsis": {
-        "name": "Sequence Synopsis",
+        "name": "シーケンスシノプシス",
         "mark": "Nodes and Links",
         "draft": true,
         "title": "",
         "about": ""
     },
     "TidyTree": {
-        "name": "'Tidy' Tree",
+        "name": "'Tidy' ツリー",
         "mark": "Nodes and Links",
         "draft": true,
-        "title": "Node-link tree",
-        "about": "Node-link visualization of a tree usign the Reingold-Tilford 'tidy' layout algorithm."
+        "title": "ノードリンクツリー",
+        "about": "Reingold-Tilfordの'tidy'レイアウトアルゴリズムを使用したツリーのノードリンク視覚化。"
     },
     "Isotype": {
-        "name": "Isotype",
+        "name": "アイソタイプ",
         "mark": "Images and Icons",
-        "title": "100 People Grouped by Age",
+        "title": "年齢別にグループ化された100人",
         "about": ""
     },
     "GridAreaChart": {
-        "name": "Area Charts",
+        "name": "エリアチャート",
         "mark": "Small Multiples",
-        "title": "Unemployment: 2000 to 2010",
-        "about": "This visualization shows the evolution of the number of unemployed people in four industries (Manufacturing, Leisure and hospitality, Business services and Construction) from 2000 to 2010."
+        "title": "失業: 2000年〜2010年",
+        "about": "この視覚化は、2000年から2010年までの4つの産業（製造業、レジャー・接客業、ビジネスサービス、建設業）における失業者数の推移を示しています。"
     },
     "MultipleBarCharts": {
-        "name": "Bar Charts",
+        "name": "棒グラフ",
         "mark": "Small Multiples",
-        "title": "Unemployment Rates by State",
-        "about": "This visualization shows how the unemployment rate for each U.S. state changed from 1980 to 2015 at five-year intervals. <br>The height of bar represents the difference of unemployment rate from the national average. Data source: <a href='https://fred.stlouisfed.org/release?rid=112' target='_blank'>Federal Reserve Bank</a>."
+        "title": "州別の失業率",
+        "about": "この視覚化は、1980年から2015年までの各米国の州の失業率が5年ごとにどのように変化したかを示しています。<br>棒の高さは、全国平均からの失業率の差を表しています。データソース: <a href='https://fred.stlouisfed.org/release?rid=112' target='_blank'>連邦準備銀行</a>。"
     },
     "MultipleBoxPlots": {
-        "name": "Box Plots",
+        "name": "箱ひげ図",
         "mark": "Small Multiples",
-        "title": "Gender Pay Gap",
-        "about": "This box and whisker plot shows the disparity in annual income for women vs. men across pay grades. <br> <a href='http://www.stephen-few.com/nysi.php' target='_blank'>Original visualization from Now You See It</a> by Stephen Few."
+        "title": "男女間の賃金格差",
+        "about": "この箱ひげ図は、給与等級全体での女性対男性の年収の格差を示しています。<br> Stephen Fewによる<a href='http://www.stephen-few.com/nysi.php' target='_blank'>Now You See Itからのオリジナルの視覚化</a>。"
     },
     "MultiplePieCharts": {
-        "name": "Pie Charts",
+        "name": "円グラフ",
         "mark": "Small Multiples",
-        "title": "Household Spending Patterns",
-        "about": "Comparing household spending patterns in the UK and New Zealand in 1980 and 2008. Data source is <a href='https://www.ieltstrainingtips.com/the-charts-below-show-household-spending-patterns-in-two-countries-between-1980-and-2008/' target='_blank'>here</a>."
+        "title": "家計支出パターン",
+        "about": "1980年と2008年の英国とニュージーランドにおける家計支出パターンを比較しています。データソースは<a href='https://www.ieltstrainingtips.com/the-charts-below-show-household-spending-patterns-in-two-countries-between-1980-and-2008/' target='_blank'>こちら</a>です。"
     },
     "ScatterplotMatrix": {
-        "name": "Scatterplot Matrix",
+        "name": "散布図行列",
         "mark": "Small Multiples",
-        "title": "Iris Species: Sepal and Petal",
-        "about": "Four measurements (sepal length, sepal width, petal length, petal width) for 150 flowers representing three species of iris (Iris setosa, versicolor and virginica)"
+        "title": "アヤメの種: ガク片と花弁",
+        "about": "アヤメの3つの種（Iris setosa, versicolor, virginica）を表す150の花の4つの測定値（ガク片の長さ、ガク片の幅、花弁の長さ、花弁の幅）"
     },
     "Sparklines": {
-        "name": "Sparklines",
+        "name": "スパークライン",
         "mark": "Small Multiples",
-        "title": "Stock Price Sparklines",
+        "title": "株価スパークライン",
         "about": ""
     },
     "GridStackedAreaChart": {
-        "name": "Stacked Area Charts",
+        "name": "積み上げエリアチャート",
         "mark": "Small Multiples",
-        "title": "Unemployment by Industry",
+        "title": "産業別失業",
         "about": ""
     },
     "MultipleViolinPlots": {
-        "name": "Violin Plots",
+        "name": "バイオリンプロット",
         "mark": "Small Multiples",
-        "title": "Iris Sepal Length Distribution",
-        "about": "This visualization shows the distributions for the sepal length of three types of iris plant: setosa, versicolor and virginica. The data is from <a href='https://archive.ics.uci.edu/ml/datasets/Iris' target='_blank'>Iris Data Set</a>."
+        "title": "アヤメのガク片の長さの分布",
+        "about": "この視覚化は、3種類のアヤメ植物（setosa, versicolor, virginica）のガク片の長さの分布を示しています。データは<a href='https://archive.ics.uci.edu/ml/datasets/Iris' target='_blank'>Iris Data Set</a>からのものです。"
     },
     "MultipleWaffleCharts": {
-        "name": "Waffle Charts",
+        "name": "ワッフルチャート",
         "mark": "Small Multiples",
-        "title": "Distributions of cars by year",
-        "about": "This visualization shows the distributions for the sepal length of three types of iris plant: setosa, versicolor and virginica. The data is from <a href='https://archive.ics.uci.edu/ml/datasets/Iris' target='_blank'>Iris Data Set</a>."
+        "title": "年別の車の分布",
+        "about": "この視覚化は、3種類のアヤメ植物（setosa, versicolor, virginica）のガク片の長さの分布を示しています。データは<a href='https://archive.ics.uci.edu/ml/datasets/Iris' target='_blank'>Iris Data Set</a>からのものです。"
     }
 }
