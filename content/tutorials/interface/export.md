@@ -1,5 +1,5 @@
 ---
-title: "Export and Save"
+title: "エクスポートと保存"
 description: ""
 date: 2020-08-27T19:23:18+02:00
 lastmod: 2020-08-27T19:23:18+02:00
@@ -11,6 +11,6 @@ menu:
 weight: 12
 toc: false
 ---
-You can export your work as an SVG file, and embed it in a webpage or open it in other vector editors. To export as SVG, use the "Export" button in the Tool Bar.
+作業内容を SVG ファイルとしてエクスポートし、Web ページに埋め込んだり、他のベクターエディターで開いたりすることができます。SVG としてエクスポートするには、ツールバーの「Export」ボタンを使用します。
 
-You can also save your work in a file with the "msc" extension on your computer, and open it later using Data Illustrateur. To do so, use the "Save" and "Open" buttons in the Tool Bar.
+また、作業内容をコンピュータ上に拡張子「msc」のファイルとして保存し、後で Data Illustrateur を使用して開くこともできます。これを行うには、ツールバーの「Save」および「Open」ボタンを使用します。

@@ -1,5 +1,5 @@
 ---
-title: "Select and Direct Select"
+title: "選択とダイレクト選択"
 description: ""
 date: 2020-08-27T19:23:18+02:00
 lastmod: 2020-08-27T19:23:18+02:00
@@ -11,7 +11,7 @@ menu:
 weight: 50
 toc: false
 ---
-To select a shape, choose the Selection Tool in the Tool Bar. Then click a shape to select it. You can also draw a rectangular lasso over one or more shapes to select them.
+図形を選択するには、ツールバーの選択ツールを選択します。次に、図形をクリックして選択します。また、1つまたは複数の図形の上に長方形の投げ縄を描いて選択することもできます。
 
 {{< rawhtml >}} 
 <video width=700px class="tutorial-video" controls>
@@ -20,9 +20,9 @@ To select a shape, choose the Selection Tool in the Tool Bar. Then click a shape
 </video>
 {{< /rawhtml >}}
 
-To select a vertex or a segment, choose the Direct Selection Tool in the Tool Bar. Then click a vertex or a segment to select it. 
-<!-- When you hover over a vertex or a segment, Data Illustrateur highlights them with magnification so that it is easier to click on them.  -->
-You can draw a lasso over a vertex to direct select it if the target is too small. After selecting a vertex or segment in a path, you can use the keyboard arrow keys to nudge them and change their positions.
+頂点またはセグメントを選択するには、ツールバーのダイレクト選択ツールを選択します。次に、頂点またはセグメントをクリックして選択します。
+<!-- 頂点またはセグメントにカーソルを合わせると、Data Illustrateur はクリックしやすいように拡大してハイライト表示します。 -->
+ターゲットが小さすぎる場合は、頂点の上に投げ縄を描いて直接選択できます。パス内の頂点またはセグメントを選択した後、キーボードの矢印キーを使用して微調整し、位置を変更できます。
 
 {{< rawhtml >}} 
 <video width=700px class="tutorial-video" controls>
@@ -31,8 +31,8 @@ You can draw a lasso over a vertex to direct select it if the target is too smal
 </video>
 {{< /rawhtml >}}
 
-Whenever you make a selection, the Propery Control Panel will update to show a list of visual properties about the selection. Each visual property has an associated UI control, and you can change the property through the control.
+選択するたびに、プロパティコントロールパネルが更新され、選択内容に関する視覚的プロパティのリストが表示されます。各視覚的プロパティには関連付けられたUIコントロールがあり、コントロールを通じてプロパティを変更できます。
 
-To add to the current selection, hold down the "Shift" key. To clear the selection, click any empty space in the canvas.
+現在の選択に追加するには、「Shift」キーを押したままにします。選択を解除するには、キャンバス内の空いているスペースをクリックします。
 
-Press the "Delete" key to delete any selected items. 
+選択したアイテムを削除するには、「Delete」キーを押します。
