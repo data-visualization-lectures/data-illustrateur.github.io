@@ -13,7 +13,10 @@ npm install
 ### 3. Start development server
 
 ```bash
-npm run start
+npm start
+
+http://localhost:1313?auth_debug=1
+
 ```
 
 ### 4. Build and deploy
