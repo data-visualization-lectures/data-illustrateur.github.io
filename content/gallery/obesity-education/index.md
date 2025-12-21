@@ -1,7 +1,7 @@
 ---
-title: "Obesity vs. Education in U.S. States"
-description: "Obesity is inversely correlated with education level across US states."
-excerpt: "The inverse relationship between the obesity level and education level across US states."
+title: "米国の州における肥満と教育"
+description: "米国の各州において、肥満は教育レベルと反比例の関係にあります。"
+excerpt: "米国の各州にわたる肥満レベルと教育レベルの反比例関係。"
 date: 2020-11-04T09:19:42+01:00
 lastmod: 2020-11-04T09:19:42+01:00
 draft: false
@@ -16,10 +16,10 @@ dataset: "obesityEducation"
 msc: "SlopeGraph"
 chartType: "Slope Graph"
 ---
-This visualization shows that on average, percentage of obesity is inversely correlated with the percentage of population having a bachelor degree or higher. Each line represents a U.S. state. The left axis represents the obesity percentages, the right axis represents the percentages of people with a higher education. [Original visualization](http://www.thefunctionalart.com/2012/03/functional-art-has-cover_21.html) created by Alberto Cairo.
+この視覚化は、平均して、肥満の割合が学士号以上の学位を持つ人口の割合と反比例することを示しています。各線は米国の州を表します。左側の軸は肥満の割合を表し、右側の軸は高等教育を受けた人々の割合を表します。Alberto Cairoによって作成された[元の視覚化](http://www.thefunctionalart.com/2012/03/functional-art-has-cover_21.html)。
 
 
-First, we draw a line, repeat it by "State", then set the resulting collection's layout to "none". We then select the first vertex of every line, and bind its y position to "Obesity Percentage"; similarly, we bind the y position of the second vertex to "BA Degree Percentage". Since we want these two encodings to share the same scale, we choose the option "Merge with Obesity Percentage" when binding to "BA Degree Percentage".
+まず、線を描き、「State」で繰り返し、結果のコレクションのレイアウトを「none（なし）」に設定します。次に、各線の最初の頂点を選択し、そのY位置を「Obesity Percentage」にバインドします。同様に、2番目の頂点のY位置を「BA Degree Percentage」にバインドします。これら2つのエンコーディングで同じスケールを共有したいため、「BA Degree Percentage」にバインドするときに「Merge with Obesity Percentage（Obesity Percentageとマージ）」オプションを選択します。
 
 {{<demo-video>}}UkvL_EO_vF4{{</demo-video>}}
 
@@ -30,7 +30,7 @@ First, we draw a line, repeat it by "State", then set the resulting collection's
 </video>
 {{< /rawhtml >}} -->
 
-Next, let's style the lines. We select the vertices, set their shapes to circle with a radius of 4 pixels. We then select the lines, bind their stroke color to the categorical field "Obesity vs. Higher Education". The default color scale is not what we want exactly, so we can customize the colors for the two categories. Let's also thicken the stroke width and change the opacity of the lines.
+次に、線のスタイルを設定しましょう。頂点を選択し、その形状を半径4ピクセルの円に設定します。次に、線を選択し、その線の色（stroke color）をカテゴリカルフィールド「Obesity vs. Higher Education」にバインドします。デフォルトのカラースケールは意図したものと正確には異なるため、2つのカテゴリの色をカスタマイズできます。また、線の太さを太くし、不透明度を変更しましょう。
 
 {{<demo-video>}}Yr4eVUowGKo{{</demo-video>}}
 
@@ -41,7 +41,7 @@ Next, let's style the lines. We select the vertices, set their shapes to circle 
 </video>
 {{< /rawhtml >}} -->
 
-Finally, let's drag the axis handle to increase the range extent. Since the scales are merged, dragging one axis handle also affects the other. We can flip the orientation of the y axis for "BA Degree Percentage" to the right, so that the two axes look more symmetrical. 
+最後に、軸ハンドルをドラッグして範囲を広げましょう。スケールがマージされているため、一方の軸ハンドルをドラッグすると、もう一方にも影響します。「BA Degree Percentage」のY軸の向きを右に反転させて、2つの軸がより対称的に見えるようにすることができます。
 
 {{<demo-video>}}aqvhxrc8bwk{{</demo-video>}}
 
@@ -51,5 +51,3 @@ Finally, let's drag the axis handle to increase the range extent. Since the scal
     Your browser does not support the video tag.  
 </video>
 {{< /rawhtml >}} -->
-
-

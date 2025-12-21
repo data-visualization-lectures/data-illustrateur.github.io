@@ -1,7 +1,7 @@
 ---
-title: "Household Spending Comparison"
-description: "Comparing household spending patterns in the UK and New Zealand in 1980 and 2008."
-excerpt: "Comparing household spending patterns in the UK and New Zealand in 1980 and 2008."
+title: "家計支出の比較"
+description: "1980年と2008年の英国とニュージーランドにおける家計支出パターンの比較。"
+excerpt: "1980年と2008年の英国とニュージーランドにおける家計支出パターンの比較。"
 date: 2020-11-04T09:19:42+01:00
 lastmod: 2020-11-04T09:19:42+01:00
 draft: false
@@ -16,18 +16,18 @@ dataset: "household_spending"
 msc: "MultiplePieCharts"
 chartType: "Small Multiples: Pie Chart"
 ---
-This chart compares household spending patterns in the UK and New Zealand in 1980 and 2008. Data source is [here](https://www.ieltstrainingtips.com/the-charts-below-show-household-spending-patterns-in-two-countries-between-1980-and-2008/).
+このチャートは、1980年と2008年の英国とニュージーランドにおける家計支出パターンを比較しています。データソースは[こちら](https://www.ieltstrainingtips.com/the-charts-below-show-household-spending-patterns-in-two-countries-between-1980-and-2008/)です。
 
 
-First, we draw a circle, set its fill color, repeat it by "Country", then repeat the resulting collection again by "Year". To customize the appearance of the x-axes, we make the path and ticks invisible, and change the orientation to "top". We can also increase the gap between the rows by dragging the pink gap area.
+まず、円を描き、塗りつぶしの色を設定し、「Country」で繰り返し、さらに結果のコレクションを「Year」で繰り返します。X軸の外観をカスタマイズするために、パスと目盛りを非表示にし、向きを「top（上）」に変更します。ピンク色のギャップ領域をドラッグして、行間のギャップを増やすこともできます。
 
 {{<demo-video>}}t9HVhb-p1bg{{</demo-video>}}
 
 
-Next, we select any circle and divide it bt "Category". This gives us four pie charts. We then select any of the pies, and bind its angle to "Percentage" and fill color to "Category".
+次に、任意の円を選択し、「Category」で分割します。これにより、4つの円グラフが作成されます。その後、円グラフのいずれかを選択し、その角度を「Percentage」に、塗りつぶし色を「Category」にバインドします。
 
 {{<demo-video>}}ps6i657_z7U{{</demo-video>}}
 
-Finally, we customize the color mapping through the interactive legend, change the visual appearance and label format of the y-axis, and increase the gap between the columns. 
+最後に、インタラクティブな凡例を使用してカラーマッピングをカスタマイズし、Y軸の視覚的外観とラベル形式を変更し、列間のギャップを増やします。
 
 {{<demo-video>}}4kECuVb2svw{{</demo-video>}}

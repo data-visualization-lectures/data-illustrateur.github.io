@@ -1,7 +1,7 @@
 ---
-title: "Olympic Medals 2012"
-description: "The number of gold, silver and bronze medals by country in 2012 Summer Olympics."
-excerpt: "The number of gold, silver and bronze medals by country in 2012 Summer Olympics."
+title: "オリンピックメダル 2012"
+description: "2012年夏季オリンピックにおける国別の金、銀、銅メダル数。"
+excerpt: "2012年夏季オリンピックにおける国別の金、銀、銅メダル数。"
 date: 2020-11-04T09:19:42+01:00
 lastmod: 2020-11-04T09:19:42+01:00
 draft: false
@@ -16,9 +16,9 @@ dataset: "olympic-medals"
 msc: "StackedBarChart"
 chartType: "Stacked Bar Chart"
 ---
-This visualization shows 2012 Summer Olympic Medal Counts by National Olympic Committees (NOCs). Of the 204 NOCs participating, 85 received at least one medal. In this visualization, we show the top 20 NOCs.
+この視覚化は、2012年夏季オリンピックの国内オリンピック委員会（NOC）別のメダル数を示しています。参加した204のNOCのうち、85が少なくとも1つのメダルを獲得しました。この視覚化では、上位20のNOCを示しています。
 
-First, we draw a rectangle, repeat it by "Country_Code", then divide it by "Medal_Type". 
+まず、長方形を描き、「Country_Code」で繰り返し、さらに「Medal_Type」で分割します。
 
 {{<demo-video>}}HqcvWdJWwuI{{</demo-video>}}
 
@@ -29,7 +29,7 @@ First, we draw a rectangle, repeat it by "Country_Code", then divide it by "Meda
 </video>
 {{< /rawhtml >}} -->
 
-Next, we select any rectangle and bind its width to "Count" and fill color to "Medal_Type". We then customize the color mapping using the interactive legend.
+次に、任意の長方形を選択し、その幅を「Count」に、塗りつぶし色を「Medal_Type」にバインドします。その後、インタラクティブな凡例を使用してカラーマッピングをカスタマイズします。
 
 {{<demo-video>}}hjKUIcQP9Fw{{</demo-video>}}
 
@@ -40,7 +40,7 @@ Next, we select any rectangle and bind its width to "Count" and fill color to "M
 </video>
 {{< /rawhtml >}} -->
 
-Finally, we change the horizontal gravity of the top collection's grid layout to "right" to align the bars to the right. Note how the x axis is flipped automatically. We also change the orientation of the y axis to "right" and hide the axis path.
+最後に、一番上のコレクションのグリッドレイアウトの水平方向の重力（gravity）を「right（右）」に変更して、バーを右揃えにします。X軸が自動的に反転することに注目してください。また、Y軸の向きを「right（右）」に変更し、軸パスを非表示にします。
 
 {{<demo-video>}}cdFrr3u9qnw{{</demo-video>}}
 

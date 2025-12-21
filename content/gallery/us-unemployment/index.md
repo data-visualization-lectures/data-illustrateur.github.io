@@ -1,7 +1,7 @@
 ---
-title: "US Unemployment 1980 - 2015"
-description: "The unemployment rate for each U.S. state from 1980 to 2015 at five-year intervals."
-excerpt: "The unemployment rate for each U.S. state from 1980 to 2015 at five-year intervals."
+title: "米国の失業率 1980 - 2015"
+description: "1980年から2015年までの各米国の州の失業率（5年ごと）。"
+excerpt: "1980年から2015年までの各米国の州の失業率（5年ごと）。"
 date: 2020-11-04T09:19:42+01:00
 lastmod: 2020-11-04T09:19:42+01:00
 draft: false
@@ -16,21 +16,20 @@ dataset: "us_state_unemployment_final"
 msc: "MultipleBarCharts"
 chartType: "Small Multiples: Bar Chart"
 ---
-This visualization shows how the unemployment rate for each U.S. state changed from 1980 to 2015 at five-year intervals.
-The height of bar represents the difference of unemployment rate from the national average. Data source: [Federal Reserve Bank](https://fred.stlouisfed.org/release?rid=112).
+この視覚化は、1980年から2015年までの各米国の州の失業率が5年ごとにどのように変化したかを示しています。バーの高さは、全国平均からの失業率の差を表しています。データソース: [連邦準備銀行](https://fred.stlouisfed.org/release?rid=112)。
 
-First, we draw a rectangle, repeat it by "State", then select any resulting rectangle and bind its x-position and y-position to "MapX" and "MapY" respectively. We rescale the axes to spread out the rectangles.
+まず、長方形を描き、「State」で繰り返し、結果の任意の長方形を選択して、そのX位置とY位置をそれぞれ「MapX」と「MapY」にバインドします。軸を再スケーリングして、長方形を展開します。
 
 {{<demo-video>}}XMEvPgMVWYs{{</demo-video>}}
 
-Next, we select any of the rectangles and divide it by "Year". This gives us a bunch of rectangle collections, each representing the years for an individual state. We then select any of the rectangles in any of the collection, and bind its height to "Unemployment", fill color to "US Avg", and change its stroke color to white. We then customize the color mapping so that "Above Average" is red, and "Below Average" is green. We can also adjust the height axis as needed.
+次に、任意の長方形を選択し、「Year」で分割します。これにより、個々の州の年を表す長方形のコレクションの束が得られます。その後、任意のコレクション内の任意の長方形を選択し、その高さを「Unemployment」に、塗りつぶし色を「US Avg」にバインドし、線の色（stroke color）を白に変更します。次に、「Above Average（平均以上）」が赤、「Below Average（平均以下）」が緑になるようにカラーマッピングをカスタマイズします。必要に応じて高さの軸を調整することもできます。
 
 {{<demo-video>}}MtY1PEPK8UI{{</demo-video>}}
 
-We then create a text item using the Text Tool, and repeat it by "State". Similar to what we did earlier for the rectangles, we bind the texts' x-position to "MapX" and y-position to "MapY". For "MapX", we want it to be using the same axis as the rectangle collections, so we choose the option "Merge with MapX" when binding. For "MapY", we choose the option "Create new scale" instead, because we don't want the text to be overlapping with the rectangles.
+次に、テキストツールを使用してテキストアイテムを作成し、「State」で繰り返します。長方形に対して行ったのと同様に、テキストのX位置を「MapX」に、Y位置を「MapY」にバインドします。「MapX」については、長方形のコレクションと同じ軸を使用したいので、バインド時に「Merge with MapX（MapXとマージ）」オプションを選択します。「MapY」については、テキストが長方形と重ならないようにするため、代わりに「Create new scale（新しいスケールを作成）」オプションを選択します。
 
 {{<demo-video>}}I4Q8YgJeXN8{{</demo-video>}}
 
-Finally, we make some adjustment to the spacing of the text and rectangles by dragging the axis handles. To use the actual state names, we select any of the text items and bind its content to "State". 
+最後に、軸ハンドルをドラッグして、テキストと長方形の間隔を調整します。実際の州名を使用するには、テキストアイテムのいずれかを選択し、その内容を「State」にバインドします。
 
 {{<demo-video>}}gp-TEBZ4ptU{{</demo-video>}}

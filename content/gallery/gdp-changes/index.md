@@ -1,7 +1,7 @@
 ---
-title: "GDP Changes"
-description: "Quarterly change in U.S. GDP from 2017 to 2020, compared to the preceding quarter."
-excerpt: "Quarterly change in U.S. GDP from 2017 to 2020, compared to the preceding quarter."
+title: "GDPの変動"
+description: "2017年から2020年までの米国GDPの四半期ごとの変動（前期比）。"
+excerpt: "2017年から2020年までの米国GDPの四半期ごとの変動（前期比）。"
 date: 2020-11-04T09:19:42+01:00
 lastmod: 2020-11-04T09:19:42+01:00
 draft: false
@@ -16,9 +16,9 @@ dataset: "GDP%20Change"
 msc: "BarChartVert"
 chartType: "Grouped Bar Chart"
 ---
-This visualization shows the percent change of U.S. Real Gross Domestic Product (GDP) in each quarter from 2017 to 2020, compared to the preceding quarter. Data source: U.S. Bureau of Economic Analysis
+この視覚化は、2017年から2020年までの各四半期における米国実質国内総生産（GDP）の変化率（前期比）を示しています。データソース: 米国経済分析局
 
-First, we draw a rectangle, set its fill color, repeat it by "Quarter", then repeat the resulting collection again by "Year". 
+まず、長方形を描き、塗りつぶしの色を設定し、「Quarter」で繰り返し、さらに結果のコレクションを「Year」で繰り返します。
 
 {{<demo-video>}}orPI1d7aOxo{{</demo-video>}}
 
@@ -29,7 +29,7 @@ First, we draw a rectangle, set its fill color, repeat it by "Quarter", then rep
 </video>
 {{< /rawhtml >}} -->
 
-Next, we select any rectangle and bind its height to "% Change". We then customize the axis position and style. 
+次に、任意の長方形を選択し、その高さを「% Change」にバインドします。その後、軸の位置とスタイルをカスタマイズします。
 
 {{<demo-video>}}ovjR_yvaQnY{{</demo-video>}}
 

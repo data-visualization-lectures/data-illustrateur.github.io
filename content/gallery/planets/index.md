@@ -1,7 +1,7 @@
 ---
-title: "Goldilocks Worlds"
-description: "Which planets are habitable and just right for life? Temperature and mass matter."
-excerpt: "Which planets are habitable and just right for life? Temperature and mass matter."
+title: "ゴルディロックス惑星"
+description: "どの惑星が居住可能で、生命にとってちょうど良い環境なのか？ 温度と質量が重要です。"
+excerpt: "どの惑星が居住可能で、生命にとってちょうど良い環境なのか？ 温度と質量が重要です。"
 date: 2020-11-04T09:19:42+01:00
 lastmod: 2020-11-04T09:19:42+01:00
 draft: false
@@ -16,10 +16,10 @@ dataset: "planets"
 msc: "BubblePlot"
 chartType: "Bubble Plot"
 ---
-This bubble plot shows 1626 planets and which ones are habitable. Temperature should not be too hot or too cold. The mass also plays a role: a small planet can't have an atmosphere, while a large one will have a crushing atmosphere. [Original visualization](http://www.nationalgeographic.com/astrobiology/goldilocks-worlds/) by John Tomanio and Xaquin G.V., NGM STAFF. Source: Abel Méndez, Planetary Habitability Laboratory, University of Puerto Rico at Arecibo.
+このバブルプロットは、1626個の惑星と、そのうちのどれが居住可能かを示しています。温度は暑すぎず寒すぎない必要があります。質量も役割を果たします。小さな惑星は大気を持つことができず、大きな惑星は押しつぶされるような大気を持つでしょう。[元の視覚化](http://www.nationalgeographic.com/astrobiology/goldilocks-worlds/)はJohn TomanioとXaquin G.V.（NGM STAFF）によるものです。ソース: アレシボにあるプエルトリコ大学のPlanetary Habitability LaboratoryのAbel Méndez。
 
 
-First, we draw a circle, repeat it by each row of data, bind its x position to "hzd" (habitable zone distance), and bind the y position to "mass". Since we want the planets with greater masses to be shown towards the bottom, we need to flip the y axis. To do this, we can drag the axis handle past the starting point. We also want the planets with small masses to spread out more, so we customize the y encoding by choosing a log scale. 
+まず、円を描き、データの各行で繰り返し、そのX位置を「hzd」（ハビタブルゾーン距離）に、Y位置を「mass」にバインドします。質量の大きい惑星を下に表示したいので、Y軸を反転させる必要があります。これを行うには、軸ハンドルを開始点を超えてドラッグします。また、質量の小さい惑星をより広げたいので、対数スケール（log scale）を選択してYエンコーディングをカスタマイズします。
 
 {{<demo-video>}}0meBKAxDong{{</demo-video>}}
 
@@ -30,7 +30,7 @@ First, we draw a circle, repeat it by each row of data, bind its x position to "
 </video>
 {{< /rawhtml >}} -->
 
-Next, we encode the radius of the circles using the "radius" data attribute, and the fill color using "hzd". Since the hzd values range from -3.0 to 3.0, Data Illustrateur chooses a diverging color scale by default. We can customize it by choosing a red-yellow-blue scale. We then set the opacity of the circles to 0.5, and set the background color to black. We can also directly drag the circles to resize them, and the size encoding will be maintained. Finally, we change the axis and legend colors to light gray, so that they stand out from the dark background. 
+次に、「radius」データ属性を使用して円の半径を、「hzd」を使用して塗りつぶし色をエンコードします。hzdの値は-3.0から3.0の範囲であるため、Data Illustrateur はデフォルトで発散カラースケールを選択します。赤-黄-青のスケールを選択してカスタマイズできます。その後、円の不透明度を0.5に設定し、背景色を黒に設定します。円を直接ドラッグしてサイズを変更することもでき、サイズエンコーディングは維持されます。最後に、軸と凡例の色を薄い灰色に変更して、暗い背景から目立つようにします。
 
 {{<demo-video>}}NHLZ9Q30CJQ{{</demo-video>}}
 

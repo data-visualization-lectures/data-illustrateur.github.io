@@ -1,7 +1,7 @@
 ---
-title: "Boston Weather 2015"
-description: "Daily max and min temperatures in Boston for year 2015."
-excerpt: "Daily max, min and mean temperatures in Boston, MA for year 2015."
+title: "ボストンの天気 2015"
+description: "2015年のボストンにおける日別最高気温と最低気温。"
+excerpt: "2015年のボストン（マサチューセッツ州）における日別最高、最低、平均気温。"
 date: 2020-11-04T09:19:42+01:00
 lastmod: 2020-11-04T09:19:42+01:00
 draft: false
@@ -16,9 +16,9 @@ dataset: "bostonWeather"
 chartType: "Range Chart"
 msc: "RangeChart"
 ---
-This range chart shows daily maximum, minimum and mean temperatures for a year in Boston. [Original visualization](http://weather-radials.com/) by [Timm Kekeritz](http://kekeritz.com/) of [Raureif](https://raureif.net/) was in the polar space, we demonstrate how to create similar designs in the Cartesian space.
+このレンジチャートは、ボストンにおける1年間の日別最高、最低、平均気温を示しています。[Raureif](https://raureif.net/)の[Timm Kekeritz](http://kekeritz.com/)による[元の視覚化](http://weather-radials.com/)は極座標空間でしたが、ここではデカルト空間で同様のデザインを作成する方法を示しています。
 
-First, we draw a vertical line (by holding down the Shift key), set its stroke width to 3, then repeat it by "date". 
+まず、（Shiftキーを押しながら）垂直線を描き、線の太さを3に設定し、それを「date」で繰り返します。
 
 {{<demo-video>}}0lYPDBNM4uI{{</demo-video>}}
 
@@ -29,7 +29,7 @@ First, we draw a vertical line (by holding down the Shift key), set its stroke w
 </video>
 {{< /rawhtml >}} -->
 
-Next, we select any line in the resulting collection, and bind its x position to "date". This will break the lines from the collection's grid layout, and create an x-axis. We then use the direct select tool to select the top vertex of any line, and bind its y position to "maxTemp". Next, we direct select the bottom vertex of any line, and bind its y position to "minTemp". Note here we have the option to either create a new scale, or merge with the existing scale created from "maxTemp. Let's merge the scale, and drag the y axis handle to make its range extent larger.
+次に、結果のコレクション内の任意の線を選択し、そのX位置を「date」にバインドします。これにより、線はコレクションのグリッドレイアウトから外れ、X軸が作成されます。次に、ダイレクト選択ツールを使用して任意の線の上部頂点を選択し、そのY位置を「maxTemp」にバインドします。次に、任意の線の下部頂点を直接選択し、そのY位置を「minTemp」にバインドします。ここで、新しいスケールを作成するか、「maxTemp」から作成された既存のスケールとマージするかのオプションがあることに注意してください。スケールをマージし、Y軸ハンドルをドラッグして範囲を広げましょう。
 
 {{<demo-video>}}oMRWfabSsWU{{</demo-video>}}
 
@@ -40,7 +40,7 @@ Next, we select any line in the resulting collection, and bind its x position to
 </video>
 {{< /rawhtml >}} -->
 
-Finally, we select any line, and bind its stroke color to "meanTemp". Data Illustrateur automatically chooses a color scheme and a legend. We can change the orientation of the legend to "Horizontal", and move the legend below the chart. 
+最後に、任意の線を選択し、その線の色（stroke color）を「meanTemp」にバインドします。Data Illustrateur は自動的に配色と凡例を選択します。凡例の方向を「Horizontal（水平）」に変更し、凡例をチャートの下に移動できます。
 
 {{<demo-video>}}ADCLgA7hlKk{{</demo-video>}}
 

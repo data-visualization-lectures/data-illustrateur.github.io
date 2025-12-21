@@ -1,7 +1,7 @@
 ---
-title: "Stock Prices"
-description: "Monthly Stock Prices of four companies: Amazon, Apple, IBM and Microsoft from Jan 1, 2000 to Mar 1, 2010. Original visualization was composed using d3.js on d3noob.org"
-excerpt: "Monthly average stock prices of four companies from Jan 1, 2000 to Mar 1, 2010."
+title: "株価"
+description: "2000年1月1日から2010年3月1日までの、Amazon、Apple、IBM、Microsoftの4社の月次株価。[d3noob.org](https://bl.ocks.org/d3noob/08af723fe615c08f9536f656b55755b4)でd3.jsを使用して作成された元の視覚化。"
+excerpt: "2000年1月1日から2010年3月1日までの4社の月次平均株価。"
 date: 2020-11-04T09:19:42+01:00
 lastmod: 2020-11-04T09:19:42+01:00
 draft: false
@@ -16,9 +16,9 @@ dataset: "stocks"
 msc: "MultiLineGraph"
 chartType: "Multi-Line Graph"
 ---
-Monthly Stock Prices of four companies: Amazon, Apple, IBM and Microsoft from Jan 1, 2000 to Mar 1, 2010. Original visualization was composed using d3.js on [d3noob.org](https://bl.ocks.org/d3noob/08af723fe615c08f9536f656b55755b4).
+Amazon、Apple、IBM、Microsoftの4社の2000年1月1日から2010年3月1日までの月次株価。[d3noob.org](https://bl.ocks.org/d3noob/08af723fe615c08f9536f656b55755b4)でd3.jsを使用して作成された元の視覚化。
 
-First, we draw a line, repeat it by "Company", then densify each line by "Date". 
+まず、線を描き、「Company」で繰り返し、各線を「Date」で高密度化（densify）します。
 
 <!-- {{< rawhtml >}} 
 <video width=700px class="tutorial-video" controls>
@@ -30,7 +30,7 @@ First, we draw a line, repeat it by "Company", then densify each line by "Date".
 {{<demo-video>}}YiSKo66fyUc{{</demo-video>}}
 
 
-Next, we select any line and bind its stroke color to "Company". Let's also change the stroke width to make it thicker.
+次に、任意の線を選択し、その線の色（stroke color）を「Company」にバインドします。また、線を太くするために線の幅を変更しましょう。
 
 <!-- {{< rawhtml >}} 
 <video width=700px class="tutorial-video" controls>
@@ -40,7 +40,7 @@ Next, we select any line and bind its stroke color to "Company". Let's also chan
 {{< /rawhtml >}} -->
 {{<demo-video>}}OAXaSKoV9I4{{</demo-video>}}
 
-We then use the direct selection tool to select any vertex in a line, and bind its x position to "Date" and y position to "Price".
+次に、ダイレクト選択ツールを使用して線内の任意の頂点を選択し、そのX位置を「Date」に、Y位置を「Price」にバインドします。
 
 {{<demo-video>}}kWVWPrF1288{{</demo-video>}}
 
@@ -51,7 +51,7 @@ We then use the direct selection tool to select any vertex in a line, and bind i
 </video>
 {{< /rawhtml >}} -->
 
-Finally, we want all the lines to be displayed in the same chart, sharing the same scale. To do this, we select the top level collection, and change the layout from "Grid" to "None". We can then adjust the axis range to make the chart more readable.
+最後に、すべての線を同じチャートに表示し、同じスケールを共有させたいと考えています。これを行うには、最上位のコレクションを選択し、レイアウトを「Grid（グリッド）」から「None（なし）」に変更します。その後、チャートを読みやすくするために軸の範囲を調整できます。
 
 {{<demo-video>}}PXvLTio7TWo{{</demo-video>}}
 

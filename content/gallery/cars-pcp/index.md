@@ -1,7 +1,7 @@
 ---
-title: "Features of Cars"
-description: "Feature values of cars from the '70s and '80s."
-excerpt: "Feature values of cars from the '70s and '80s in the form of a parallel coordinates plot."
+title: "車の特徴"
+description: "70年代と80年代の車の特徴的な値。"
+excerpt: "平行座標プロットの形式での70年代と80年代の車の特徴的な値。"
 date: 2020-11-04T09:19:42+01:00
 lastmod: 2020-11-04T09:19:42+01:00
 draft: false
@@ -16,9 +16,9 @@ dataset: "cars"
 msc: "ParallelCoordinates"
 chartType: "Parallel Coordinates Plot"
 ---
-This parallel coordinates plot shows the features of 406 cars. Original visualization appeared in Robert Spence's book [Information Visualization: an Introduction](https://books.google.com/books?id=uOosBQAAQBAJ&dq=406+cars+visualization&source=gbs_navlinks_s), page 69.
+この平行座標プロットは、406台の車の特徴を示しています。元の視覚化はRobert Spenceの本[Information Visualization: an Introduction](https://books.google.com/books?id=uOosBQAAQBAJ&dq=406+cars+visualization&source=gbs_navlinks_s)の69ページに掲載されています。
 
-First, we draw a path consisting of six vertices. To make the path flat and horizontal, press the "Shift" key when drawing the path. Press the "Esc" key after drawing the last vertex. We then select the path, and repeat it for each row of data. The resulting collection contains 406 paths. Let's change the gap between the path to 1 pixel, and also set the layout to "none", so that we can proceed with data binding. 
+まず、6つの頂点を持つパスを描きます。パスを平らで水平にするには、パスを描くときに「Shift」キーを押します。最後の頂点を描いた後、「Esc」キーを押します。次に、そのパスを選択し、データの各行に対して繰り返します。結果のコレクションには406のパスが含まれます。パス間のギャップを1ピクセルに変更し、レイアウトを「none（なし）」に設定して、データバインディングに進めるようにしましょう。
 
 {{<demo-video>}}4MFzxB_CCqc{{</demo-video>}}
 
@@ -29,7 +29,7 @@ First, we draw a path consisting of six vertices. To make the path flat and hori
 </video>
 {{< /rawhtml >}} -->
 
-Next, we use the direct selection tool to select each of the vertices in a path, and bind the y position to "economy(mpg)", "cylinders", "displacement(cc)", "power(hp)", "weight(lb)", and "year" respectively.   
+次に、ダイレクト選択ツールを使用してパス内の各頂点を選択し、Y位置をそれぞれ「economy(mpg)」、「cylinders」、「displacement(cc)」、「power(hp)」、「weight(lb)」、「year」にバインドします。
 
 {{<demo-video>}}Po-WwHQqTm0{{</demo-video>}}
 
@@ -40,7 +40,7 @@ Next, we use the direct selection tool to select each of the vertices in a path,
 </video>
 {{< /rawhtml >}} -->
 
-We can also customize the label format for the "year" axis. Finally, we select any path to bind its stroke color to the number of cyclinders, customize the color scheme, and change the opacity. 
+「year」軸のラベル形式をカスタマイズすることもできます。最後に、任意のパスを選択して、その線の色（stroke color）をシリンダー数にバインドし、配色をカスタマイズして、不透明度を変更します。
 
 {{<demo-video>}}uDwBLXrufFw{{</demo-video>}}
 
