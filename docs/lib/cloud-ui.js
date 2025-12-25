@@ -385,7 +385,8 @@
         try {
             const data = await CloudAPI.getProject(id);
             injectData(data);
-            document.querySelector('.cloud-modal-overlay').remove();
+            const overlay = document.querySelector('.cloud-modal-overlay');
+            if (overlay) overlay.remove();
             showToast('Project loaded!');
         } catch (e) {
             console.error(e);
@@ -450,14 +451,28 @@
     }
 
     // === Init ===
-    // Wait for DOM
-    window.addEventListener('load', () => {
-        // Wait a bit to ensure target buttons are rendered
-        setTimeout(bindUI, 1000);
-    });
+    let initialized = false;
+    const init = () => {
+        if (initialized) return;
+        initialized = true;
 
+        // Wait a bit to ensure target buttons are rendered and app is ready
+        setTimeout(() => {
+            bindUI();
+
+            // Auto-load project if param exists
+            const params = new URLSearchParams(window.location.search);
+            const projectId = params.get('project_id');
+            if (projectId) {
+                console.log('[CloudUI] Auto-loading project:', projectId);
+                loadProject(projectId);
+            }
+        }, 1000);
+    };
+
+    window.addEventListener('load', init);
     if (document.readyState === 'complete') {
-        setTimeout(bindUI, 1000);
+        init();
     }
 
 })();
