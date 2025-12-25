@@ -12,34 +12,48 @@
          * Get Authorization Header from existing session
          */
         async getAuthHeaders() {
-            // 既存の認証クライアントからセッションを取得する試み
-            // window.supabaseなどがあるか、localStorageを探す
-            let token = null;
-
-            // 1. Check for standard Supabase local storage
-            // The key usually depends on the project reference, we'll try to find one starting with 'sb-' and ending with '-auth-token'
-            for (const key in localStorage) {
-                if (key.startsWith('sb-') && key.endsWith('-auth-token')) {
-                    try {
-                        const session = JSON.parse(localStorage.getItem(key));
-                        if (session && session.access_token) {
-                            token = session.access_token;
-                            break;
-                        }
-                    } catch (e) {
-                        console.error('Error parsing auth token', e);
-                    }
+            // 1. Try to get session from the exposed Supabase client (preferred)
+            if (window.supabase) {
+                const { data } = await window.supabase.auth.getSession();
+                if (data?.session?.access_token) {
+                    return {
+                        'Authorization': `Bearer ${data.session.access_token}`,
+                        'Content-Type': 'application/json'
+                    };
                 }
             }
 
-            if (!token) {
-                throw new Error('Not authenticated. Please log in first.');
+            // 2. Fallback: Parse cookies for 'sb-dataviz-auth-token' (matching dataviz-auth-client.js)
+            const COOKIE_NAME = 'sb-dataviz-auth-token';
+
+            function getCookie(name) {
+                const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+                if (match) return match[2];
+                return null;
             }
 
-            return {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            };
+            const tokenCookie = getCookie(COOKIE_NAME);
+            if (tokenCookie) {
+                try {
+                    // Decode: Cookie -> URL Decode -> Base64 Decode -> JSON
+                    let decoded = decodeURIComponent(tokenCookie);
+                    if (decoded.startsWith('base64-')) decoded = decoded.slice(7);
+                    // Simple fix for base64
+                    const jsonStr = atob(decoded.replace(/-/g, '+').replace(/_/g, '/'));
+                    const session = JSON.parse(jsonStr);
+
+                    if (session && session.access_token) {
+                        return {
+                            'Authorization': `Bearer ${session.access_token}`,
+                            'Content-Type': 'application/json'
+                        };
+                    }
+                } catch (e) {
+                    console.error("CloudAPI: Cookie parse failed", e);
+                }
+            }
+
+            throw new Error('Not authenticated. Please log in first.');
         },
 
         /**
