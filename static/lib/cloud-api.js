@@ -61,7 +61,8 @@
          */
         async listProjects() {
             const headers = await this.getAuthHeaders();
-            const response = await fetch(`${API_BASE_URL}/projects?app=${APP_NAME}`, {
+            // Explicitly request all columns to ensure thumbnail_path is included
+            const response = await fetch(`${API_BASE_URL}/projects?app=${APP_NAME}&select=*`, {
                 method: 'GET',
                 headers
             });
