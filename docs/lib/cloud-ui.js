@@ -5,25 +5,7 @@
 (function () {
     // === Styles ===
     const styles = `
-      #cloud-ui-container {
-        position: fixed;
-        top: 60px; /* Below global header (48px) */
-        right: 180px; /* Adjust based on existing toolbar */
-        z-index: 10001; /* Above app header (1000) */
-        font-family: sans-serif;
-      }
-      .cloud-btn {
-        background: #3ecf8e;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: bold;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        margin-right: 8px;
-      }
-      .cloud-btn:hover { background: #34b379; }
+      /* UI Container removed - reusing existing buttons */
       
       .cloud-modal-overlay {
         position: fixed;
@@ -43,6 +25,7 @@
         display: flex;
         flex-direction: column;
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        font-family: sans-serif;
       }
       .cloud-modal-header { font-size: 18px; font-weight: bold; margin-bottom: 15px; display: flex; justify-content: space-between; }
       .cloud-modal-body { flex: 1; overflow-y: auto; }
@@ -62,6 +45,7 @@
       .project-date { font-size: 12px; color: #666; }
       .project-actions button { margin-left: 5px; padding: 4px 8px; cursor: pointer; }
       .delete-btn { background: #ff4d4f; color: white; border: none; border-radius: 3px; }
+      .load-btn { background: #3ecf8e; color: white; border: none; border-radius: 3px; }
       
       /* Toast */
       .cloud-toast {
@@ -77,6 +61,7 @@
         opacity: 0;
         transition: opacity 0.3s;
         z-index: 10001;
+        font-family: sans-serif;
       }
       .cloud-toast.show { opacity: 1; }
     `;
@@ -90,24 +75,46 @@
     let projects = [];
     let currentUserId = null;
 
-    // === UI Components ===
-    function createButton() {
-        const container = document.createElement('div');
-        container.id = 'cloud-ui-container';
+    // === UI Setup ===
+    function bindUI() {
+        console.log('[CloudUI] Binding UI...');
 
-        const loadBtn = document.createElement('button');
-        loadBtn.className = 'cloud-btn';
-        loadBtn.textContent = '☁️ プロジェクト・ファイルの読込';
-        loadBtn.onclick = openProjectList;
+        // 1. Open Button (Replace with Cloud Load)
+        const openBtn = document.getElementById('openBtn');
+        if (openBtn) {
+            // Clone to remove existing listeners (prevent local file dialog)
+            const newOpenBtn = openBtn.cloneNode(true);
+            newOpenBtn.id = 'openBtn';
+            newOpenBtn.textContent = 'プロジェクト・ファイルの読込';
+            newOpenBtn.onclick = openProjectList;
+            openBtn.parentNode.replaceChild(newOpenBtn, openBtn);
+        } else {
+            console.warn('[CloudUI] #openBtn not found');
+        }
 
-        const saveBtn = document.createElement('button');
-        saveBtn.className = 'cloud-btn';
-        saveBtn.textContent = '☁️ プロジェクト・ファイルの保存';
-        saveBtn.onclick = handleSaveClick;
+        // 2. Save Button (Wrap for Cloud Save)
+        const saveBtn = document.getElementById('saveBtn');
+        if (saveBtn) {
+            saveBtn.textContent = 'プロジェクト・ファイルの保存';
+            // Use Capture phase to ensure we monitor before the native handler fires
+            saveBtn.addEventListener('click', () => {
+                // Reset capture & Start interception
+                capturedBlob = null;
+                isInterceptingDownload = true;
+                // Start polling for result
+                monitorSaveProcess();
+            }, true);
+        } else {
+            console.warn('[CloudUI] #saveBtn not found');
+        }
 
-        container.appendChild(loadBtn);
-        container.appendChild(saveBtn);
-        document.body.appendChild(container);
+        // 3. Export Button (Label Change Only)
+        const exportBtn = document.getElementById('exportBtn');
+        if (exportBtn) {
+            exportBtn.textContent = 'SVG画像出力';
+        } else {
+            console.warn('[CloudUI] #exportBtn not found');
+        }
     }
 
     function showToast(msg) {
@@ -141,33 +148,16 @@
     URL.createObjectURL = function (blob) {
         // console.log('Captured Blob:', blob);
         if (blob instanceof Blob) {
-            // Check if it looks like our file (JSON or text)
             // Data Illustrator likely exports JSON
             capturedBlob = blob;
         }
         return originalCreateObjectURL.apply(this, arguments);
     };
 
-    async function handleSaveClick() {
-        // 1. Reset capture & Start interception
-        capturedBlob = null;
-        isInterceptingDownload = true;
-
-        // 2. Trigger the native save button
-        // The user says ID is "saveBtn" for .msc file
-        const nativeSaveBtn = document.getElementById('saveBtn');
-        if (!nativeSaveBtn) {
-            alert('Error: Native Save button (#saveBtn) not found.');
-            isInterceptingDownload = false;
-            return;
-        }
-
-        nativeSaveBtn.click();
-
-        // 3. Wait for Blob capture (Polling mechanism)
-        // Polling allows us to wait for slow operations without a fixed fragile timeout
+    function monitorSaveProcess() {
+        // Polling mechanism to capture the blob generated by native logic
         let attempts = 0;
-        const maxAttempts = 50; // 50 * 100ms = 5 seconds max wait
+        const maxAttempts = 50; // 5 seconds
 
         const pollTimer = setInterval(async () => {
             attempts++;
@@ -177,7 +167,7 @@
                 clearInterval(pollTimer);
                 isInterceptingDownload = false; // Stop interception
 
-                // 4. Read Blob
+                // Process Blob
                 const textData = await capturedBlob.text();
                 let jsonData;
                 try {
@@ -188,10 +178,10 @@
                     return;
                 }
 
-                // 5. Generate Thumbnail from SVG
+                // Generate Thumbnail
                 const thumbDataUri = await generateThumbnail();
 
-                // 6. Show Save Modal
+                // Show Save Modal
                 showSaveModal(jsonData, thumbDataUri);
                 return;
             }
@@ -201,9 +191,10 @@
                 clearInterval(pollTimer);
                 isInterceptingDownload = false;
                 console.error('CloudUI: Save timeout - Blob not captured.');
-                showToast('Failed to capture project data. The operation timed out.');
+                // Maybe the user cancelled or the app failed to generate?
+                // showToast('Save timeout.');
             }
-        }, 100); // Check every 100ms
+        }, 100);
     }
 
     async function generateThumbnail() {
@@ -216,7 +207,7 @@
         const ctx = canvas.getContext('2d');
         const img = new Image();
 
-        // Set canvas size (match SVG or use fixed thumb size)
+        // Set canvas size
         const rect = svg.getBoundingClientRect();
         canvas.width = rect.width || 800;
         canvas.height = rect.height || 600;
@@ -242,12 +233,10 @@
     }
 
     function showSaveModal(data, thumbnail) {
-        // Simple Prompt for now, or build a custom modal
-        const name = prompt('Enter Project Name:', `Project ${new Date().toISOString().slice(0, 16).replace('T', ' ')}`);
+        // Simple Prompt for now
+        const defaultName = `Project ${new Date().toISOString().slice(0, 16).replace('T', ' ')}`;
+        const name = prompt('Enter Project Name:', defaultName);
         if (!name) return;
-
-        // Ideally we check for existing ID to update, but for now always create new or we need to store current ID loaded
-        // TODO: Store currently loaded project ID to support "Update"
 
         showToast('Saving...');
         CloudAPI.createProject(name, data, thumbnail)
@@ -272,9 +261,7 @@
             const res = await CloudAPI.listProjects();
             console.log('[CloudUI] listProjects response:', res);
             projects = Array.isArray(res) ? res : (res.projects || []);
-            console.log('[CloudUI] Projects array:', projects);
 
-            // Wait for rendering (using async render now)
             await renderProjectListModal();
         } catch (e) {
             console.error(e);
@@ -385,11 +372,9 @@
 
         if (fileInputs.length === 0) {
             console.error('CloudUI: input[type="file"] not found');
-            alert('Error: Could not find file loader element. Please ensure you are on the main editor screen.');
+            alert('Error: Could not find file loader element.');
             return;
         }
-
-        console.log('[CloudUI] Found file inputs:', fileInputs.map(i => `id="${i.id}" accept="${i.accept}"`));
 
         // Logic to find the Project Loader (not CSV loader)
         // 1. Look for .msc or .json in accept
@@ -400,18 +385,16 @@
             fileInput = fileInputs.find(i => !i.accept || !i.accept.includes('.csv'));
         }
 
-        // 3. Last resort: if we have inputs and couldn't distinguish, pick the second one if the first is CSV
-        // (Heuristic based on log showing first one was CSV)
+        // 3. Last resort
         if (!fileInput && fileInputs.length > 1) {
             fileInput = fileInputs[1];
         } else if (!fileInput) {
-            fileInput = fileInputs[0]; // Fallback to first if nothing else
+            fileInput = fileInputs[0];
         }
 
         console.log('[CloudUI] Selected target input:', fileInput);
 
         // Create a File object
-        // Data Illustrator expects .msc file (JSON content)
         const blob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
         const file = new File([blob], "project.msc", { type: 'application/json' });
 
@@ -420,31 +403,23 @@
         dataTransfer.items.add(file);
         fileInput.files = dataTransfer.files;
 
-        // React Hack: Notify React that the value has changed
-        const tracker = fileInput._valueTracker;
-        if (tracker) {
-            tracker.setValue("dummy_value_to_force_change");
-        }
-
-        // Dispatch change event
+        // Dispatch events
         const event = new Event('change', { bubbles: true });
         const inputEvent = new Event('input', { bubbles: true });
 
         fileInput.dispatchEvent(inputEvent);
         fileInput.dispatchEvent(event);
-
-        console.log('[CloudUI] Events dispatched');
     }
 
     // === Init ===
     // Wait for DOM
-    window.addEventListener('DOMContentLoaded', () => {
-        setTimeout(createButton, 1000); // Delay slightly to ensure UI load
+    window.addEventListener('load', () => {
+        // Wait a bit to ensure target buttons are rendered
+        setTimeout(bindUI, 1000);
     });
 
-    // Also try immediately incase we are loaded late
     if (document.readyState === 'complete') {
-        createButton();
+        setTimeout(bindUI, 1000);
     }
 
 })();
