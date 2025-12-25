@@ -67,5 +67,8 @@
     "standard-version": "^9.2",
     "stylelint": "^13.13",
     "stylelint-config-standard": "^22.0"
+  },
+  "dependencies": {
+    "dir-glob": "^3.0.1"
   }
 }
