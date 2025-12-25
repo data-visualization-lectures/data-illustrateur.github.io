@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/app/static/css/main.18157aca.chunk.css",
+    "main.js": "/app/static/js/main.57f84dbb.chunk.js",
+    "main.js.map": "/app/static/js/main.57f84dbb.chunk.js.map",
+    "runtime-main.js": "/app/static/js/runtime-main.e256cf0f.js",
+    "runtime-main.js.map": "/app/static/js/runtime-main.e256cf0f.js.map",
+    "static/js/2.7726f759.chunk.js": "/app/static/js/2.7726f759.chunk.js",
+    "static/js/2.7726f759.chunk.js.map": "/app/static/js/2.7726f759.chunk.js.map",
+    "static/js/3.4cbeac7a.chunk.js": "/app/static/js/3.4cbeac7a.chunk.js",
+    "static/js/3.4cbeac7a.chunk.js.map": "/app/static/js/3.4cbeac7a.chunk.js.map",
+    "index.html": "/app/index.html",
+    "static/css/main.18157aca.chunk.css.map": "/app/static/css/main.18157aca.chunk.css.map",
+    "static/js/2.7726f759.chunk.js.LICENSE.txt": "/app/static/js/2.7726f759.chunk.js.LICENSE.txt",
+    "static/media/ToolBar.css": "/app/static/media/DI_Ring_Dft_2x.e9174905.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e256cf0f.js",
+    "static/js/2.7726f759.chunk.js",
+    "static/css/main.18157aca.chunk.css",
+    "static/js/main.57f84dbb.chunk.js"
+  ]
+}
