@@ -123,6 +123,18 @@
 
     // === Bridge Logic: Save ===
 
+    let isInterceptingDownload = false;
+
+    // Hook HTMLAnchorElement.prototype.click to prevent local download
+    const originalAnchorClick = HTMLAnchorElement.prototype.click;
+    HTMLAnchorElement.prototype.click = function () {
+        if (isInterceptingDownload && this.hasAttribute('download')) {
+            // console.log('Blocked local download for cloud save.');
+            return;
+        }
+        return originalAnchorClick.apply(this, arguments);
+    };
+
     // Hook URL.createObjectURL to capture the blob
     const originalCreateObjectURL = URL.createObjectURL;
     URL.createObjectURL = function (blob) {
@@ -136,14 +148,16 @@
     };
 
     async function handleSaveClick() {
-        // 1. Reset capture
+        // 1. Reset capture & Start interception
         capturedBlob = null;
+        isInterceptingDownload = true;
 
         // 2. Trigger the native save button
         // The user says ID is "saveBtn" for .msc file
         const nativeSaveBtn = document.getElementById('saveBtn');
         if (!nativeSaveBtn) {
             alert('Error: Native Save button (#saveBtn) not found.');
+            isInterceptingDownload = false;
             return;
         }
 
@@ -152,6 +166,8 @@
         // 3. Wait for Blob capture
         // Since click() often triggers synchronous processing, check immediately, otherwise wait a bit
         setTimeout(async () => {
+            isInterceptingDownload = false; // Stop interception
+
             if (!capturedBlob) {
                 // Retry or fail. Sometimes it's async.
                 // alert('Could not capture project data.');
