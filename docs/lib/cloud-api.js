@@ -279,7 +279,12 @@
             // Note: it returns relative path from domain root usually.
 
             if (data.signedURL) {
-                return `${SUPABASE_URL}${data.signedURL}`;
+                // Ensure /storage/v1 prefix is present
+                const path = data.signedURL.startsWith('/') ? data.signedURL : `/${data.signedURL}`;
+                if (path.startsWith('/storage/v1')) {
+                    return `${SUPABASE_URL}${path}`;
+                }
+                return `${SUPABASE_URL}/storage/v1${path}`;
             }
             return null;
         }
