@@ -266,10 +266,8 @@
             showToast('Loading projects...');
 
             // Get current user for thumbnail fallback
-            if (window.supabase) {
-                const { data } = await window.supabase.auth.getUser();
-                currentUserId = data.user?.id;
-            }
+            currentUserId = await CloudAPI.getCurrentUserId();
+            console.log('[CloudUI] Current User ID:', currentUserId);
 
             const res = await CloudAPI.listProjects();
             console.log('[CloudUI] listProjects response:', res);
@@ -301,9 +299,9 @@
         body.className = 'cloud-modal-body';
 
         // URL Base for storage
-        // Assuming 'projects' bucket based on table name and public access
+        // Assuming 'user_projects' bucket based on user feedback
         const SUPABASE_URL = 'https://vebhoeiltxspsurqoxvl.supabase.co';
-        const storageBase = `${SUPABASE_URL}/storage/v1/object/public/projects/`;
+        const storageBase = `${SUPABASE_URL}/storage/v1/object/public/user_projects/`;
 
         if (projects.length === 0) {
             body.innerHTML = '<p>No projects found.</p>';
