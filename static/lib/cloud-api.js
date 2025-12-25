@@ -245,6 +245,43 @@
                 console.error('CloudAPI: Failed to get user ID', e);
             }
             return null;
+        },
+
+        /**
+         * Get Signed URL for Storage
+         */
+        async getSignedUrl(bucket, path) {
+            const headers = await this.getAuthHeaders();
+            const SUPABASE_URL = 'https://vebhoeiltxspsurqoxvl.supabase.co';
+
+            // Storage API: POST /storage/v1/object/sign/{bucket}/{path}
+            // Note: path might contain slashes, verify if they need encoding. 
+            // Usually Supabase handles the path in URL? Or just the prefix?
+            // Actually API ref says: POST /object/sign/{bucket}/{wildcard}
+
+            const url = `${SUPABASE_URL}/storage/v1/object/sign/${bucket}/${path}`;
+            console.log('[CloudAPI] Signing URL:', url);
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({ expiresIn: 3600 })
+            });
+
+            if (!response.ok) {
+                console.error('[CloudAPI] Sign failed', response.status, await response.text());
+                return null;
+            }
+
+            const data = await response.json();
+            // data.signedURL contains the path part with token?
+            // Usually returns { signedURL: "/object/sign/bucket/path?token=..." }
+            // Note: it returns relative path from domain root usually.
+
+            if (data.signedURL) {
+                return `${SUPABASE_URL}${data.signedURL}`;
+            }
+            return null;
         }
     };
 
