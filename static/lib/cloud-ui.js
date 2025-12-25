@@ -405,13 +405,9 @@
             fileInput.files = dataTransfer.files;
 
             // React Hack: Notify React that the value has changed
-            // This is necessary because React might ignore the event if it doesn't match internal tracker
             const tracker = fileInput._valueTracker;
             if (tracker) {
                 tracker.setValue("dummy_value_to_force_change");
-                // Note: For file inputs, value is path, setting it is restricted, but tracking works on retrieval.
-                // Actually, for file inputs, just setting 'files' and firing event is usually enough, 
-                // but if tracker exists, we update it.
             }
 
             // Dispatch change event
@@ -436,3 +432,4 @@
         }
 
     }) ();
+
