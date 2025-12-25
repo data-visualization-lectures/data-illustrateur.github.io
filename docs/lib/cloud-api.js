@@ -5,7 +5,7 @@
 
 (function () {
     const API_BASE_URL = 'https://api.dataviz.jp/api';
-    const APP_NAME = 'data-illustrator';
+    const APP_NAME = 'data-illustrateur';
 
     const CloudAPI = {
         /**
@@ -61,7 +61,8 @@
          */
         async listProjects() {
             const headers = await this.getAuthHeaders();
-            const response = await fetch(`${API_BASE_URL}/projects?app=${APP_NAME}`, {
+            // Explicitly request all columns to ensure thumbnail_path is included
+            const response = await fetch(`${API_BASE_URL}/projects?app=${APP_NAME}&select=*`, {
                 method: 'GET',
                 headers
             });
@@ -92,14 +93,59 @@
         /**
          * Create New Project
          */
+        /**
+         * Helper: Upload Thumbnail to Supabase Storage
+         */
+        async uploadThumbnail(thumbnailDataUri) {
+            if (!thumbnailDataUri || !window.supabase) return null;
+
+            try {
+                // 1. Get User ID
+                const { data: { user } } = await window.supabase.auth.getUser();
+                if (!user) throw new Error('User not found');
+
+                // 2. Convert Data URI to Blob
+                const res = await fetch(thumbnailDataUri);
+                const blob = await res.blob();
+
+                // 3. Upload
+                const filename = `${user.id}/${Date.now()}.png`;
+                const { data, error } = await window.supabase.storage
+                    .from('projects')
+                    .upload(filename, blob, {
+                        cacheControl: '3600',
+                        upsert: true
+                    });
+
+                if (error) throw error;
+
+                // Return the path relative to bucket
+                return data.path; // e.g. "uid/timestamp.png"
+
+            } catch (e) {
+                console.error("CloudAPI: Thumbnail upload failed", e);
+                return null;
+            }
+        },
+
+        /**
+         * Create New Project
+         */
         async createProject(name, data, thumbnailInfo) {
             const headers = await this.getAuthHeaders();
+
+            // Try to upload thumbnail client-side first
+            let thumbnailPath = null;
+            if (thumbnailInfo) {
+                thumbnailPath = await this.uploadThumbnail(thumbnailInfo);
+            }
 
             const body = {
                 name,
                 app_name: APP_NAME,
                 data,
-                thumbnail: thumbnailInfo // Base64 Data URI
+                thumbnail_path: thumbnailPath // usage of 'thumbnail' ignored if we send path directly?
+                // We send 'thumbnail_path' assuming the table follows the spec.
             };
 
             const response = await fetch(`${API_BASE_URL}/projects`, {
@@ -121,11 +167,19 @@
         async updateProject(id, name, data, thumbnailInfo) {
             const headers = await this.getAuthHeaders();
 
+            let thumbnailPath = null;
+            if (thumbnailInfo) {
+                thumbnailPath = await this.uploadThumbnail(thumbnailInfo);
+            }
+
             const body = {
                 name,
-                data, // Optional: if provided, overwrites
-                thumbnail: thumbnailInfo // Optional
+                data,
             };
+
+            if (thumbnailPath) {
+                body.thumbnail_path = thumbnailPath;
+            }
 
             const response = await fetch(`${API_BASE_URL}/projects/${id}`, {
                 method: 'PUT',
