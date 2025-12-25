@@ -273,14 +273,16 @@
             console.log('[CloudUI] listProjects response:', res);
             projects = Array.isArray(res) ? res : (res.projects || []);
             console.log('[CloudUI] Projects array:', projects);
-            renderProjectListModal();
+
+            // Wait for rendering (using async render now)
+            await renderProjectListModal();
         } catch (e) {
             console.error(e);
             showToast('Error loading projects: ' + e.message);
         }
     }
 
-    function renderProjectListModal() {
+    async function renderProjectListModal() {
         // cleanup old
         const old = document.querySelector('.cloud-modal-overlay');
         if (old) old.remove();
@@ -297,65 +299,60 @@
 
         const body = document.createElement('div');
         body.className = 'cloud-modal-body';
-
-        // URL Base for storage
-        // Assuming 'user_projects' bucket based on user feedback
-        const SUPABASE_URL = 'https://vebhoeiltxspsurqoxvl.supabase.co';
-        const storageBase = `${SUPABASE_URL}/storage/v1/object/public/user_projects/`;
-
-        if (projects.length === 0) {
-            body.innerHTML = '<p>No projects found.</p>';
-        } else {
-            projects.forEach(p => {
-                // Heuristic Fallback: If thumbnail_path is missing, try user_id/project_id.png
-                // This matches the API spec default naming convention.
-                if (!p.thumbnail_path && currentUserId && p.id) {
-                    p.thumbnail_path = `${currentUserId}/${p.id}.png`;
-                    console.log('[CloudUI] Fallback thumb path:', p.thumbnail_path);
-                }
-
-                console.log('[CloudUI] Rendering Item:', p.name, 'ThumbPath:', p.thumbnail_path, 'Raw:', p);
-
-                let thumbHtml = '<div class="project-thumb no-image"></div>';
-
-                if (p.thumbnail_path) {
-                    let thumbSrc = p.thumbnail_path;
-                    if (!thumbSrc.startsWith('http') && !thumbSrc.startsWith('data:')) {
-                        const cleanPath = thumbSrc.startsWith('/') ? thumbSrc.slice(1) : thumbSrc;
-                        thumbSrc = `${storageBase}${cleanPath}`;
-                    }
-                    if (thumbSrc) {
-                        thumbHtml = `<img src="${thumbSrc}" class="project-thumb" alt="${p.name}" />`;
-                    }
-                }
-
-                const el = document.createElement('div');
-                el.className = 'project-list-item';
-                el.innerHTML = `
-                  ${thumbHtml}
-                  <div class="project-info">
-                      <div class="project-name">${p.name}</div>
-                      <div class="project-date">${new Date(p.updated_at).toLocaleString()}</div>
-                  </div>
-                  <div class="project-actions">
-                      <button class="load-btn">Open</button>
-                      <button class="delete-btn">Delete</button>
-                  </div>
-                `;
-
-                el.querySelector('.load-btn').onclick = () => loadProject(p.id);
-                el.querySelector('.delete-btn').onclick = (e) => {
-                    e.stopPropagation();
-                    if (confirm('Are you sure?')) deleteProject(p.id);
-                };
-                body.appendChild(el);
-            });
-        }
+        body.innerHTML = '<p>Loading thumbnails...</p>';
 
         modal.appendChild(header);
         modal.appendChild(body);
         overlay.appendChild(modal);
         document.body.appendChild(overlay);
+
+        if (projects.length === 0) {
+            body.innerHTML = '<p>No projects found.</p>';
+        } else {
+            // Generate list items HTML with Signed URLs
+            const itemsHtml = await Promise.all(projects.map(async p => {
+                if (!p.thumbnail_path && currentUserId && p.id) {
+                    p.thumbnail_path = `${currentUserId}/${p.id}.png`;
+                }
+
+                let thumbHtml = '<div class="project-thumb no-image"></div>';
+                if (p.thumbnail_path) {
+                    const cleanPath = p.thumbnail_path.startsWith('/') ? p.thumbnail_path.slice(1) : p.thumbnail_path;
+                    // Attempt to sign URL
+                    const signedUrl = await CloudAPI.getSignedUrl('user_projects', cleanPath);
+                    if (signedUrl) {
+                        thumbHtml = `<img src="${signedUrl}" class="project-thumb" alt="${p.name}" />`;
+                    }
+                }
+
+                return `
+                  <div class="project-list-item">
+                    ${thumbHtml}
+                    <div class="project-info">
+                        <div class="project-name">${p.name}</div>
+                        <div class="project-date">${new Date(p.updated_at).toLocaleString()}</div>
+                    </div>
+                    <div class="project-actions">
+                        <button class="load-btn" data-id="${p.id}">Open</button>
+                        <button class="delete-btn" data-id="${p.id}">Delete</button>
+                    </div>
+                  </div>
+                `;
+            }));
+
+            body.innerHTML = itemsHtml.join('');
+
+            // Bind events
+            body.querySelectorAll('.load-btn').forEach(btn => {
+                btn.onclick = () => loadProject(btn.dataset.id);
+            });
+            body.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (confirm('Are you sure?')) deleteProject(btn.dataset.id);
+                };
+            });
+        }
     }
 
     async function loadProject(id) {
@@ -451,4 +448,3 @@
     }
 
 })();
-
