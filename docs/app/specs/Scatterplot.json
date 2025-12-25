@@ -1,0 +1,277 @@
+[
+  {
+    "cmd": "scene",
+    "args": {}
+  },
+  {
+    "cmd": "data",
+    "url": "csv/gdp-lifeExp.csv",
+    "output": "datatable14"
+  },
+  {
+    "cmd": "mark",
+    "type": "circle",
+    "output": "circle394",
+    "args": {
+      "x": 106.0872948739638,
+      "y": 530,
+      "radius": 6,
+      "fillColor": "#1f77b4",
+      "strokeWidth": 0,
+      "strokeColor": "#ccc",
+      "strokeDash": "none",
+      "opacity": "0.7",
+      "vxWidth": 0,
+      "vxHeight": 0,
+      "vxRadius": 0,
+      "vxFillColor": "#555555",
+      "vxStrokeColor": "#aaaaaa",
+      "vxStrokeWidth": 0,
+      "vxOpacity": 1
+    }
+  },
+  {
+    "cmd": "repeat",
+    "input": "circle394",
+    "output": "collection28",
+    "data": "datatable14",
+    "args": {
+      "field": "Country"
+    }
+  },
+  {
+    "cmd": "attach",
+    "input": "collection28",
+    "data": "datatable14"
+  },
+  {
+    "type": "linear",
+    "id": "scale22",
+    "offset": 100,
+    "domain": [
+      599,
+      148374
+    ],
+    "range": [
+      0,
+      450
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "type": "linear",
+    "id": "scale23",
+    "offset": 80,
+    "domain": [
+      47.1,
+      84.8
+    ],
+    "range": [
+      0,
+      450
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "type": "ordinalColor",
+    "id": "scale24",
+    "domain": [
+      "Africa",
+      "Asia",
+      "Australia",
+      "North America",
+      "South America",
+      "Europe"
+    ],
+    "range": [
+      "#1f77b4",
+      "#ff7f0e",
+      "#2ca02c",
+      "#d62728",
+      "#9467bd",
+      "#8c564b",
+      "#e377c2",
+      "#7f7f7f",
+      "#bcbd22",
+      "#17becf"
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "cmd": "encode",
+    "input": "circle394",
+    "scale": "scale22",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "field": "GDP per capita",
+      "channel": "x"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "circle394",
+    "scale": "scale23",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "field": "Life expectancy",
+      "channel": "y"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "circle394",
+    "scale": "scale24",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "field": "Continent",
+      "channel": "fillColor"
+    }
+  },
+  {
+    "cmd": "gridlines",
+    "channel": "y",
+    "field": "Life expectancy",
+    "args": {
+      "strokeColor": "#ddd",
+      "strokeWidth": 1,
+      "values": [
+        48,
+        50,
+        52,
+        54,
+        56,
+        58,
+        60,
+        62,
+        64,
+        66,
+        68,
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84
+      ]
+    }
+  },
+  {
+    "cmd": "gridlines",
+    "channel": "x",
+    "field": "GDP per capita",
+    "args": {
+      "strokeColor": "#ddd",
+      "strokeWidth": 1,
+      "values": [
+        20000,
+        40000,
+        60000,
+        80000,
+        100000,
+        120000,
+        140000
+      ]
+    }
+  },
+  {
+    "cmd": "legend",
+    "channel": "fillColor",
+    "field": "Continent",
+    "args": {
+      "textColor": "#555",
+      "strokeColor": "#555",
+      "x": 600,
+      "y": 250,
+      "orientation": "vertical"
+    }
+  },
+  {
+    "cmd": "axis",
+    "channel": "y",
+    "field": "Life expectancy",
+    "args": {
+      "orientation": "left",
+      "strokeColor": "#555",
+      "textColor": "#555",
+      "tickOffset": 0,
+      "tickSize": 5,
+      "tickAnchor": "middle",
+      "tickVisible": true,
+      "pathVisible": true,
+      "labelOffset": 15,
+      "labelFormat": "",
+      "showTitle": true,
+      "tickValues": [
+        48,
+        50,
+        52,
+        54,
+        56,
+        58,
+        60,
+        62,
+        64,
+        66,
+        68,
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84
+      ],
+      "titleAnchor": [
+        "left",
+        "middle"
+      ],
+      "titleOffset": 40,
+      "rotateTitle": true
+    }
+  },
+  {
+    "cmd": "axis",
+    "channel": "x",
+    "field": "GDP per capita",
+    "args": {
+      "orientation": "bottom",
+      "strokeColor": "#555",
+      "textColor": "#555",
+      "tickOffset": 0,
+      "tickSize": 5,
+      "tickAnchor": "middle",
+      "tickVisible": true,
+      "pathVisible": true,
+      "labelOffset": 15,
+      "labelFormat": ".2s",
+      "showTitle": true,
+      "tickValues": [
+        20000,
+        40000,
+        60000,
+        80000,
+        100000,
+        120000,
+        140000
+      ],
+      "titleAnchor": [
+        "left",
+        "middle"
+      ],
+      "titleOffset": 40,
+      "rotateTitle": true
+    }
+  }
+]

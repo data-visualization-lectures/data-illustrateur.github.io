@@ -1,0 +1,274 @@
+[
+  {
+    "cmd": "scene",
+    "args": {
+      "fillColor": "#333"
+    }
+  },
+  {
+    "cmd": "data",
+    "url": "csv/planets.csv",
+    "output": "datatable8"
+  },
+  {
+    "cmd": "mark",
+    "type": "circle",
+    "output": "circle6576",
+    "args": {
+      "x": 217.82531194295902,
+      "y": 60,
+      "radius": 3.5072336694432273,
+      "fillColor": "rgb(174, 81, 51)",
+      "strokeColor": "white",
+      "strokeWidth": 1,
+      "opacity": 0.35,
+      "strokeDash": "none",
+      "vxWidth": 0,
+      "vxHeight": 0,
+      "vxRadius": 0,
+      "vxFillColor": "#555555",
+      "vxStrokeColor": "#aaaaaa",
+      "vxStrokeWidth": 0,
+      "vxOpacity": 1
+    }
+  },
+  {
+    "cmd": "repeat",
+    "input": "circle6576",
+    "output": "collection10",
+    "data": "datatable8",
+    "args": {
+      "field": "name"
+    }
+  },
+  {
+    "cmd": "attach",
+    "input": "collection10",
+    "data": "datatable8"
+  },
+  {
+    "type": "linear",
+    "id": "scale26",
+    "offset": 200,
+    "domain": [
+      -2.62,
+      2.99
+    ],
+    "range": [
+      0,
+      500
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "type": "log",
+    "id": "scale27",
+    "offset": 60,
+    "domain": [
+      0.02,
+      8705.2
+    ],
+    "range": [
+      0,
+      600
+    ],
+    "clamp": false,
+    "isFlipped": true,
+    "cmd": "scale"
+  },
+  {
+    "type": "linear",
+    "id": "scale28",
+    "domain": [
+      0,
+      22.81
+    ],
+    "range": [
+      0,
+      40
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "type": "linear",
+    "id": "scale29",
+    "domain": [
+      -3,
+      -1,
+      1,
+      3
+    ],
+    "range": [
+      "#cc3333",
+      "#669933",
+      "#669933",
+      "#006666"
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "cmd": "encode",
+    "input": "circle6576",
+    "scale": "scale26",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "field": "hzd",
+      "channel": "x"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "circle6576",
+    "scale": "scale27",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "scaleType": "log",
+      "field": "mass",
+      "channel": "y"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "circle6576",
+    "scale": "scale28",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "field": "radius",
+      "channel": "radius"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "circle6576",
+    "scale": "scale29",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "mapping": {
+        "1": "#669933",
+        "3": "#006666",
+        "-3": "#cc3333",
+        "-1": "#669933"
+      },
+      "field": "hzd",
+      "channel": "fillColor"
+    }
+  },
+  {
+    "cmd": "gridlines",
+    "channel": "y",
+    "field": "mass",
+    "args": {
+      "strokeColor": "#555",
+      "strokeWidth": 1,
+      "values": [
+        0.1,
+        1,
+        10,
+        100,
+        1000,
+        10000
+      ]
+    }
+  },
+  {
+    "cmd": "gridlines",
+    "channel": "x",
+    "field": "hzd",
+    "args": {
+      "strokeColor": "#555",
+      "strokeWidth": 1,
+      "values": [
+        -2.5,
+        -2,
+        -1.5,
+        -1,
+        -0.5,
+        0,
+        0.5,
+        1,
+        1.5,
+        2,
+        2.5
+      ]
+    }
+  },
+  {
+    "cmd": "axis",
+    "channel": "y",
+    "field": "mass",
+    "args": {
+      "orientation": "left",
+      "strokeColor": "#ccc",
+      "textColor": "#ccc",
+      "tickOffset": 0,
+      "tickSize": 5,
+      "tickAnchor": "middle",
+      "tickVisible": true,
+      "pathVisible": true,
+      "labelOffset": 15,
+      "labelFormat": "",
+      "showTitle": true,
+      "tickValues": [
+        0.1,
+        1,
+        10,
+        100,
+        1000,
+        10000
+      ],
+      "titleAnchor": [
+        "left",
+        "middle"
+      ],
+      "titleOffset": 40,
+      "rotateTitle": true
+    }
+  },
+  {
+    "cmd": "axis",
+    "channel": "x",
+    "field": "hzd",
+    "args": {
+      "orientation": "bottom",
+      "strokeColor": "#ccc",
+      "textColor": "#ccc",
+      "tickOffset": 0,
+      "tickSize": 5,
+      "tickAnchor": "middle",
+      "tickVisible": true,
+      "pathVisible": true,
+      "labelOffset": 15,
+      "labelFormat": "",
+      "showTitle": true,
+      "tickValues": [
+        -2.5,
+        -2,
+        -1.5,
+        -1,
+        -0.5,
+        0,
+        0.5,
+        1,
+        1.5,
+        2,
+        2.5
+      ],
+      "titleAnchor": [
+        "left",
+        "middle"
+      ],
+      "titleOffset": 40,
+      "rotateTitle": true
+    }
+  }
+]

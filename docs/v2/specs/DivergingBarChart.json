@@ -1,0 +1,298 @@
+[
+  {
+    "cmd": "scene",
+    "args": {}
+  },
+  {
+    "cmd": "data",
+    "url": "csv/survey_response.csv",
+    "output": "datatable160"
+  },
+  {
+    "cmd": "mark",
+    "type": "rect",
+    "output": "rect2287",
+    "args": {
+      "fillColor": "#1e71b8",
+      "strokeWidth": 0,
+      "strokeColor": "#ccc",
+      "strokeDash": "none",
+      "vxWidth": 0,
+      "vxHeight": 0,
+      "vxRadius": 0,
+      "vxFillColor": "#555555",
+      "vxStrokeColor": "#aaaaaa",
+      "vxStrokeWidth": 0,
+      "vxOpacity": 1,
+      "width": 437.5,
+      "height": 30,
+      "left": 200,
+      "top": 100
+    }
+  },
+  {
+    "cmd": "divide",
+    "input": "rect2287",
+    "output": "collection332",
+    "data": "datatable160",
+    "args": {
+      "field": "Response",
+      "orientation": "horizontal"
+    }
+  },
+  {
+    "cmd": "layout",
+    "type": "stack",
+    "input": "collection332",
+    "args": {
+      "orientation": "horizontal",
+      "left": 243.75,
+      "top": 100,
+      "gap": 0,
+      "horzCellAlignment": "left",
+      "vertCellAlignment": "bottom"
+    }
+  },
+  {
+    "cmd": "repeat",
+    "input": "collection332",
+    "output": "collection331",
+    "data": "datatable160",
+    "args": {
+      "field": "Age Group"
+    }
+  },
+  {
+    "cmd": "layout",
+    "type": "grid",
+    "input": "collection331",
+    "args": {
+      "numCols": 1,
+      "colGap": 5,
+      "rowGap": 10,
+      "horzCellAlignment": "left",
+      "vertCellAlignment": "bottom"
+    }
+  },
+  {
+    "cmd": "attach",
+    "input": "collection331",
+    "data": "datatable160"
+  },
+  {
+    "cmd": "mark",
+    "type": "pointText",
+    "output": "pointText440",
+    "args": {
+      "x": 289.6875,
+      "y": 115,
+      "text": "21",
+      "anchor": [
+        "center",
+        "middle"
+      ],
+      "fillColor": "white",
+      "fontSize": "12px",
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "normal"
+    }
+  },
+  {
+    "cmd": "repeat",
+    "input": "pointText440",
+    "output": "collection336",
+    "data": "datatable160",
+    "args": {
+      "field": "atlas_rowId"
+    }
+  },
+  {
+    "cmd": "attach",
+    "input": "collection336",
+    "data": "datatable160"
+  },
+  {
+    "type": "linear",
+    "id": "scale228",
+    "domain": [
+      0,
+      40
+    ],
+    "range": [
+      0,
+      175
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "type": "ordinalColor",
+    "id": "scale229",
+    "domain": [
+      "Strongly agree",
+      "Agree",
+      "Disagree",
+      "Strongly disagree"
+    ],
+    "range": [
+      "#1e71b8",
+      "#7799cf",
+      "#e29d6f",
+      "#da7c43"
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "type": "ordinal",
+    "id": "scale230",
+    "domain": [
+      21,
+      30,
+      40,
+      9,
+      26,
+      35,
+      22,
+      17,
+      15,
+      28,
+      39,
+      18,
+      36,
+      19
+    ],
+    "range": [
+      "21",
+      "30",
+      "40",
+      "9",
+      "26",
+      "35",
+      "22",
+      "17",
+      "15",
+      "28",
+      "39",
+      "18",
+      "36",
+      "19"
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "cmd": "encode",
+    "input": "rect2287",
+    "scale": "scale228",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "field": "Percentage",
+      "channel": "width"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "rect2287",
+    "scale": "scale229",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "mapping": {
+        "Strongly agree": "#1e71b8",
+        "Agree": "#7799cf",
+        "Disagree": "#e29d6f",
+        "Strongly disagree": "#da7c43"
+      },
+      "field": "Response",
+      "channel": "fillColor"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "pointText440",
+    "scale": "scale230",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "field": "Percentage",
+      "channel": "text"
+    }
+  },
+  {
+    "cmd": "constraint",
+    "type": "alignment",
+    "args": {},
+    "items": [
+      "rect2287",
+      "rect2287",
+      "rect2287",
+      "rect2287"
+    ]
+  },
+  {
+    "cmd": "constraint",
+    "type": "affixation",
+    "args": {
+      "itemAnchor": "center",
+      "baseAnchor": "center",
+      "offset": 0
+    },
+    "item": "pointText440",
+    "baseItem": "rect2287",
+    "channel": "x"
+  },
+  {
+    "cmd": "constraint",
+    "type": "affixation",
+    "args": {
+      "itemAnchor": "middle",
+      "baseAnchor": "middle",
+      "offset": 0
+    },
+    "item": "pointText440",
+    "baseItem": "rect2287",
+    "channel": "y"
+  },
+  {
+    "cmd": "legend",
+    "channel": "fillColor",
+    "field": "Response",
+    "args": {
+      "textColor": "#555",
+      "strokeColor": "#555",
+      "x": 800,
+      "y": 100,
+      "orientation": "vertical"
+    }
+  },
+  {
+    "cmd": "axis",
+    "channel": "y",
+    "field": "Age Group",
+    "args": {
+      "orientation": "left",
+      "strokeColor": "#555",
+      "textColor": "#555",
+      "tickOffset": 0,
+      "tickSize": 5,
+      "tickAnchor": "middle",
+      "tickVisible": false,
+      "pathVisible": false,
+      "labelOffset": 15,
+      "labelFormat": "",
+      "showTitle": false,
+      "titleAnchor": [
+        "right",
+        "middle"
+      ],
+      "titleOffset": 40,
+      "rotateTitle": true,
+      "pathX": 190
+    }
+  }
+]

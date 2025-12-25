@@ -1,0 +1,201 @@
+[
+  {
+    "cmd": "scene",
+    "args": {
+      "fillColor": "#333"
+    }
+  },
+  {
+    "cmd": "data",
+    "url": "csv/nbaRedraft.csv",
+    "output": "datatable169"
+  },
+  {
+    "cmd": "mark",
+    "type": "rect",
+    "output": "rect3592",
+    "args": {
+      "fillColor": "rgb(206, 158, 148)",
+      "strokeWidth": 0,
+      "strokeColor": "#ccc",
+      "strokeDash": "none",
+      "vxWidth": 0,
+      "vxHeight": 0,
+      "vxRadius": 0,
+      "vxFillColor": "#555555",
+      "vxStrokeColor": "#aaaaaa",
+      "vxStrokeWidth": 0,
+      "vxOpacity": 1,
+      "width": 45,
+      "height": 8,
+      "left": 80,
+      "top": 100
+    }
+  },
+  {
+    "cmd": "repeat",
+    "input": "rect3592",
+    "output": "collection385",
+    "data": "datatable169",
+    "args": {
+      "field": "atlas_rowId"
+    }
+  },
+  {
+    "cmd": "attach",
+    "input": "collection385",
+    "data": "datatable169"
+  },
+  {
+    "type": "linear",
+    "id": "scale243",
+    "offset": 102.5,
+    "domain": [
+      1989,
+      2008
+    ],
+    "range": [
+      0,
+      910
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "type": "linear",
+    "id": "scale244",
+    "offset": 104,
+    "domain": [
+      1,
+      60
+    ],
+    "range": [
+      0,
+      500
+    ],
+    "clamp": false,
+    "isFlipped": true,
+    "cmd": "scale"
+  },
+  {
+    "type": "linear",
+    "id": "scale245",
+    "domain": [
+      -20,
+      -10,
+      20,
+      50
+    ],
+    "range": [
+      "#d7d7d7",
+      "#ecdba7",
+      "#b87187",
+      "#9d326a"
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "cmd": "encode",
+    "input": "rect3592",
+    "scale": "scale243",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "rangeExtent": 910,
+      "field": "Draft_Year",
+      "channel": "x"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "rect3592",
+    "scale": "scale244",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "rangeExtent": 500,
+      "field": "Draft_Pick",
+      "channel": "y"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "rect3592",
+    "scale": "scale245",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "mapping": {
+        "20": "#b87187",
+        "50": "#9d326a",
+        "-20": "#d7d7d7",
+        "-10": "#ecdba7"
+      },
+      "field": "VORP",
+      "channel": "fillColor"
+    }
+  },
+  {
+    "cmd": "legend",
+    "channel": "fillColor",
+    "field": "VORP",
+    "args": {
+      "textColor": "#ccc",
+      "strokeColor": "#777",
+      "x": 1050,
+      "y": 50,
+      "orientation": "vertical"
+    }
+  },
+  {
+    "cmd": "axis",
+    "channel": "y",
+    "field": "Draft_Pick",
+    "args": {
+      "orientation": "left",
+      "strokeColor": "#ccc",
+      "textColor": "#ccc",
+      "tickOffset": 0,
+      "tickSize": 5,
+      "tickAnchor": "middle",
+      "tickVisible": true,
+      "pathVisible": true,
+      "labelOffset": 15,
+      "labelFormat": "",
+      "showTitle": true,
+      "titleAnchor": [
+        "right",
+        "middle"
+      ],
+      "titleOffset": 40,
+      "rotateTitle": true
+    }
+  },
+  {
+    "cmd": "axis",
+    "channel": "x",
+    "field": "Draft_Year",
+    "args": {
+      "orientation": "top",
+      "strokeColor": "#ccc",
+      "textColor": "#ccc",
+      "tickOffset": 0,
+      "tickSize": 5,
+      "tickAnchor": "middle",
+      "tickVisible": true,
+      "pathVisible": false,
+      "labelOffset": 15,
+      "labelFormat": "",
+      "showTitle": true,
+      "titleAnchor": [
+        "left",
+        "middle"
+      ],
+      "titleOffset": 40,
+      "rotateTitle": true
+    }
+  }
+]

@@ -1,0 +1,2483 @@
+{
+  "type": "scene",
+  "id": "scene11",
+  "bounds": {
+    "left": 150,
+    "top": 100,
+    "width": 482.48207171314743,
+    "height": 532.4820717131474
+  },
+  "children": [
+    {
+      "type": "collection",
+      "id": "collection124",
+      "dataScope": {
+        "dt": "datatable16",
+        "f2v": {}
+      },
+      "classId": "collection124",
+      "bounds": {
+        "left": 167.5179282868526,
+        "top": 167.5179282868526,
+        "width": 464.96414342629487,
+        "height": 464.96414342629487
+      },
+      "children": [
+        {
+          "type": "collection",
+          "id": "collection125",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "Jan"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 167.5179282868526,
+            "top": 167.5179282868526,
+            "width": 464.96414342629487,
+            "height": 464.96414342629487
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc324",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Jan",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 69.51241834047191,
+                "startAngle": 60,
+                "endAngle": 90,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 330.4875816595281,
+                "top": 330.4875816595281,
+                "width": 139.02483668094382,
+                "height": 139.02483668094382
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc325",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Jan",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 69.51241834047191,
+                "outerRadius": 105.18896482032841,
+                "startAngle": 60,
+                "endAngle": 90,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 294.8110351796716,
+                "top": 294.8110351796716,
+                "width": 210.37792964065682,
+                "height": 210.37792964065682
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc326",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Jan",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 105.18896482032841,
+                "outerRadius": 306.1889648203284,
+                "startAngle": 60,
+                "endAngle": 90,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 93.81103517967159,
+                "top": 93.81103517967159,
+                "width": 612.3779296406568,
+                "height": 612.3779296406568
+              }
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection126",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "Feb"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 214.24013038754077,
+            "top": 214.24013038754077,
+            "width": 371.5197392249184,
+            "height": 371.5197392249184
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc327",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Feb",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 73.31866380383147,
+                "startAngle": 30,
+                "endAngle": 60,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 326.68133619616856,
+                "top": 326.68133619616856,
+                "width": 146.63732760766294,
+                "height": 146.63732760766294
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc328",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Feb",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 73.31866380383147,
+                "outerRadius": 98.985953686356,
+                "startAngle": 30,
+                "endAngle": 60,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 301.01404631364403,
+                "top": 301.01404631364403,
+                "width": 197.971907372712,
+                "height": 197.971907372712
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc329",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Feb",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 98.985953686356,
+                "outerRadius": 275.23865579953815,
+                "startAngle": 30,
+                "endAngle": 60,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 124.76134420046185,
+                "top": 124.76134420046185,
+                "width": 550.4773115990763,
+                "height": 550.4773115990763
+              }
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection127",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "Mar"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 294.9355306048533,
+            "top": 294.9355306048533,
+            "width": 210.12893879029338,
+            "height": 210.12893879029338
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc330",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Mar",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 50.91844126876728,
+                "startAngle": 0,
+                "endAngle": 30,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 349.0815587312327,
+                "top": 349.0815587312327,
+                "width": 101.83688253753456,
+                "height": 101.83688253753456
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc331",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Mar",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 50.91844126876728,
+                "outerRadius": 73.44981709278386,
+                "startAngle": 0,
+                "endAngle": 30,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 326.55018290721614,
+                "top": 326.55018290721614,
+                "width": 146.89963418556772,
+                "height": 146.89963418556772
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc332",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Mar",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 73.44981709278386,
+                "outerRadius": 206.57643422745102,
+                "startAngle": 0,
+                "endAngle": 30,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 193.42356577254898,
+                "top": 193.42356577254898,
+                "width": 413.15286845490203,
+                "height": 413.15286845490203
+              }
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection128",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "Apr"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 354.84136182542557,
+            "top": 354.84136182542557,
+            "width": 90.31727634914887,
+            "height": 90.31727634914887
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc333",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Apr",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 29.736523068365013,
+                "startAngle": 330,
+                "endAngle": 0,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 370.263476931635,
+                "top": 370.263476931635,
+                "width": 59.47304613673003,
+                "height": 59.47304613673003
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc334",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Apr",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 29.736523068365013,
+                "outerRadius": 57.10696518283416,
+                "startAngle": 330,
+                "endAngle": 0,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 342.8930348171658,
+                "top": 342.8930348171658,
+                "width": 114.21393036566832,
+                "height": 114.21393036566832
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc335",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Apr",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 57.10696518283416,
+                "outerRadius": 141.2366208993331,
+                "startAngle": 330,
+                "endAngle": 0,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 258.7633791006669,
+                "top": 258.7633791006669,
+                "width": 282.4732417986662,
+                "height": 282.4732417986662
+              }
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection129",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "May"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 353.9721115537849,
+            "top": 353.9721115537849,
+            "width": 92.05577689243029,
+            "height": 92.05577689243029
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc336",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "May",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 24.152487285641058,
+                "startAngle": 300,
+                "endAngle": 330,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 375.8475127143589,
+                "top": 375.8475127143589,
+                "width": 48.304974571282116,
+                "height": 48.304974571282116
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc337",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "May",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 24.152487285641058,
+                "outerRadius": 51.796205529157916,
+                "startAngle": 300,
+                "endAngle": 330,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 348.20379447084207,
+                "top": 348.20379447084207,
+                "width": 103.59241105831583,
+                "height": 103.59241105831583
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc338",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "May",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 51.796205529157916,
+                "outerRadius": 138.58462141318822,
+                "startAngle": 300,
+                "endAngle": 330,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 261.4153785868118,
+                "top": 261.4153785868118,
+                "width": 277.16924282637643,
+                "height": 277.16924282637643
+              }
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection130",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "Jun"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 321.5201014125317,
+            "top": 321.5201014125317,
+            "width": 156.95979717493663,
+            "height": 156.95979717493663
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc339",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Jun",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 22.192277847076753,
+                "startAngle": 270,
+                "endAngle": 300,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 377.80772215292325,
+                "top": 377.80772215292325,
+                "width": 44.384555694153505,
+                "height": 44.384555694153505
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc340",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Jun",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 22.192277847076753,
+                "outerRadius": 78.21853018371276,
+                "startAngle": 270,
+                "endAngle": 300,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 321.78146981628726,
+                "top": 321.78146981628726,
+                "width": 156.43706036742552,
+                "height": 156.43706036742552
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc341",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Jun",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 78.21853018371276,
+                "outerRadius": 187.00989640072862,
+                "startAngle": 270,
+                "endAngle": 300,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 212.99010359927138,
+                "top": 212.99010359927138,
+                "width": 374.01979280145724,
+                "height": 374.01979280145724
+              }
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection131",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "Jul"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 357.2318000724375,
+            "top": 357.2318000724375,
+            "width": 85.53639985512496,
+            "height": 85.53639985512496
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc342",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Jul",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 22.865215512370106,
+                "startAngle": 240,
+                "endAngle": 270,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 377.1347844876299,
+                "top": 377.1347844876299,
+                "width": 45.73043102474021,
+                "height": 45.73043102474021
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc343",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Jul",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 22.865215512370106,
+                "outerRadius": 67.92569220820548,
+                "startAngle": 240,
+                "endAngle": 270,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 332.0743077917945,
+                "top": 332.0743077917945,
+                "width": 135.85138441641095,
+                "height": 135.85138441641095
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc344",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Jul",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 67.92569220820548,
+                "outerRadius": 143.31807575279862,
+                "startAngle": 240,
+                "endAngle": 270,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 256.6819242472014,
+                "top": 256.6819242472014,
+                "width": 286.63615150559724,
+                "height": 286.63615150559724
+              }
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection132",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "Aug"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 348.32198478812023,
+            "top": 348.32198478812023,
+            "width": 103.35603042375948,
+            "height": 103.35603042375948
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc345",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Aug",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 20.031227316797757,
+                "startAngle": 210,
+                "endAngle": 240,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 379.96877268320225,
+                "top": 379.96877268320225,
+                "width": 40.062454633595515,
+                "height": 40.062454633595515
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc346",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Aug",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 20.031227316797757,
+                "outerRadius": 69.77495247691049,
+                "startAngle": 210,
+                "endAngle": 240,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 330.22504752308953,
+                "top": 330.22504752308953,
+                "width": 139.54990495382097,
+                "height": 139.54990495382097
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc347",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Aug",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 69.77495247691049,
+                "outerRadius": 154.42580236325483,
+                "startAngle": 210,
+                "endAngle": 240,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 245.57419763674517,
+                "top": 245.57419763674517,
+                "width": 308.85160472650966,
+                "height": 308.85160472650966
+              }
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection133",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "Sep"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 361.86780152118797,
+            "top": 361.86780152118797,
+            "width": 76.26439695762406,
+            "height": 76.26439695762406
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc348",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Sep",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 18.02204719024428,
+                "startAngle": 180,
+                "endAngle": 210,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 381.9779528097557,
+                "top": 381.9779528097557,
+                "width": 36.04409438048856,
+                "height": 36.04409438048856
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc349",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Sep",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 18.02204719024428,
+                "outerRadius": 82.2561459783765,
+                "startAngle": 180,
+                "endAngle": 210,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 317.7438540216235,
+                "top": 317.7438540216235,
+                "width": 164.512291956753,
+                "height": 164.512291956753
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc350",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Sep",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 82.2561459783765,
+                "outerRadius": 135.58336982665872,
+                "startAngle": 180,
+                "endAngle": 210,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 264.4166301733413,
+                "top": 264.4166301733413,
+                "width": 271.16673965331745,
+                "height": 271.16673965331745
+              }
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection134",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "Oct"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 382.5849329952916,
+            "top": 382.5849329952916,
+            "width": 34.830134009416895,
+            "height": 34.830134009416895
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc351",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Oct",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 17.148531868012427,
+                "startAngle": 150,
+                "endAngle": 180,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 382.8514681319876,
+                "top": 382.8514681319876,
+                "width": 34.29706373602485,
+                "height": 34.29706373602485
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc352",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Oct",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 17.148531868012427,
+                "outerRadius": 45.85841710684541,
+                "startAngle": 150,
+                "endAngle": 180,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 354.1415828931546,
+                "top": 354.1415828931546,
+                "width": 91.71683421369082,
+                "height": 91.71683421369082
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc353",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Oct",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 45.85841710684541,
+                "outerRadius": 89.92116875487855,
+                "startAngle": 150,
+                "endAngle": 180,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 310.0788312451215,
+                "top": 310.0788312451215,
+                "width": 179.8423375097571,
+                "height": 179.8423375097571
+              }
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection135",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "Nov"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 379.3976819992756,
+            "top": 379.3976819992756,
+            "width": 41.20463600144876,
+            "height": 41.20463600144876
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc354",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Nov",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 22.53137582401657,
+                "startAngle": 120,
+                "endAngle": 150,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 377.46862417598345,
+                "top": 377.46862417598345,
+                "width": 45.06275164803314,
+                "height": 45.06275164803314
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc355",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Nov",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 22.53137582401657,
+                "outerRadius": 45.39659133638668,
+                "startAngle": 120,
+                "endAngle": 150,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 354.6034086636133,
+                "top": 354.6034086636133,
+                "width": 90.79318267277336,
+                "height": 90.79318267277336
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc356",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Nov",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 45.39659133638668,
+                "outerRadius": 97.17823965413469,
+                "startAngle": 120,
+                "endAngle": 150,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 302.8217603458653,
+                "top": 302.8217603458653,
+                "width": 194.35647930826937,
+                "height": 194.35647930826937
+              }
+            }
+          ]
+        },
+        {
+          "type": "collection",
+          "id": "collection136",
+          "dataScope": {
+            "dt": "datatable16",
+            "f2v": {
+              "Month": "Dec"
+            }
+          },
+          "classId": "collection125",
+          "bounds": {
+            "left": 387.07605939876856,
+            "top": 387.07605939876856,
+            "width": 25.847881202462872,
+            "height": 25.847881202462872
+          },
+          "children": [
+            {
+              "type": "arc",
+              "id": "arc357",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Dec",
+                  "Type": "Other"
+                }
+              },
+              "args": {
+                "fillColor": "#77746F",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 0,
+                "outerRadius": 21.140757849834365,
+                "startAngle": 90,
+                "endAngle": 120,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 378.85924215016564,
+                "top": 378.85924215016564,
+                "width": 42.28151569966873,
+                "height": 42.28151569966873
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc358",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Dec",
+                  "Type": "Wounds"
+                }
+              },
+              "args": {
+                "fillColor": "#EBC3BE",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 21.140757849834365,
+                "outerRadius": 38.28928971784679,
+                "startAngle": 90,
+                "endAngle": 120,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 361.71071028215323,
+                "top": 361.71071028215323,
+                "width": 76.57857943569358,
+                "height": 76.57857943569358
+              }
+            },
+            {
+              "type": "arc",
+              "id": "arc359",
+              "classId": "pie120",
+              "dataScope": {
+                "dt": "datatable16",
+                "f2v": {
+                  "Month": "Dec",
+                  "Type": "Disease"
+                }
+              },
+              "args": {
+                "fillColor": "#CFDFE3",
+                "strokeColor": "white",
+                "strokeWidth": 1,
+                "opacity": 1,
+                "strokeDash": "none",
+                "x": 400,
+                "y": 400,
+                "innerRadius": 38.28928971784679,
+                "outerRadius": 75.59855729498761,
+                "startAngle": 90,
+                "endAngle": 120,
+                "vxWidth": 0,
+                "vxHeight": 0,
+                "vxRadius": 0,
+                "vxFillColor": "#555555",
+                "vxStrokeColor": "#aaaaaa",
+                "vxStrokeWidth": 0,
+                "vxOpacity": 1
+              },
+              "vertexCounter": 4,
+              "segmentCounter": 3,
+              "curveMode": "linear",
+              "bounds": {
+                "left": 324.4014427050124,
+                "top": 324.4014427050124,
+                "width": 151.19711458997523,
+                "height": 151.19711458997523
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "legend",
+      "id": "legend6",
+      "bounds": {
+        "left": 150,
+        "top": 100,
+        "width": 63.8046875,
+        "height": 66
+      },
+      "children": [
+        {
+          "type": "pointText",
+          "args": {
+            "x": 150,
+            "y": 100,
+            "text": "Type",
+            "anchor": [
+              "left",
+              "top"
+            ],
+            "fillColor": "#555",
+            "fontSize": "12px",
+            "fontFamily": "Arial, sans-serif",
+            "fontWeight": "normal"
+          }
+        },
+        {
+          "type": "collection",
+          "id": "collection137",
+          "dataScope": {
+            "dt": "datatable17",
+            "f2v": {}
+          },
+          "classId": "collection137",
+          "layout": {
+            "args": {
+              "numCols": 1,
+              "colGap": 5,
+              "rowGap": 5,
+              "horzCellAlignment": "left",
+              "vertCellAlignment": "bottom",
+              "dir": [
+                "l2r",
+                "t2b"
+              ]
+            },
+            "type": "grid",
+            "left": 150,
+            "top": 120
+          },
+          "bounds": {
+            "left": 150,
+            "top": 120,
+            "width": 63.8046875,
+            "height": 46
+          },
+          "children": [
+            {
+              "type": "glyph",
+              "id": "glyph18",
+              "dataScope": {
+                "dt": "datatable17",
+                "f2v": {
+                  "atlas_rowId": "r0"
+                }
+              },
+              "classId": "glyph18",
+              "bounds": {
+                "left": 150,
+                "top": 120,
+                "width": 50.01171875,
+                "height": 12
+              },
+              "children": [
+                {
+                  "type": "rect",
+                  "id": "rect18",
+                  "classId": "rect18",
+                  "dataScope": {
+                    "dt": "datatable17",
+                    "f2v": {
+                      "atlas_rowId": "r0"
+                    }
+                  },
+                  "args": {
+                    "fillColor": "#77746F",
+                    "strokeWidth": 0,
+                    "opacity": 1,
+                    "strokeColor": "#ccc",
+                    "strokeDash": "none",
+                    "width": 10,
+                    "height": 10,
+                    "top": 122,
+                    "left": 150,
+                    "vxWidth": 0,
+                    "vxHeight": 0,
+                    "vxRadius": 0,
+                    "vxFillColor": "#555555",
+                    "vxStrokeColor": "#aaaaaa",
+                    "vxStrokeWidth": 0,
+                    "vxOpacity": 1
+                  },
+                  "vertexCounter": 4,
+                  "segmentCounter": 4,
+                  "curveMode": "linear",
+                  "bounds": {
+                    "left": 150,
+                    "top": 122,
+                    "width": 10,
+                    "height": 10
+                  }
+                },
+                {
+                  "type": "pointText",
+                  "id": "pointText18",
+                  "classId": "pointText18",
+                  "dataScope": {
+                    "dt": "datatable17",
+                    "f2v": {
+                      "atlas_rowId": "r0"
+                    }
+                  },
+                  "args": {
+                    "x": 170,
+                    "y": 120,
+                    "text": "Other",
+                    "anchor": [
+                      "left",
+                      "top"
+                    ],
+                    "fillColor": "#555",
+                    "fontSize": "12px",
+                    "fontFamily": "Arial, sans-serif",
+                    "fontWeight": "normal"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "glyph",
+              "id": "glyph19",
+              "dataScope": {
+                "dt": "datatable17",
+                "f2v": {
+                  "atlas_rowId": "r1"
+                }
+              },
+              "classId": "glyph18",
+              "bounds": {
+                "left": 150,
+                "top": 137,
+                "width": 63.8046875,
+                "height": 12
+              },
+              "children": [
+                {
+                  "type": "rect",
+                  "id": "rect19",
+                  "classId": "rect18",
+                  "dataScope": {
+                    "dt": "datatable17",
+                    "f2v": {
+                      "atlas_rowId": "r1"
+                    }
+                  },
+                  "args": {
+                    "fillColor": "#EBC3BE",
+                    "strokeWidth": 0,
+                    "opacity": 1,
+                    "strokeColor": "#ccc",
+                    "strokeDash": "none",
+                    "width": 10,
+                    "height": 10,
+                    "top": 139,
+                    "left": 150,
+                    "vxWidth": 0,
+                    "vxHeight": 0,
+                    "vxRadius": 0,
+                    "vxFillColor": "#555555",
+                    "vxStrokeColor": "#aaaaaa",
+                    "vxStrokeWidth": 0,
+                    "vxOpacity": 1
+                  },
+                  "vertexCounter": 4,
+                  "segmentCounter": 4,
+                  "curveMode": "linear",
+                  "bounds": {
+                    "left": 150,
+                    "top": 139,
+                    "width": 10,
+                    "height": 10
+                  }
+                },
+                {
+                  "type": "pointText",
+                  "id": "pointText19",
+                  "classId": "pointText18",
+                  "dataScope": {
+                    "dt": "datatable17",
+                    "f2v": {
+                      "atlas_rowId": "r1"
+                    }
+                  },
+                  "args": {
+                    "x": 170,
+                    "y": 137,
+                    "text": "Wounds",
+                    "anchor": [
+                      "left",
+                      "top"
+                    ],
+                    "fillColor": "#555",
+                    "fontSize": "12px",
+                    "fontFamily": "Arial, sans-serif",
+                    "fontWeight": "normal"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "glyph",
+              "id": "glyph20",
+              "dataScope": {
+                "dt": "datatable17",
+                "f2v": {
+                  "atlas_rowId": "r2"
+                }
+              },
+              "classId": "glyph18",
+              "bounds": {
+                "left": 150,
+                "top": 154,
+                "width": 63.353515625,
+                "height": 12
+              },
+              "children": [
+                {
+                  "type": "rect",
+                  "id": "rect20",
+                  "classId": "rect18",
+                  "dataScope": {
+                    "dt": "datatable17",
+                    "f2v": {
+                      "atlas_rowId": "r2"
+                    }
+                  },
+                  "args": {
+                    "fillColor": "#CFDFE3",
+                    "strokeWidth": 0,
+                    "opacity": 1,
+                    "strokeColor": "#ccc",
+                    "strokeDash": "none",
+                    "width": 10,
+                    "height": 10,
+                    "top": 156,
+                    "left": 150,
+                    "vxWidth": 0,
+                    "vxHeight": 0,
+                    "vxRadius": 0,
+                    "vxFillColor": "#555555",
+                    "vxStrokeColor": "#aaaaaa",
+                    "vxStrokeWidth": 0,
+                    "vxOpacity": 1
+                  },
+                  "vertexCounter": 4,
+                  "segmentCounter": 4,
+                  "curveMode": "linear",
+                  "bounds": {
+                    "left": 150,
+                    "top": 156,
+                    "width": 10,
+                    "height": 10
+                  }
+                },
+                {
+                  "type": "pointText",
+                  "id": "pointText20",
+                  "classId": "pointText18",
+                  "dataScope": {
+                    "dt": "datatable17",
+                    "f2v": {
+                      "atlas_rowId": "r2"
+                    }
+                  },
+                  "args": {
+                    "x": 170,
+                    "y": 154,
+                    "text": "Disease",
+                    "anchor": [
+                      "left",
+                      "top"
+                    ],
+                    "fillColor": "#555",
+                    "fontSize": "12px",
+                    "fontFamily": "Arial, sans-serif",
+                    "fontWeight": "normal"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "args": {
+        "textColor": "#555",
+        "strokeColor": "#555",
+        "x": 150,
+        "y": 100,
+        "orientation": "vertical"
+      },
+      "channel": "fillColor",
+      "field": "Type"
+    }
+  ],
+  "fillColor": "#FFFAFC",
+  "encodings": [
+    {
+      "anyItem": "arc324",
+      "items": [
+        "arc324",
+        "arc325",
+        "arc326",
+        "arc327",
+        "arc328",
+        "arc329",
+        "arc330",
+        "arc331",
+        "arc332",
+        "arc333",
+        "arc334",
+        "arc335",
+        "arc336",
+        "arc337",
+        "arc338",
+        "arc339",
+        "arc340",
+        "arc341",
+        "arc342",
+        "arc343",
+        "arc344",
+        "arc345",
+        "arc346",
+        "arc347",
+        "arc348",
+        "arc349",
+        "arc350",
+        "arc351",
+        "arc352",
+        "arc353",
+        "arc354",
+        "arc355",
+        "arc356",
+        "arc357",
+        "arc358",
+        "arc359"
+      ],
+      "data": [
+        "Other",
+        "Wounds",
+        "Disease",
+        "Other",
+        "Wounds",
+        "Disease",
+        "Other",
+        "Wounds",
+        "Disease",
+        "Other",
+        "Wounds",
+        "Disease",
+        "Other",
+        "Wounds",
+        "Disease",
+        "Other",
+        "Wounds",
+        "Disease",
+        "Other",
+        "Wounds",
+        "Disease",
+        "Other",
+        "Wounds",
+        "Disease",
+        "Other",
+        "Wounds",
+        "Disease",
+        "Other",
+        "Wounds",
+        "Disease",
+        "Other",
+        "Wounds",
+        "Disease",
+        "Other",
+        "Wounds",
+        "Disease"
+      ],
+      "args": {
+        "channel": "fillColor",
+        "field": "Type",
+        "aggregator": "sum",
+        "datatable": "datatable16",
+        "scale": "scale21",
+        "mapping": {
+          "Disease": "#CFDFE3",
+          "Wounds": "#EBC3BE",
+          "Other": "#77746F"
+        },
+        "scaleType": "linear"
+      }
+    },
+    {
+      "anyItem": "arc324",
+      "items": [
+        "arc351",
+        "arc348",
+        "arc345",
+        "arc357",
+        "arc339",
+        "arc354",
+        "arc342",
+        "arc336",
+        "arc333",
+        "arc358",
+        "arc352",
+        "arc355",
+        "arc337",
+        "arc330",
+        "arc334",
+        "arc343",
+        "arc359",
+        "arc346",
+        "arc340",
+        "arc324",
+        "arc353",
+        "arc349",
+        "arc327",
+        "arc356",
+        "arc331",
+        "arc338",
+        "arc335",
+        "arc325",
+        "arc344",
+        "arc328",
+        "arc350",
+        "arc347",
+        "arc341",
+        "arc332",
+        "arc329",
+        "arc326"
+      ],
+      "data": {
+        "arc324": 324,
+        "arc325": 83,
+        "arc326": 2761,
+        "arc327": 361,
+        "arc328": 42,
+        "arc329": 2120,
+        "arc330": 172,
+        "arc331": 32,
+        "arc332": 1205,
+        "arc333": 57,
+        "arc334": 48,
+        "arc335": 477,
+        "arc336": 37,
+        "arc337": 49,
+        "arc338": 508,
+        "arc339": 31,
+        "arc340": 209,
+        "arc341": 802,
+        "arc342": 33,
+        "arc343": 134,
+        "arc344": 382,
+        "arc345": 25,
+        "arc346": 164,
+        "arc347": 483,
+        "arc348": 20,
+        "arc349": 276,
+        "arc350": 189,
+        "arc351": 18,
+        "arc352": 53,
+        "arc353": 128,
+        "arc354": 32,
+        "arc355": 33,
+        "arc356": 178,
+        "arc357": 28,
+        "arc358": 18,
+        "arc359": 91
+      },
+      "args": {
+        "channel": "thickness",
+        "field": "Death",
+        "aggregator": "sum",
+        "datatable": "datatable16",
+        "scale": "scale22",
+        "rangeExtent": 200,
+        "scaleType": "linear"
+      }
+    }
+  ],
+  "itemCounter": {
+    "area": 0,
+    "rect": 21,
+    "circle": 12,
+    "pie": 132,
+    "line": 0,
+    "path": 0,
+    "ring": 0,
+    "arc": 360,
+    "image": 0,
+    "pointText": 21,
+    "collection": 138,
+    "group": 178,
+    "scene": 12,
+    "axis": 0,
+    "glyph": 21,
+    "legend": 7,
+    "polygon": 0,
+    "gridlines": 0,
+    "LinearGradient": 0,
+    "link": 0,
+    "scale": 24,
+    "datatable": 18
+  },
+  "scales": {
+    "scale21": {
+      "type": "ordinalColor",
+      "id": "scale21",
+      "domain": [
+        "Other",
+        "Wounds",
+        "Disease"
+      ],
+      "range": [
+        "#77746F",
+        "#EBC3BE",
+        "#CFDFE3"
+      ],
+      "clamp": false,
+      "isFlipped": false,
+      "includeZero": false
+    },
+    "scale22": {
+      "type": "sqrt",
+      "id": "scale22",
+      "domain": [
+        0,
+        2761
+      ],
+      "range": [
+        1,
+        201
+      ],
+      "clamp": false,
+      "isFlipped": false,
+      "includeZero": false
+    }
+  },
+  "constraints": {},
+  "tables": {
+    "datatable16": {
+      "data": [
+        {
+          "Month": "Jan",
+          "Type": "Other",
+          "Death": 324
+        },
+        {
+          "Month": "Jan",
+          "Type": "Wounds",
+          "Death": 83
+        },
+        {
+          "Month": "Jan",
+          "Type": "Disease",
+          "Death": 2761
+        },
+        {
+          "Month": "Feb",
+          "Type": "Other",
+          "Death": 361
+        },
+        {
+          "Month": "Feb",
+          "Type": "Wounds",
+          "Death": 42
+        },
+        {
+          "Month": "Feb",
+          "Type": "Disease",
+          "Death": 2120
+        },
+        {
+          "Month": "Mar",
+          "Type": "Other",
+          "Death": 172
+        },
+        {
+          "Month": "Mar",
+          "Type": "Wounds",
+          "Death": 32
+        },
+        {
+          "Month": "Mar",
+          "Type": "Disease",
+          "Death": 1205
+        },
+        {
+          "Month": "Apr",
+          "Type": "Other",
+          "Death": 57
+        },
+        {
+          "Month": "Apr",
+          "Type": "Wounds",
+          "Death": 48
+        },
+        {
+          "Month": "Apr",
+          "Type": "Disease",
+          "Death": 477
+        },
+        {
+          "Month": "May",
+          "Type": "Other",
+          "Death": 37
+        },
+        {
+          "Month": "May",
+          "Type": "Wounds",
+          "Death": 49
+        },
+        {
+          "Month": "May",
+          "Type": "Disease",
+          "Death": 508
+        },
+        {
+          "Month": "Jun",
+          "Type": "Other",
+          "Death": 31
+        },
+        {
+          "Month": "Jun",
+          "Type": "Wounds",
+          "Death": 209
+        },
+        {
+          "Month": "Jun",
+          "Type": "Disease",
+          "Death": 802
+        },
+        {
+          "Month": "Jul",
+          "Type": "Other",
+          "Death": 33
+        },
+        {
+          "Month": "Jul",
+          "Type": "Wounds",
+          "Death": 134
+        },
+        {
+          "Month": "Jul",
+          "Type": "Disease",
+          "Death": 382
+        },
+        {
+          "Month": "Aug",
+          "Type": "Other",
+          "Death": 25
+        },
+        {
+          "Month": "Aug",
+          "Type": "Wounds",
+          "Death": 164
+        },
+        {
+          "Month": "Aug",
+          "Type": "Disease",
+          "Death": 483
+        },
+        {
+          "Month": "Sep",
+          "Type": "Other",
+          "Death": 20
+        },
+        {
+          "Month": "Sep",
+          "Type": "Wounds",
+          "Death": 276
+        },
+        {
+          "Month": "Sep",
+          "Type": "Disease",
+          "Death": 189
+        },
+        {
+          "Month": "Oct",
+          "Type": "Other",
+          "Death": 18
+        },
+        {
+          "Month": "Oct",
+          "Type": "Wounds",
+          "Death": 53
+        },
+        {
+          "Month": "Oct",
+          "Type": "Disease",
+          "Death": 128
+        },
+        {
+          "Month": "Nov",
+          "Type": "Other",
+          "Death": 32
+        },
+        {
+          "Month": "Nov",
+          "Type": "Wounds",
+          "Death": 33
+        },
+        {
+          "Month": "Nov",
+          "Type": "Disease",
+          "Death": 178
+        },
+        {
+          "Month": "Dec",
+          "Type": "Other",
+          "Death": 28
+        },
+        {
+          "Month": "Dec",
+          "Type": "Wounds",
+          "Death": 18
+        },
+        {
+          "Month": "Dec",
+          "Type": "Disease",
+          "Death": 91
+        }
+      ],
+      "fieldTypes": {
+        "Month": "string",
+        "Type": "string",
+        "Death": "integer",
+        "atlas_rowId": "string"
+      },
+      "url": "csv/nightingale.csv",
+      "id": "datatable16",
+      "dateMap": {}
+    }
+  }
+}
