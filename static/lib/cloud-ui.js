@@ -282,9 +282,9 @@
         body.className = 'cloud-modal-body';
 
         // URL Base for storage
-        const supabaseUrl = window.supabase?.supabaseUrl || 'https://vebhoeiltxspsurqoxvl.supabase.co';
-        // Guessing bucket is 'projects' or 'thumbnails'. Let's try 'projects' first based on table name.
-        const storageBase = `${supabaseUrl}/storage/v1/object/public/projects/`;
+        // Assuming 'projects' bucket based on table name and public access
+        const SUPABASE_URL = 'https://vebhoeiltxspsurqoxvl.supabase.co';
+        const storageBase = `${SUPABASE_URL}/storage/v1/object/public/projects/`;
 
         if (projects.length === 0) {
             body.innerHTML = '<p>No projects found.</p>';
@@ -292,13 +292,17 @@
             projects.forEach(p => {
                 let thumbSrc = p.thumbnail_path;
                 if (thumbSrc && !thumbSrc.startsWith('http') && !thumbSrc.startsWith('data:')) {
-                    thumbSrc = `${storageBase}${thumbSrc}`;
+                    // Remove any leading slashes just in case
+                    const cleanPath = thumbSrc.startsWith('/') ? thumbSrc.slice(1) : thumbSrc;
+                    thumbSrc = `${storageBase}${cleanPath}`;
                 }
+
+                // console.log('[CloudUI] Thumb URL:', thumbSrc);
 
                 const el = document.createElement('div');
                 el.className = 'project-list-item';
                 el.innerHTML = `
-                  <img src="${thumbSrc || ''}" class="project-thumb" onerror="this.style.display='none'" />
+                  <img src="${thumbSrc || ''}" class="project-thumb" alt="thumb" />
                   <div class="project-info">
                       <div class="project-name">${p.name}</div>
                       <div class="project-date">${new Date(p.updated_at).toLocaleString()}</div>
@@ -350,15 +354,16 @@
     function injectData(jsonData) {
         // Need to find the input file element.
         // Data Illustrator structure usually has one main input for loading.
-        const fileInput = document.querySelector('input[type="file"]');
-
-        if (!fileInput) {
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        if (fileInputs.length === 0) {
             console.error('CloudUI: input[type="file"] not found');
-            alert('Could not find file input element to inject data. Please ensure you are on the editor screen.');
+            alert('Error: Could not find file loader element. Please ensure you are on the main editor screen.');
             return;
         }
 
-        console.log('CloudUI: Injecting data into', fileInput);
+        // Use the first one found (usually correct in SPA)
+        const fileInput = fileInputs[0];
+        console.log('[CloudUI] Injecting data into:', fileInput, 'Total inputs:', fileInputs.length);
 
         // Create a File object
         // Data Illustrator expects .msc file (JSON content)
@@ -370,13 +375,24 @@
         dataTransfer.items.add(file);
         fileInput.files = dataTransfer.files;
 
+        // React Hack: Notify React that the value has changed
+        // This is necessary because React might ignore the event if it doesn't match internal tracker
+        const tracker = fileInput._valueTracker;
+        if (tracker) {
+            tracker.setValue("dummy_value_to_force_change");
+            // Note: For file inputs, value is path, setting it is restricted, but tracking works on retrieval.
+            // Actually, for file inputs, just setting 'files' and firing event is usually enough, 
+            // but if tracker exists, we update it.
+        }
+
         // Dispatch change event
-        // Use standard event and input event just in case
         const event = new Event('change', { bubbles: true });
         const inputEvent = new Event('input', { bubbles: true });
 
-        fileInput.dispatchEvent(event);
         fileInput.dispatchEvent(inputEvent);
+        fileInput.dispatchEvent(event);
+
+        console.log('[CloudUI] Events dispatched');
     }
 
     // === Init ===
