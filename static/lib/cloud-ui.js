@@ -264,9 +264,12 @@
         try {
             showToast('Loading projects...');
             const res = await CloudAPI.listProjects();
-            projects = res.projects || [];
+            console.log('[CloudUI] listProjects response:', res);
+            projects = Array.isArray(res) ? res : (res.projects || []);
+            console.log('[CloudUI] Projects array:', projects);
             renderProjectListModal();
         } catch (e) {
+            console.error(e);
             showToast('Error loading projects: ' + e.message);
         }
     }
@@ -298,6 +301,8 @@
             body.innerHTML = '<p>No projects found.</p>';
         } else {
             projects.forEach(p => {
+                console.log('[CloudUI] Rendering Item:', p.name, 'ThumbPath:', p.thumbnail_path, 'Raw:', p);
+
                 let thumbHtml = '<div class="project-thumb no-image"></div>';
 
                 if (p.thumbnail_path) {
