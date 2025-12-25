@@ -133,31 +133,60 @@
 
     let isInterceptingDownload = false;
 
-    // Hook HTMLAnchorElement.prototype.click to prevent local download
+    // === Interception Hooks ===
+
+    // 1. Hook document.createElement to catch detached anchor tags (Common source of unblockable downloads)
+    // Events on detached nodes DO NOT bubble to window, so window listeners miss them.
+    const originalCreateElement = document.createElement;
+    document.createElement = function (tagName) {
+        const element = originalCreateElement.apply(this, arguments);
+        if (tagName && typeof tagName === 'string' && tagName.toLowerCase() === 'a') {
+            // Attach listener directly to the instance (Capture phase)
+            element.addEventListener('click', (e) => {
+                if (isInterceptingDownload && (element.hasAttribute('download') || element.href.startsWith('blob:'))) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    console.log('[CloudUI] Blocked detached anchor download (event)');
+                }
+            }, true);
+
+            // Override .click() on instance to ensure it traps execution even if prototype is bypassed somehow
+            const originalClick = element.click;
+            element.click = function () {
+                if (isInterceptingDownload && (this.hasAttribute('download') || this.href.startsWith('blob:'))) {
+                    console.log('[CloudUI] Blocked detached anchor download (.click)');
+                    return;
+                }
+                return originalClick.apply(this, arguments);
+            };
+        }
+        return element;
+    };
+
+    // 2. Hook HTMLAnchorElement.prototype.click (Global safety net)
     const originalAnchorClick = HTMLAnchorElement.prototype.click;
     HTMLAnchorElement.prototype.click = function () {
         if (isInterceptingDownload && (this.hasAttribute('download') || this.href.startsWith('blob:'))) {
-            // console.log('Blocked local download for cloud save (programmatic).');
+            console.log('[CloudUI] Blocked anchor download (prototype.click)');
             return;
         }
         return originalAnchorClick.apply(this, arguments);
     };
 
-    // Also block dispatchEvent clicks or user clicks during interception
+    // 3. Global Capture Listener (For attached elements)
     window.addEventListener('click', (e) => {
         if (isInterceptingDownload && e.target.tagName === 'A' && (e.target.hasAttribute('download') || e.target.href.startsWith('blob:'))) {
-            // console.log('Blocked local download for cloud save (event).');
+            console.log('[CloudUI] Blocked anchor download (window capture)');
             e.preventDefault();
             e.stopPropagation();
         }
     }, true);
 
-    // Hook URL.createObjectURL to capture the blob
+    // 4. Hook URL.createObjectURL to capture the blob
     const originalCreateObjectURL = URL.createObjectURL;
     URL.createObjectURL = function (blob) {
-        // console.log('Captured Blob:', blob);
         if (blob instanceof Blob) {
-            // Data Illustrator likely exports JSON
+            // We capture all blobs, validating them later in monitorSaveProcess
             capturedBlob = blob;
         }
         return originalCreateObjectURL.apply(this, arguments);
