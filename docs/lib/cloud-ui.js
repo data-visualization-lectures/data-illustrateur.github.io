@@ -88,6 +88,7 @@
     // === State ===
     let capturedBlob = null;
     let projects = [];
+    let currentUserId = null;
 
     // === UI Components ===
     function createButton() {
@@ -263,6 +264,11 @@
     async function openProjectList() {
         try {
             showToast('Loading projects...');
+
+            // Get current user for thumbnail fallback
+            currentUserId = await CloudAPI.getCurrentUserId();
+            console.log('[CloudUI] Current User ID:', currentUserId);
+
             const res = await CloudAPI.listProjects();
             console.log('[CloudUI] listProjects response:', res);
             projects = Array.isArray(res) ? res : (res.projects || []);
@@ -293,14 +299,21 @@
         body.className = 'cloud-modal-body';
 
         // URL Base for storage
-        // Assuming 'projects' bucket based on table name and public access
+        // Assuming 'user_projects' bucket based on user feedback
         const SUPABASE_URL = 'https://vebhoeiltxspsurqoxvl.supabase.co';
-        const storageBase = `${SUPABASE_URL}/storage/v1/object/public/projects/`;
+        const storageBase = `${SUPABASE_URL}/storage/v1/object/public/user_projects/`;
 
         if (projects.length === 0) {
             body.innerHTML = '<p>No projects found.</p>';
         } else {
             projects.forEach(p => {
+                // Heuristic Fallback: If thumbnail_path is missing, try user_id/project_id.png
+                // This matches the API spec default naming convention.
+                if (!p.thumbnail_path && currentUserId && p.id) {
+                    p.thumbnail_path = `${currentUserId}/${p.id}.png`;
+                    console.log('[CloudUI] Fallback thumb path:', p.thumbnail_path);
+                }
+
                 console.log('[CloudUI] Rendering Item:', p.name, 'ThumbPath:', p.thumbnail_path, 'Raw:', p);
 
                 let thumbHtml = '<div class="project-thumb no-image"></div>';

@@ -217,6 +217,34 @@
             } catch (e) {
                 return new Error(`API Error: ${response.status}`);
             }
+        },
+
+        /**
+         * Get Current User ID (from Session or Cookie)
+         */
+        async getCurrentUserId() {
+            // 1. Supabase Client
+            if (window.supabase) {
+                const { data } = await window.supabase.auth.getUser();
+                if (data?.user?.id) return data.user.id;
+            }
+
+            // 2. Cookie Fallback (reuse logic roughly or rely on getAuthHeaders parsing?)
+            // We can't easily reuse getAuthHeaders logic without refactoring, but we can try to extract ID from token?
+            // JWT usually contains 'sub' claim which is user_id.
+
+            try {
+                const headers = await this.getAuthHeaders();
+                const token = headers['Authorization']?.split(' ')[1];
+                if (token) {
+                    // Simple JWT decode
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    return payload.sub; // 'sub' is usually user_id
+                }
+            } catch (e) {
+                console.error('CloudAPI: Failed to get user ID', e);
+            }
+            return null;
         }
     };
 
