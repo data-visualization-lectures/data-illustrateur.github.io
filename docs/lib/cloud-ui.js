@@ -136,12 +136,21 @@
     // Hook HTMLAnchorElement.prototype.click to prevent local download
     const originalAnchorClick = HTMLAnchorElement.prototype.click;
     HTMLAnchorElement.prototype.click = function () {
-        if (isInterceptingDownload && this.hasAttribute('download')) {
-            // console.log('Blocked local download for cloud save.');
+        if (isInterceptingDownload && (this.hasAttribute('download') || this.href.startsWith('blob:'))) {
+            // console.log('Blocked local download for cloud save (programmatic).');
             return;
         }
         return originalAnchorClick.apply(this, arguments);
     };
+
+    // Also block dispatchEvent clicks or user clicks during interception
+    window.addEventListener('click', (e) => {
+        if (isInterceptingDownload && e.target.tagName === 'A' && (e.target.hasAttribute('download') || e.target.href.startsWith('blob:'))) {
+            // console.log('Blocked local download for cloud save (event).');
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    }, true);
 
     // Hook URL.createObjectURL to capture the blob
     const originalCreateObjectURL = URL.createObjectURL;
