@@ -281,14 +281,24 @@
         const body = document.createElement('div');
         body.className = 'cloud-modal-body';
 
+        // URL Base for storage
+        const supabaseUrl = window.supabase?.supabaseUrl || 'https://vebhoeiltxspsurqoxvl.supabase.co';
+        // Guessing bucket is 'projects' or 'thumbnails'. Let's try 'projects' first based on table name.
+        const storageBase = `${supabaseUrl}/storage/v1/object/public/projects/`;
+
         if (projects.length === 0) {
             body.innerHTML = '<p>No projects found.</p>';
         } else {
             projects.forEach(p => {
+                let thumbSrc = p.thumbnail_path;
+                if (thumbSrc && !thumbSrc.startsWith('http') && !thumbSrc.startsWith('data:')) {
+                    thumbSrc = `${storageBase}${thumbSrc}`;
+                }
+
                 const el = document.createElement('div');
                 el.className = 'project-list-item';
                 el.innerHTML = `
-                  <img src="${p.thumbnail_path ? (p.thumbnail_url_signed || p.thumbnail_path) : ''}" class="project-thumb" />
+                  <img src="${thumbSrc || ''}" class="project-thumb" onerror="this.style.display='none'" />
                   <div class="project-info">
                       <div class="project-name">${p.name}</div>
                       <div class="project-date">${new Date(p.updated_at).toLocaleString()}</div>
@@ -298,11 +308,6 @@
                       <button class="delete-btn">Delete</button>
                   </div>
                 `;
-
-                // Note: The thumbnail_path usually needs a signed URL or public bucket. 
-                // The API spec returns `thumbnail_path`. If it's not a full URL, we might need a helper method in API to get URL.
-                // Assuming API might return a presigned URL or we handle it. 
-                // For now, if it breaks, we'll fix.
 
                 el.querySelector('.load-btn').onclick = () => loadProject(p.id);
                 el.querySelector('.delete-btn').onclick = (e) => {
@@ -327,6 +332,7 @@
             document.querySelector('.cloud-modal-overlay').remove();
             showToast('Project loaded!');
         } catch (e) {
+            console.error(e);
             showToast('Load failed: ' + e.message);
         }
     }
@@ -343,32 +349,34 @@
 
     function injectData(jsonData) {
         // Need to find the input file element.
-        // It's likely an <input type="file"> that is triggered by #openBtn.
-        // Or we can try to find ANY file input on the page.
         // Data Illustrator structure usually has one main input for loading.
-
-        let fileInput = document.querySelector('input[type="file"]');
-
-        // If not found, look near openBtn?
-        // if (!fileInput) ...
+        const fileInput = document.querySelector('input[type="file"]');
 
         if (!fileInput) {
-            alert('Could not find file input element to inject data.');
+            console.error('CloudUI: input[type="file"] not found');
+            alert('Could not find file input element to inject data. Please ensure you are on the editor screen.');
             return;
         }
 
+        console.log('CloudUI: Injecting data into', fileInput);
+
         // Create a File object
+        // Data Illustrator expects .msc file (JSON content)
         const blob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
         const file = new File([blob], "project.msc", { type: 'application/json' });
 
-        // Override files property (read-only workaround)
+        // Override files property
         const dataTransfer = new DataTransfer();
         dataTransfer.items.add(file);
         fileInput.files = dataTransfer.files;
 
         // Dispatch change event
+        // Use standard event and input event just in case
         const event = new Event('change', { bubbles: true });
+        const inputEvent = new Event('input', { bubbles: true });
+
         fileInput.dispatchEvent(event);
+        fileInput.dispatchEvent(inputEvent);
     }
 
     // === Init ===
