@@ -203,116 +203,117 @@
                 showToast('Failed to capture project data. The operation timed out.');
             }
         }, 100); // Check every 100ms
+    }
 
-        async function generateThumbnail() {
-            const svg = document.querySelector('svg'); // Assuming main SVG
-            if (!svg) return null;
+    async function generateThumbnail() {
+        const svg = document.querySelector('svg'); // Assuming main SVG
+        if (!svg) return null;
 
-            const serializer = new XMLSerializer();
-            const svgStr = serializer.serializeToString(svg);
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            const img = new Image();
+        const serializer = new XMLSerializer();
+        const svgStr = serializer.serializeToString(svg);
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
 
-            // Set canvas size (match SVG or use fixed thumb size)
-            const rect = svg.getBoundingClientRect();
-            canvas.width = rect.width || 800;
-            canvas.height = rect.height || 600;
+        // Set canvas size (match SVG or use fixed thumb size)
+        const rect = svg.getBoundingClientRect();
+        canvas.width = rect.width || 800;
+        canvas.height = rect.height || 600;
 
-            // SVG to DataURI
-            const svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
-            const url = URL.createObjectURL(svgBlob);
+        // SVG to DataURI
+        const svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(svgBlob);
 
-            return new Promise((resolve) => {
-                img.onload = () => {
-                    ctx.fillStyle = 'white';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.drawImage(img, 0, 0);
-                    URL.revokeObjectURL(url);
-                    resolve(canvas.toDataURL('image/png'));
-                };
-                img.onerror = () => {
-                    console.error('Thumbnail generation failed');
-                    resolve(null);
-                };
-                img.src = url;
+        return new Promise((resolve) => {
+            img.onload = () => {
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+                URL.revokeObjectURL(url);
+                resolve(canvas.toDataURL('image/png'));
+            };
+            img.onerror = () => {
+                console.error('Thumbnail generation failed');
+                resolve(null);
+            };
+            img.src = url;
+        });
+    }
+
+    function showSaveModal(data, thumbnail) {
+        // Simple Prompt for now, or build a custom modal
+        const name = prompt('Enter Project Name:', `Project ${new Date().toISOString().slice(0, 16).replace('T', ' ')}`);
+        if (!name) return;
+
+        // Ideally we check for existing ID to update, but for now always create new or we need to store current ID loaded
+        // TODO: Store currently loaded project ID to support "Update"
+
+        showToast('Saving...');
+        CloudAPI.createProject(name, data, thumbnail)
+            .then(() => showToast('Saved successfully!'))
+            .catch(e => {
+                console.error(e);
+                showToast('Save failed: ' + e.message);
             });
+    }
+
+
+    // === Bridge Logic: Load ===
+
+    async function openProjectList() {
+        try {
+            showToast('Loading projects...');
+            const res = await CloudAPI.listProjects();
+            projects = res.projects || [];
+            renderProjectListModal();
+        } catch (e) {
+            showToast('Error loading projects: ' + e.message);
         }
+    }
 
-        function showSaveModal(data, thumbnail) {
-            // Simple Prompt for now, or build a custom modal
-            const name = prompt('Enter Project Name:', `Project ${new Date().toISOString().slice(0, 16).replace('T', ' ')}`);
-            if (!name) return;
+    function renderProjectListModal() {
+        // cleanup old
+        const old = document.querySelector('.cloud-modal-overlay');
+        if (old) old.remove();
 
-            // Ideally we check for existing ID to update, but for now always create new or we need to store current ID loaded
-            // TODO: Store currently loaded project ID to support "Update"
+        const overlay = document.createElement('div');
+        overlay.className = 'cloud-modal-overlay';
 
-            showToast('Saving...');
-            CloudAPI.createProject(name, data, thumbnail)
-                .then(() => showToast('Saved successfully!'))
-                .catch(e => {
-                    console.error(e);
-                    showToast('Save failed: ' + e.message);
-                });
-        }
+        const modal = document.createElement('div');
+        modal.className = 'cloud-modal';
 
+        const header = document.createElement('div');
+        header.className = 'cloud-modal-header';
+        header.innerHTML = `<span>Your Projects</span> <button onclick="this.closest('.cloud-modal-overlay').remove()">X</button>`;
 
-        // === Bridge Logic: Load ===
+        const body = document.createElement('div');
+        body.className = 'cloud-modal-body';
 
-        async function openProjectList() {
-            try {
-                showToast('Loading projects...');
-                const res = await CloudAPI.listProjects();
-                projects = res.projects || [];
-                renderProjectListModal();
-            } catch (e) {
-                showToast('Error loading projects: ' + e.message);
-            }
-        }
+        // URL Base for storage
+        // Assuming 'projects' bucket based on table name and public access
+        const SUPABASE_URL = 'https://vebhoeiltxspsurqoxvl.supabase.co';
+        const storageBase = `${SUPABASE_URL}/storage/v1/object/public/projects/`;
 
-        function renderProjectListModal() {
-            // cleanup old
-            const old = document.querySelector('.cloud-modal-overlay');
-            if (old) old.remove();
+        if (projects.length === 0) {
+            body.innerHTML = '<p>No projects found.</p>';
+        } else {
+            projects.forEach(p => {
+                let thumbHtml = '<div class="project-thumb no-image"></div>';
 
-            const overlay = document.createElement('div');
-            overlay.className = 'cloud-modal-overlay';
-
-            const modal = document.createElement('div');
-            modal.className = 'cloud-modal';
-
-            const header = document.createElement('div');
-            header.className = 'cloud-modal-header';
-            header.innerHTML = `<span>Your Projects</span> <button onclick="this.closest('.cloud-modal-overlay').remove()">X</button>`;
-
-            const body = document.createElement('div');
-            body.className = 'cloud-modal-body';
-
-            // URL Base for storage
-            // Assuming 'projects' bucket based on table name and public access
-            const SUPABASE_URL = 'https://vebhoeiltxspsurqoxvl.supabase.co';
-            const storageBase = `${SUPABASE_URL}/storage/v1/object/public/projects/`;
-
-            if (projects.length === 0) {
-                body.innerHTML = '<p>No projects found.</p>';
-            } else {
-                projects.forEach(p => {
-                    let thumbHtml = '<div class="project-thumb no-image"></div>';
-
-                    if (p.thumbnail_path) {
-                        let thumbSrc = p.thumbnail_path;
-                        if (!thumbSrc.startsWith('http') && !thumbSrc.startsWith('data:')) {
-                            const cleanPath = thumbSrc.startsWith('/') ? thumbSrc.slice(1) : thumbSrc;
-                            thumbSrc = `${storageBase}${cleanPath}`;
-                        }
-                        if (thumbSrc) {
-                            thumbHtml = `<img src="${thumbSrc}" class="project-thumb" alt="${p.name}" />`;
-                        }
+                if (p.thumbnail_path) {
+                    let thumbSrc = p.thumbnail_path;
+                    if (!thumbSrc.startsWith('http') && !thumbSrc.startsWith('data:')) {
+                        const cleanPath = thumbSrc.startsWith('/') ? thumbSrc.slice(1) : thumbSrc;
+                        thumbSrc = `${storageBase}${cleanPath}`;
                     }
+                    if (thumbSrc) {
+                        thumbHtml = `<img src="${thumbSrc}" class="project-thumb" alt="${p.name}" />`;
+                    }
+                }
 
-                    const el = document.createElement('div');
-                    el.className = 'project-list-item';
-                    el.innerHTML = `
+                const el = document.createElement('div');
+                el.className = 'project-list-item';
+                el.innerHTML = `
                   ${thumbHtml}
                   <div class="project-info">
                       <div class="project-name">${p.name}</div>
@@ -324,112 +325,112 @@
                   </div>
                 `;
 
-                    el.querySelector('.load-btn').onclick = () => loadProject(p.id);
-                    el.querySelector('.delete-btn').onclick = (e) => {
-                        e.stopPropagation();
-                        if (confirm('Are you sure?')) deleteProject(p.id);
-                    };
-                    body.appendChild(el);
-                });
-            }
-
-            modal.appendChild(header);
-            modal.appendChild(body);
-            overlay.appendChild(modal);
-            document.body.appendChild(overlay);
+                el.querySelector('.load-btn').onclick = () => loadProject(p.id);
+                el.querySelector('.delete-btn').onclick = (e) => {
+                    e.stopPropagation();
+                    if (confirm('Are you sure?')) deleteProject(p.id);
+                };
+                body.appendChild(el);
+            });
         }
 
-        async function loadProject(id) {
-            showToast('Loading data...');
-            try {
-                const data = await CloudAPI.getProject(id);
-                injectData(data);
-                document.querySelector('.cloud-modal-overlay').remove();
-                showToast('Project loaded!');
-            } catch (e) {
-                console.error(e);
-                showToast('Load failed: ' + e.message);
-            }
+        modal.appendChild(header);
+        modal.appendChild(body);
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+    }
+
+    async function loadProject(id) {
+        showToast('Loading data...');
+        try {
+            const data = await CloudAPI.getProject(id);
+            injectData(data);
+            document.querySelector('.cloud-modal-overlay').remove();
+            showToast('Project loaded!');
+        } catch (e) {
+            console.error(e);
+            showToast('Load failed: ' + e.message);
+        }
+    }
+
+    async function deleteProject(id) {
+        try {
+            await CloudAPI.deleteProject(id);
+            // refresh
+            openProjectList();
+        } catch (e) {
+            showToast('Delete failed: ' + e.message);
+        }
+    }
+
+    function injectData(jsonData) {
+        // Need to find the input file element.
+        // Data Illustrator structure usually has one main input for loading projects (.msc) and one for data (.csv).
+        const fileInputs = Array.from(document.querySelectorAll('input[type="file"]'));
+
+        if (fileInputs.length === 0) {
+            console.error('CloudUI: input[type="file"] not found');
+            alert('Error: Could not find file loader element. Please ensure you are on the main editor screen.');
+            return;
         }
 
-        async function deleteProject(id) {
-            try {
-                await CloudAPI.deleteProject(id);
-                // refresh
-                openProjectList();
-            } catch (e) {
-                showToast('Delete failed: ' + e.message);
-            }
+        console.log('[CloudUI] Found file inputs:', fileInputs.map(i => `id="${i.id}" accept="${i.accept}"`));
+
+        // Logic to find the Project Loader (not CSV loader)
+        // 1. Look for .msc or .json in accept
+        let fileInput = fileInputs.find(i => i.accept && (i.accept.includes('.msc') || i.accept.includes('.json')));
+
+        // 2. If not found, find one that is NOT .csv
+        if (!fileInput) {
+            fileInput = fileInputs.find(i => !i.accept || !i.accept.includes('.csv'));
         }
 
-        function injectData(jsonData) {
-            // Need to find the input file element.
-            // Data Illustrator structure usually has one main input for loading projects (.msc) and one for data (.csv).
-            const fileInputs = Array.from(document.querySelectorAll('input[type="file"]'));
-
-            if (fileInputs.length === 0) {
-                console.error('CloudUI: input[type="file"] not found');
-                alert('Error: Could not find file loader element. Please ensure you are on the main editor screen.');
-                return;
-            }
-
-            console.log('[CloudUI] Found file inputs:', fileInputs.map(i => `id="${i.id}" accept="${i.accept}"`));
-
-            // Logic to find the Project Loader (not CSV loader)
-            // 1. Look for .msc or .json in accept
-            let fileInput = fileInputs.find(i => i.accept && (i.accept.includes('.msc') || i.accept.includes('.json')));
-
-            // 2. If not found, find one that is NOT .csv
-            if (!fileInput) {
-                fileInput = fileInputs.find(i => !i.accept || !i.accept.includes('.csv'));
-            }
-
-            // 3. Last resort: if we have inputs and couldn't distinguish, pick the second one if the first is CSV
-            // (Heuristic based on log showing first one was CSV)
-            if (!fileInput && fileInputs.length > 1) {
-                fileInput = fileInputs[1];
-            } else if (!fileInput) {
-                fileInput = fileInputs[0]; // Fallback to first if nothing else
-            }
-
-            console.log('[CloudUI] Selected target input:', fileInput);
-
-            // Create a File object
-            // Data Illustrator expects .msc file (JSON content)
-            const blob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
-            const file = new File([blob], "project.msc", { type: 'application/json' });
-
-            // Override files property
-            const dataTransfer = new DataTransfer();
-            dataTransfer.items.add(file);
-            fileInput.files = dataTransfer.files;
-
-            // React Hack: Notify React that the value has changed
-            const tracker = fileInput._valueTracker;
-            if (tracker) {
-                tracker.setValue("dummy_value_to_force_change");
-            }
-
-            // Dispatch change event
-            const event = new Event('change', { bubbles: true });
-            const inputEvent = new Event('input', { bubbles: true });
-
-            fileInput.dispatchEvent(inputEvent);
-            fileInput.dispatchEvent(event);
-
-            console.log('[CloudUI] Events dispatched');
+        // 3. Last resort: if we have inputs and couldn't distinguish, pick the second one if the first is CSV
+        // (Heuristic based on log showing first one was CSV)
+        if (!fileInput && fileInputs.length > 1) {
+            fileInput = fileInputs[1];
+        } else if (!fileInput) {
+            fileInput = fileInputs[0]; // Fallback to first if nothing else
         }
 
-        // === Init ===
-        // Wait for DOM
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(createButton, 1000); // Delay slightly to ensure UI load
-        });
+        console.log('[CloudUI] Selected target input:', fileInput);
 
-        // Also try immediately incase we are loaded late
-        if (document.readyState === 'complete') {
-            createButton();
+        // Create a File object
+        // Data Illustrator expects .msc file (JSON content)
+        const blob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
+        const file = new File([blob], "project.msc", { type: 'application/json' });
+
+        // Override files property
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+        fileInput.files = dataTransfer.files;
+
+        // React Hack: Notify React that the value has changed
+        const tracker = fileInput._valueTracker;
+        if (tracker) {
+            tracker.setValue("dummy_value_to_force_change");
         }
 
-    }) ();
+        // Dispatch change event
+        const event = new Event('change', { bubbles: true });
+        const inputEvent = new Event('input', { bubbles: true });
+
+        fileInput.dispatchEvent(inputEvent);
+        fileInput.dispatchEvent(event);
+
+        console.log('[CloudUI] Events dispatched');
+    }
+
+    // === Init ===
+    // Wait for DOM
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(createButton, 1000); // Delay slightly to ensure UI load
+    });
+
+    // Also try immediately incase we are loaded late
+    if (document.readyState === 'complete') {
+        createButton();
+    }
+
+})();
 
