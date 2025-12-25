@@ -1,4 +1,12 @@
 {{ define "main" }}
+<script>
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('project_id')) {
+      window.location.replace('/app/' + window.location.search);
+    }
+  })();
+</script>
 <section class="section mt-n3 pb-3">
   <div class="row justify-content-center">
     <div class="col-lg-12 text-center">
