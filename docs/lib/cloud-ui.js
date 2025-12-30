@@ -204,19 +204,49 @@
     }
 
     async function generateThumbnail() {
-        const svg = document.querySelector('svg'); // Assuming main SVG
+        const svg = document.querySelector('svg');
         if (!svg) return null;
 
+        // Try to find the content group to crop to
+        // 'scene1' is the main content container in Data Illustrator
+        const contentNode = svg.querySelector('#scene1') || svg;
+        
+        // Calculate the bounding box of the content
+        let bbox;
+        try {
+            // getBBox gives accurate vector bounds in user units
+            bbox = contentNode.getBBox ? contentNode.getBBox() : contentNode.getBoundingClientRect();
+        } catch (e) {
+            console.warn('Could not get bbox of content, falling back to SVG rect', e);
+            bbox = svg.getBoundingClientRect();
+        }
+
+        // Add a little padding
+        const padding = 20;
+        const viewBoxX = bbox.x - padding;
+        const viewBoxY = bbox.y - padding;
+        const viewBoxW = bbox.width + (padding * 2);
+        const viewBoxH = bbox.height + (padding * 2);
+
+        // Serialize the SVG with the new ViewBox to crop it
         const serializer = new XMLSerializer();
-        const svgStr = serializer.serializeToString(svg);
+        const clone = svg.cloneNode(true);
+        clone.setAttribute('viewBox', `${viewBoxX} ${viewBoxY} ${viewBoxW} ${viewBoxH}`);
+        clone.setAttribute('width', viewBoxW);
+        clone.setAttribute('height', viewBoxH);
+        
+        // Remove evtLayer from the clone if it exists, just in case it interferes or adds weight
+        const evtLayer = clone.querySelector('#evtLayer');
+        if (evtLayer) evtLayer.remove();
+
+        const svgStr = serializer.serializeToString(clone);
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         const img = new Image();
 
-        // Set canvas size
-        const rect = svg.getBoundingClientRect();
-        canvas.width = rect.width || 800;
-        canvas.height = rect.height || 600;
+        // Set canvas size to match the cropped view
+        canvas.width = viewBoxW;
+        canvas.height = viewBoxH;
 
         // SVG to DataURI
         const svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
@@ -224,14 +254,15 @@
 
         return new Promise((resolve) => {
             img.onload = () => {
+                // Fill white background (optional, but good for transparency)
                 ctx.fillStyle = 'white';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(img, 0, 0);
                 URL.revokeObjectURL(url);
                 resolve(canvas.toDataURL('image/png'));
             };
-            img.onerror = () => {
-                console.error('Thumbnail generation failed');
+            img.onerror = (e) => {
+                console.error('Thumbnail generation failed', e);
                 resolve(null);
             };
             img.src = url;
