@@ -13,8 +13,9 @@
          */
         async getAuthHeaders() {
             // 1. Try to get session from the exposed Supabase client (preferred)
-            if (window.supabase) {
-                const { data } = await window.supabase.auth.getSession();
+            const client = window.datavizSupabase || (window.supabase && window.supabase.auth ? window.supabase : null);
+            if (client) {
+                const { data } = await client.auth.getSession();
                 if (data?.session?.access_token) {
                     return {
                         'Authorization': `Bearer ${data.session.access_token}`,
@@ -179,8 +180,9 @@
          */
         async getCurrentUserId() {
             // 1. Supabase Client
-            if (window.supabase) {
-                const { data } = await window.supabase.auth.getUser();
+            const client = window.datavizSupabase || (window.supabase && window.supabase.auth ? window.supabase : null);
+            if (client) {
+                const { data } = await client.auth.getUser();
                 if (data?.user?.id) return data.user.id;
             }
 
