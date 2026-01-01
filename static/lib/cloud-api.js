@@ -4,7 +4,7 @@
  */
 
 (function () {
-    const API_BASE_URL = 'https://api.dataviz.jp/api';
+    const API_BASE_URL = window.datavizApiUrl ? `${window.datavizApiUrl}/api` : 'https://api.dataviz.jp/api';
     const APP_NAME = 'data-illustrateur';
 
     const CloudAPI = {
