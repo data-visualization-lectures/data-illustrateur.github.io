@@ -74,7 +74,6 @@ const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SU
 // 外部公開（リファクタリング対応）
 if (supabase) {
   window.datavizSupabase = supabase;
-  window.datavizApiUrl = API_BASE_URL;
 }
 
 
@@ -168,6 +167,17 @@ class DatavizGlobalHeader extends HTMLElement {
         background: #333;
         border-color: #666;
         color: #fff;
+        padding: 4px 10px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 12px;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
+      }
+      .dv-btn:hover {
+        background: #333;
+        border-color: #666;
+        color: #fff;
       }
       .dv-btn-primary {
         background: #eee;
@@ -195,7 +205,7 @@ class DatavizGlobalHeader extends HTMLElement {
 
     // アカウントページのURL
     const accountUrl = `${AUTH_APP_URL}/account`;
-    const loginUrl = `${AUTH_APP_URL}/auth/sign-up?redirect_to=${encodeURIComponent(window.location.href)}`;
+    const loginUrl = `${AUTH_APP_URL}/auth/login?redirect_to=${encodeURIComponent(window.location.href)}`;
 
     let rightContent = '';
 
@@ -266,6 +276,11 @@ function performRedirect(url, reason) {
  */
 async function verifyUserAccess(session) {
   if (!session) {
+    // 公開モード（ショーケース）の場合はリダイレクトしない
+    if (window.DATAVIZ_HEADER_CONFIG && window.DATAVIZ_HEADER_CONFIG.mode === 'public') {
+      return null;
+    }
+
     const redirectTo = encodeURIComponent(window.location.href);
     const signUpUrl = `${AUTH_APP_URL}/auth/sign-up?redirect_to=${redirectTo}`;
     performRedirect(signUpUrl, 'Unauthenticated');
@@ -292,6 +307,17 @@ async function verifyUserAccess(session) {
     const isActive = status === "active" || status === "trialing" || isCanceledButValid;
 
     if (!isActive) {
+      // 公開モードなら期限切れでもスルー（ただしログインユーザーとしては扱うか、あるいはnullにするか）
+      // ここでは「ログイン済みだが権限なし」としてスルーして、UI側でハンドリングも可能だが、
+      // 基本的には「ツール利用権限なし」ならログアウト扱いにするのが安全。
+      // ただしショーケースなら「ログインはしてるけど使えません」表示などが親切。
+      // 現状はシンプルに「公開モードならリダイレクトしない」とする。
+      if (window.DATAVIZ_HEADER_CONFIG && window.DATAVIZ_HEADER_CONFIG.mode === 'public') {
+        // サブスク切れユーザーとして情報を返す（UI側で「期限切れ」表示などができるとなお良いが、今回はnullにして未ログイン扱いにするか、そのまま返すか）
+        // 既存ロジックを壊さないよう、一旦null（未ログイン扱い）で返すのが無難
+        return null;
+      }
+
       performRedirect(AUTH_APP_URL, `Inactive Subscription (${status})`);
       return null;
     }
