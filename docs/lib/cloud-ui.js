@@ -465,7 +465,62 @@
         setTimeout(() => {
             bindUI();
 
-            // Auto-load project if param exists
+            // Initialize Tool Header
+            const toolHeader = document.querySelector('dataviz-tool-header');
+            if (toolHeader) {
+                toolHeader.setConfig({
+                    logo: {
+                        type: 'text',
+                        text: 'Data Illustrator',
+                        textClass: 'font-bold text-lg'
+                    },
+                    buttons: [
+                        {
+                            label: 'プロジェクトの読込',
+                            action: () => {
+                                const btn = document.getElementById('openBtn');
+                                if (btn) btn.click();
+                            },
+                            align: 'right'
+                        },
+                        {
+                            label: 'プロジェクトの保存',
+                            action: () => {
+                                const btn = document.getElementById('saveBtn');
+                                if (btn) btn.click();
+                            },
+                            align: 'right'
+                        },
+                        {
+                            label: '出力',
+                            type: 'dropdown',
+                            align: 'right',
+                            items: [
+                                {
+                                    label: 'SVG画像出力',
+                                    action: () => {
+                                        const btn = document.getElementById('exportBtn');
+                                        if (btn) btn.click();
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            label: 'ヘルプ',
+                            type: 'link',
+                            align: 'right',
+                            href: 'https://data-illustrator.com/docs.html',
+                            target: '_blank'
+                        }
+                    ]
+                });
+
+                // Hide original navigation container as functionalities are moved to tool header
+                const navContainer = document.querySelector('.myBtnGroup');
+                if (navContainer) {
+                    navContainer.style.display = 'none';
+                }
+            }
             const params = new URLSearchParams(window.location.search);
             const projectId = params.get('project_id');
             if (projectId) {
@@ -479,60 +534,5 @@
     if (document.readyState === 'complete') {
         init();
     }
-
-    // === Initialize Tool Header ===
-    document.addEventListener('DOMContentLoaded', () => {
-        const toolHeader = document.querySelector('dataviz-tool-header');
-        if (toolHeader) {
-            toolHeader.setConfig({
-                logo: {
-                    type: 'text',
-                    text: 'Data Illustrator',
-                    textClass: 'font-bold text-lg'
-                },
-                buttons: [
-                    {
-                        label: 'プロジェクトの読込',
-                        action: () => {
-                            console.log('Load Project clicked');
-                            openProjectList();
-                        },
-                        align: 'right'
-                    },
-                    {
-                        label: 'プロジェクトの保存',
-                        action: () => {
-                            console.log('Save Project clicked');
-                            // Trigger native save to be intercepted
-                            const saveBtn = document.getElementById('saveBtn');
-                            if (saveBtn) saveBtn.click();
-                        },
-                        align: 'right'
-                    },
-                    {
-                        label: '出力',
-                        type: 'dropdown',
-                        align: 'right',
-                        items: [
-                            {
-                                label: 'SVG出力',
-                                action: () => {
-                                    const exportBtn = document.getElementById('exportBtn');
-                                    if (exportBtn) exportBtn.click();
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        label: 'ヘルプ',
-                        type: 'link',
-                        align: 'right',
-                        href: 'https://data-illustrator.com/docs.html',
-                        target: '_blank'
-                    }
-                ]
-            });
-        }
-    });
 
 })();
