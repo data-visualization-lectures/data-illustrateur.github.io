@@ -47,23 +47,7 @@
       .delete-btn { background: #ff4d4f; color: white; border: none; border-radius: 3px; }
       .load-btn { background: #3ecf8e; color: white; border: none; border-radius: 3px; }
       
-      /* Toast */
-      .cloud-toast {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #333;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 20px;
-        margin-top: 10px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        z-index: 10001;
-        font-family: sans-serif;
-      }
-      .cloud-toast.show { opacity: 1; }
+
     `;
 
     const styleEl = document.createElement('style');
@@ -118,15 +102,13 @@
     }
 
     function showToast(msg) {
-        let toast = document.querySelector('.cloud-toast');
-        if (!toast) {
-            toast = document.createElement('div');
-            toast.className = 'cloud-toast';
-            document.body.appendChild(toast);
+        const toolHeader = document.querySelector('dataviz-tool-header');
+        if (toolHeader && toolHeader.showMessage) {
+            toolHeader.showMessage(msg);
+        } else {
+            // Fallback (e.g. during initial load if header not ready)
+            console.log('Toast:', msg);
         }
-        toast.textContent = msg;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
     // === Bridge Logic: Save ===
