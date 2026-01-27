@@ -210,7 +210,7 @@
         // Try to find the content group to crop to
         // 'scene1' is the main content container in Data Illustrator
         const contentNode = svg.querySelector('#scene1') || svg;
-        
+
         // Calculate the bounding box of the content
         let bbox;
         try {
@@ -234,7 +234,7 @@
         clone.setAttribute('viewBox', `${viewBoxX} ${viewBoxY} ${viewBoxW} ${viewBoxH}`);
         clone.setAttribute('width', viewBoxW);
         clone.setAttribute('height', viewBoxH);
-        
+
         // Remove evtLayer from the clone if it exists, just in case it interferes or adds weight
         const evtLayer = clone.querySelector('#evtLayer');
         if (evtLayer) evtLayer.remove();
@@ -479,5 +479,60 @@
     if (document.readyState === 'complete') {
         init();
     }
+
+    // === Initialize Tool Header ===
+    document.addEventListener('DOMContentLoaded', () => {
+        const toolHeader = document.querySelector('dataviz-tool-header');
+        if (toolHeader) {
+            toolHeader.setConfig({
+                logo: {
+                    type: 'text',
+                    text: 'Data Illustrator',
+                    textClass: 'font-bold text-lg'
+                },
+                buttons: [
+                    {
+                        label: 'プロジェクトの読込',
+                        action: () => {
+                            console.log('Load Project clicked');
+                            openProjectList();
+                        },
+                        align: 'right'
+                    },
+                    {
+                        label: 'プロジェクトの保存',
+                        action: () => {
+                            console.log('Save Project clicked');
+                            // Trigger native save to be intercepted
+                            const saveBtn = document.getElementById('saveBtn');
+                            if (saveBtn) saveBtn.click();
+                        },
+                        align: 'right'
+                    },
+                    {
+                        label: '出力',
+                        type: 'dropdown',
+                        align: 'right',
+                        items: [
+                            {
+                                label: 'SVG出力',
+                                action: () => {
+                                    const exportBtn = document.getElementById('exportBtn');
+                                    if (exportBtn) exportBtn.click();
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        label: 'ヘルプ',
+                        type: 'link',
+                        align: 'right',
+                        href: 'https://data-illustrator.com/docs.html',
+                        target: '_blank'
+                    }
+                ]
+            });
+        }
+    });
 
 })();
