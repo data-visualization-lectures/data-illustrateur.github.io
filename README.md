@@ -16,6 +16,7 @@ npm install
 npm start
 
 http://localhost:1313?auth_debug=1
+http://localhost:1313/app/?auth_debug
 
 ```
 
