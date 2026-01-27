@@ -458,6 +458,13 @@
                     },
                     buttons: [
                         {
+                            label: 'サンプルプロジェクトの読込',
+                            type: 'link',
+                            align: 'left',
+                            href: 'https://data-illustrator.dataviz.jp/gallery/',
+                            target: '_blank'
+                        },
+                        {
                             label: 'プロジェクトの保存',
                             action: () => {
                                 const btn = document.getElementById('saveBtn');
