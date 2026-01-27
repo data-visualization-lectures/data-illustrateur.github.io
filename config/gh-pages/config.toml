@@ -1,4 +1,4 @@
-baseurl = "https://data-illustrateur.dataviz.jp/"
+baseurl = "https://data-illustrator.dataviz.jp/"
 canonifyURLs = true
 disableAliases = true
 enableEmoji = true
