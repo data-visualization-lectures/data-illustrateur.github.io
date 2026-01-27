@@ -23,6 +23,16 @@
             display: block;
         }
 
+        dataviz-tool-header {
+            position: fixed !important;
+            top: 48px;
+            left: 0;
+            width: 100%;
+            z-index: 2147483646;
+            display: block;
+            height: 48px;
+        }
+
         #root {
             margin-top: 108px;
             height: calc(100vh - 108px);
@@ -80,7 +90,8 @@
 </head>
 
 <body><noscript>You need to enable JavaScript to run this app.</noscript>
-    <header class="navbar fixed-top navbar-expand-md navbar-light" style="top: 48px; background-color: #fff;">
+    <dataviz-tool-header></dataviz-tool-header>
+    <header class="navbar fixed-top navbar-expand-md navbar-light" style="top: 96px; background-color: #fff;">
         <div class="container"><input class="menu-btn order-0" type="checkbox" id="menu-btn">
             <label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label><a
                 class="navbar-brand order-1 order-md-0 me-auto" href="https://data-illustrateur.dataviz.jp/">Data
@@ -97,6 +108,7 @@
     <!-- Cloud Features (Must load before main app for interception) -->
     <script src="/lib/cloud-api.js"></script>
     <script src="/lib/cloud-ui.js"></script>
+    <script src="https://auth.dataviz.jp/lib/dataviz-tool-header.js" defer></script>
     <script src="/app/static/js/2.7726f759.chunk.js"></script>
     <script src="/app/static/js/main.57f84dbb.chunk.js"></script>
 </body>
