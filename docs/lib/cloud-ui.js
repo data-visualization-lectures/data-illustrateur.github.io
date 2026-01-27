@@ -476,17 +476,17 @@
                     },
                     buttons: [
                         {
-                            label: 'プロジェクトの読込',
+                            label: 'プロジェクトの保存',
                             action: () => {
-                                const btn = document.getElementById('openBtn');
+                                const btn = document.getElementById('saveBtn');
                                 if (btn) btn.click();
                             },
                             align: 'right'
                         },
                         {
-                            label: 'プロジェクトの保存',
+                            label: 'プロジェクトの読込',
                             action: () => {
-                                const btn = document.getElementById('saveBtn');
+                                const btn = document.getElementById('openBtn');
                                 if (btn) btn.click();
                             },
                             align: 'right'
@@ -509,7 +509,7 @@
                             label: 'ヘルプ',
                             type: 'link',
                             align: 'right',
-                            href: 'https://data-illustrator.com/docs.html',
+                            href: '/tutorials/interface/overview/',
                             target: '_blank'
                         }
                     ]
