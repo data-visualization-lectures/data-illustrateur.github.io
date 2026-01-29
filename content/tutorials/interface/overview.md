@@ -13,7 +13,7 @@ toc: false
 ---
 
 
-Data Illustrateur のインターフェースは、以下の5つのコンポーネントで構成されています。
+Data Illustrator のインターフェースは、以下の5つのコンポーネントで構成されています。
 
 1. **ツールバー (Tool Bar)**: 選択ツール、描画ツール、およびアクションボタンを提供します。
 2. **キャンバス (Canvas)**: アイテムを選択、描画、操作する場所です。
@@ -21,4 +21,4 @@ Data Illustrateur のインターフェースは、以下の5つのコンポー�
 4. **レイヤーパネル (Layers Panel)**: キャンバス内のアイテム（図形、グループ、軸、凡例など）とその構成を表示します。
 5. **プロパティインスペクタ (Property Inspector)**: 選択したアイテムのプロパティを表示し、プロパティを変更したりデータをバインドしたりするためのコントロールを提供します。
 
-{{< figure src="../interface.png" width="800px" alt="Data Illustrateur Interface" caption="" class="border-0 mx-auto text-left" >}}
+{{< figure src="../interface.png" width="800px" alt="Data Illustrator Interface" caption="" class="border-0 mx-auto text-left" >}}

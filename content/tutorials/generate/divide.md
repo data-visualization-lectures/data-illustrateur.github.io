@@ -17,7 +17,7 @@ toc: false
 
 {{< figure src="../divide.png" width="400px" alt="divide by data" caption="" class="border-0 mx-auto text-center" >}}
 
-Data Illustrateur でデータによって図形を分割するには、図形を選択し、ツールバーの「divide」ボタンをクリックします。どの変数で図形を分割するかを尋ねるダイアログが表示されます。Data Illustrateur は、図形がどのように分割されるかのプレビューも表示します。変数を変更すると、プレビューが更新されます。分割後、個々の図形をダブルクリックして選択し、データパネルでそれに添付されたデータ行を確認してください。
+Data Illustrator でデータによって図形を分割するには、図形を選択し、ツールバーの「divide」ボタンをクリックします。どの変数で図形を分割するかを尋ねるダイアログが表示されます。Data Illustrator は、図形がどのように分割されるかのプレビューも表示します。変数を変更すると、プレビューが更新されます。分割後、個々の図形をダブルクリックして選択し、データパネルでそれに添付されたデータ行を確認してください。
 
 {{< rawhtml >}} 
 <video width=700px class="tutorial-video" controls>

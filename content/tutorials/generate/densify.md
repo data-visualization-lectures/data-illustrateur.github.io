@@ -19,7 +19,7 @@ toc: false
 
 {{< figure src="../densify.png" width="500px" alt="divide by data" caption="" class="border-0 mx-auto text-center" >}}
 
-Data Illustrateur でデータによって図形を高密度化するには、図形を選択し、ツールバーの「densify」ボタンをクリックします。どの変数で図形を高密度化するかを尋ねるダイアログが表示されます。Data Illustrateur は、図形がどのように高密度化されるかのプレビューも表示します。変数を変更すると、プレビューが更新されます。高密度化後、個々の頂点を選択し、データパネルでそれに添付されたデータ行を確認してください。
+Data Illustrator でデータによって図形を高密度化するには、図形を選択し、ツールバーの「densify」ボタンをクリックします。どの変数で図形を高密度化するかを尋ねるダイアログが表示されます。Data Illustrator は、図形がどのように高密度化されるかのプレビューも表示します。変数を変更すると、プレビューが更新されます。高密度化後、個々の頂点を選択し、データパネルでそれに添付されたデータ行を確認してください。
 
 {{< rawhtml >}} 
 <video width=700px class="tutorial-video" controls>

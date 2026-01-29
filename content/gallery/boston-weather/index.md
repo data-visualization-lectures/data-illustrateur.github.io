@@ -40,7 +40,7 @@ msc: "RangeChart"
 </video>
 {{< /rawhtml >}} -->
 
-最後に、任意の線を選択し、その線の色（stroke color）を「meanTemp」にバインドします。Data Illustrateur は自動的に配色と凡例を選択します。凡例の方向を「Horizontal（水平）」に変更し、凡例をチャートの下に移動できます。
+最後に、任意の線を選択し、その線の色（stroke color）を「meanTemp」にバインドします。Data Illustrator は自動的に配色と凡例を選択します。凡例の方向を「Horizontal（水平）」に変更し、凡例をチャートの下に移動できます。
 
 {{<demo-video>}}ADCLgA7hlKk{{</demo-video>}}
 
