@@ -101,6 +101,9 @@
     styleEl.textContent = styles;
     document.head.appendChild(styleEl);
 
+    // === i18n helper ===
+    const t = (key) => (typeof DI18n !== 'undefined') ? DI18n.t(key) : key;
+
     // === State ===
     let capturedBlob = null;
     let projects = [];
@@ -116,7 +119,7 @@
             // Clone to remove existing listeners (prevent local file dialog)
             const newOpenBtn = openBtn.cloneNode(true);
             newOpenBtn.id = 'openBtn';
-            newOpenBtn.textContent = 'プロジェクト・ファイルの読込';
+            newOpenBtn.textContent = t('load_project_file');
             newOpenBtn.onclick = openProjectList;
             openBtn.parentNode.replaceChild(newOpenBtn, openBtn);
         } else {
@@ -126,7 +129,7 @@
         // 2. Save Button (Wrap for Cloud Save)
         const saveBtn = document.getElementById('saveBtn');
         if (saveBtn) {
-            saveBtn.textContent = 'プロジェクト・ファイルの保存';
+            saveBtn.textContent = t('save_project_file');
             // Use Capture phase to ensure we monitor before the native handler fires
             saveBtn.addEventListener('click', () => {
                 // Reset capture & Start interception
@@ -142,7 +145,7 @@
         // 3. Export Button (Label Change Only)
         const exportBtn = document.getElementById('exportBtn');
         if (exportBtn) {
-            exportBtn.textContent = 'SVG画像出力';
+            exportBtn.textContent = t('export_svg');
         } else {
             console.warn('[CloudUI] #exportBtn not found');
         }
@@ -209,7 +212,7 @@
                     jsonData = JSON.parse(textData);
                 } catch (e) {
                     console.error("Not a JSON file?", textData.substring(0, 100));
-                    showToast('Captured data is not valid JSON.');
+                    showToast(t('not_valid_json'));
                     return;
                 }
 
@@ -307,15 +310,15 @@
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
         const defaultName = `${year}-${month}-${day} ${hours}:${minutes}`;
-        const name = prompt('Enter Project Name:', defaultName);
+        const name = prompt(t('enter_project_name'), defaultName);
         if (!name) return;
 
-        showToast('Saving...');
+        showToast(t('saving'));
         CloudAPI.createProject(name, data, thumbnail)
-            .then(() => showToast('Saved successfully!'))
+            .then(() => showToast(t('saved')))
             .catch(e => {
                 console.error(e);
-                showToast('Save failed: ' + e.message);
+                showToast(t('save_failed') + e.message);
             });
     }
 
@@ -324,7 +327,7 @@
 
     async function openProjectList() {
         try {
-            showToast('Loading projects...');
+            showToast(t('loading_projects'));
 
             // Get current user for thumbnail fallback
             currentUserId = await CloudAPI.getCurrentUserId();
@@ -337,7 +340,7 @@
             await renderProjectListModal();
         } catch (e) {
             console.error(e);
-            showToast('Error loading projects: ' + e.message);
+            showToast(t('error_loading_projects') + e.message);
         }
     }
 
@@ -354,11 +357,11 @@
 
         const header = document.createElement('div');
         header.className = 'cloud-modal-header';
-        header.innerHTML = `<span>Your Projects</span> <button onclick="this.closest('.cloud-modal-overlay').remove()">X</button>`;
+        header.innerHTML = `<span>${t('your_projects')}</span> <button onclick="this.closest('.cloud-modal-overlay').remove()">X</button>`;
 
         const body = document.createElement('div');
         body.className = 'cloud-modal-body';
-        body.innerHTML = '<p>Loading thumbnails...</p>';
+        body.innerHTML = `<p>${t('loading_thumbnails')}</p>`;
 
         modal.appendChild(header);
         modal.appendChild(body);
@@ -366,7 +369,7 @@
         document.body.appendChild(overlay);
 
         if (projects.length === 0) {
-            body.innerHTML = '<p>No projects found.</p>';
+            body.innerHTML = `<p>${t('no_projects')}</p>`;
         } else {
             // Generate list items HTML with Signed URLs
             const itemsHtml = await Promise.all(projects.map(async p => {
@@ -408,23 +411,23 @@
             body.querySelectorAll('.delete-btn').forEach(btn => {
                 btn.onclick = (e) => {
                     e.stopPropagation();
-                    if (confirm('Are you sure?')) deleteProject(btn.dataset.id);
+                    if (confirm(t('confirm_delete'))) deleteProject(btn.dataset.id);
                 };
             });
         }
     }
 
     async function loadProject(id) {
-        showToast('Loading data...');
+        showToast(t('loading_data'));
         try {
             const data = await CloudAPI.getProject(id);
             injectData(data);
             const overlay = document.querySelector('.cloud-modal-overlay');
             if (overlay) overlay.remove();
-            showToast('Project loaded!');
+            showToast(t('project_loaded'));
         } catch (e) {
             console.error(e);
-            showToast('Load failed: ' + e.message);
+            showToast(t('load_failed') + e.message);
         }
     }
 
@@ -434,7 +437,7 @@
             // refresh
             openProjectList();
         } catch (e) {
-            showToast('Delete failed: ' + e.message);
+            showToast(t('delete_failed') + e.message);
         }
     }
 
@@ -445,7 +448,7 @@
 
         if (fileInputs.length === 0) {
             console.error('CloudUI: input[type="file"] not found');
-            alert('Error: Could not find file loader element.');
+            alert(t('error_no_file_loader'));
             return;
         }
 
@@ -505,14 +508,14 @@
                     },
                     buttons: [
                         {
-                            label: 'サンプルプロジェクトの読込',
+                            label: t('load_sample_project'),
                             type: 'link',
                             align: 'left',
                             href: 'https://data-illustrator.dataviz.jp/gallery/',
                             target: '_blank'
                         },
                         {
-                            label: 'プロジェクトの保存',
+                            label: t('save_project'),
                             action: () => {
                                 const btn = document.getElementById('saveBtn');
                                 if (btn) btn.click();
@@ -520,7 +523,7 @@
                             align: 'right'
                         },
                         {
-                            label: 'プロジェクトの読込',
+                            label: t('load_project'),
                             action: () => {
                                 const btn = document.getElementById('openBtn');
                                 if (btn) btn.click();
@@ -528,12 +531,12 @@
                             align: 'right'
                         },
                         {
-                            label: '出力',
+                            label: t('export'),
                             type: 'dropdown',
                             align: 'right',
                             items: [
                                 {
-                                    label: 'SVG画像出力',
+                                    label: t('export_svg'),
                                     action: () => {
                                         const btn = document.getElementById('exportBtn');
                                         if (btn) btn.click();
@@ -542,7 +545,7 @@
                             ]
                         },
                         {
-                            label: 'ヘルプ',
+                            label: t('help'),
                             type: 'link',
                             align: 'right',
                             href: '/tutorials/interface/overview/',
