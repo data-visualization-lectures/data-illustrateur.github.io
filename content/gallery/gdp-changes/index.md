@@ -1,5 +1,6 @@
 ---
 title: "GDPの変動"
+title_en: "GDP Changes"
 description: "2017年から2020年までの米国GDPの四半期ごとの変動（前期比）。"
 excerpt: "2017年から2020年までの米国GDPの四半期ごとの変動（前期比）。"
 date: 2020-11-04T09:19:42+01:00

@@ -1,5 +1,6 @@
 ---
 title: "車の特徴"
+title_en: "Features of Cars"
 description: "70年代と80年代の車の特徴的な値。"
 excerpt: "平行座標プロットの形式での70年代と80年代の車の特徴的な値。"
 date: 2020-11-04T09:19:42+01:00

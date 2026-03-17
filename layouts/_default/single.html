@@ -2,7 +2,12 @@
 <div class="row justify-content-center">
   <div class="col-md-12 col-lg-10 col-xl-8">
     <article>
+      {{ if .Params.title_en }}
+      <h1 data-i18n-ja>{{ .Title }}</h1>
+      <h1 data-i18n-en>{{ .Params.title_en }}</h1>
+      {{ else }}
       <h1>{{ .Title }}</h1>
+      {{ end }}
       {{ .Content }}
     </article>
   </div>

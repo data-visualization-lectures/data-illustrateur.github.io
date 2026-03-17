@@ -104,6 +104,7 @@
 
 [[main]]
   name = "ギャラリー"
+  identifier = "gallery"
   url = "/gallery/"
 # url = "/docs/1.0/prologue/introduction/"
   weight = 20
@@ -115,6 +116,7 @@
 
 [[main]]
   name = "このツールについて"
+  identifier = "about"
   url = "/about/"
   weight = 30
 

@@ -1,5 +1,6 @@
 ---
 title: "産業別失業"
+title_en: "Unemployment by Industry"
 description: "2000年から2010年までの4つの産業における失業者数。"
 excerpt: "2000年から2010年までの4つの産業における失業者数。"
 date: 2020-11-04T09:19:42+01:00

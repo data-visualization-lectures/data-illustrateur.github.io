@@ -11,13 +11,16 @@
   <div class="row justify-content-center">
     <div class="col-lg-12 text-center">
       <h1 class="mt-5">{{ .Title }}</h1>
-      <h5 class="mt-n1 fs-4 fw-normal">プログラミングなしで表現力豊かなデータ視覚化を作成</h5>
+      <h5 data-i18n-ja class="mt-n1 fs-4 fw-normal">プログラミングなしで表現力豊かなデータ視覚化を作成</h5>
+      <h5 data-i18n-en class="mt-n1 fs-4 fw-normal">Create expressive data visualizations without programming</h5>
     </div>
     <div class="col-lg-9 col-xl-8 text-center mt-3 mb-3">
       <p class="lead mt-n2">{{ .Params.lead | safeHTML }}</p>
-      <a class="btn btn-primary btn-lg px-4 mb-0" href="app/" role="button">アプリを起動</a>
+      <a data-i18n-ja class="btn btn-primary btn-lg px-4 mb-0" href="app/" role="button">アプリを起動</a>
+      <a data-i18n-en class="btn btn-primary btn-lg px-4 mb-0" href="app/" role="button">Launch App</a>
       <p class="meta">version {{ $data := getJSON "/package.json" }}{{ $data.version }}</p>
-      <p class="meta mt-n3">最適な体験を得るには、Google Chromeを使用してください</p>
+      <p data-i18n-ja class="meta mt-n3">最適な体験を得るには、Google Chromeを使用してください</p>
+      <p data-i18n-en class="meta mt-n3">For the best experience, use Google Chrome</p>
     </div>
   </div>
 </section>
@@ -27,23 +30,29 @@
 <section class="section section-sm">
   <div class="container">
     <div class="row justify-content-center text-center">
-      <p class="fs-4">Data Illustratorは、FigmaやAdobe Illustratorのようなベクターデザインツールでイラストを描くのと同じくらい簡単に、視覚化作成を行うことを目指しています。
-      </p>
+      <p data-i18n-ja class="fs-4">Data Illustratorは、FigmaやAdobe Illustratorのようなベクターデザインツールでイラストを描くのと同じくらい簡単に、視覚化作成を行うことを目指しています。</p>
+      <p data-i18n-en class="fs-4">Data Illustrator aims to make creating visualizations as easy as drawing illustrations in a vector design tool like Figma or Adobe Illustrator.</p>
       <!-- a design tool like <a href="https://www.adobe.com/products/xd.html">Adobe Experience Design</a>, <a href="https://www.figma.com/">Figma</a> or <a href="https://www.sketch.com/">Sketch</a>.  -->
       <!-- These tutorials will get you started with the basic concepts and tools you’ll need to create amazing visualizations. -->
     </div>
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4">柔軟なマーク作成</h2>
-        <p>ベクターデザインインターフェースで作業しているかのように、図形を描画、選択、操作できます。</p>
+        <h2 data-i18n-ja class="h4">柔軟なマーク作成</h2>
+        <h2 data-i18n-en class="h4">Flexible Mark Construction</h2>
+        <p data-i18n-ja>ベクターデザインインターフェースで作業しているかのように、図形を描画、選択、操作できます。</p>
+        <p data-i18n-en>Draw, select, and manipulate shapes as if working in a vector design interface.</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4">解釈可能なグラフィックスとデータの結合</h2>
-        <p>繰り返し（repeat）、分割（divide）、高密度化（densify）の操作を通じて、キャンバス上のグラフィックスとデータを結合します。</p>
+        <h2 data-i18n-ja class="h4">解釈可能なグラフィックスとデータの結合</h2>
+        <h2 data-i18n-en class="h4">Bindable Graphics and Data</h2>
+        <p data-i18n-ja>繰り返し（repeat）、分割（divide）、高密度化（densify）の操作を通じて、キャンバス上のグラフィックスとデータを結合します。</p>
+        <p data-i18n-en>Bind graphics and data on the canvas through repeat, divide, and densify operations.</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4">自動的な視覚エンコーディング</h2>
-        <p>データ列を視覚プロパティにバインドし、結果がキャンバス上で即座に更新されるのを確認できます。</p>
+        <h2 data-i18n-ja class="h4">自動的な視覚エンコーディング</h2>
+        <h2 data-i18n-en class="h4">Automatic Visual Encoding</h2>
+        <p data-i18n-ja>データ列を視覚プロパティにバインドし、結果がキャンバス上で即座に更新されるのを確認できます。</p>
+        <p data-i18n-en>Bind data columns to visual properties and see results instantly on the canvas.</p>
       </div>
     </div>
   </div>

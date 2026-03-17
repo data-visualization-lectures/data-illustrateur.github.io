@@ -1,5 +1,6 @@
 ---
 title: "NBAドラフト指名の20年"
+title_en: "Twenty Years of NBA Draft Picks"
 description: "ドラフト順に並べられ、1989年から2008年までの全体的な貢献度で色分けされたNBAプレーヤー。"
 excerpt: "ドラフト順に並べられ、1989年から2008年までの全体的な貢献度で色分けされたNBAプレーヤー。"
 date: 2020-11-04T09:19:42+01:00

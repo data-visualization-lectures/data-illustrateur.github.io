@@ -1,5 +1,6 @@
 ---
 title: "家計支出の比較"
+title_en: "Household Spending Comparison"
 description: "1980年と2008年の英国とニュージーランドにおける家計支出パターンの比較。"
 excerpt: "1980年と2008年の英国とニュージーランドにおける家計支出パターンの比較。"
 date: 2020-11-04T09:19:42+01:00

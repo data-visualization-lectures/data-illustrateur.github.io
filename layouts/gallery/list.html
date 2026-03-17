@@ -1,7 +1,12 @@
 {{ define "main" }}
 <div class="row justify-content-center mb-3">
   <div class="col-md-12 col-lg-9">
+      {{ if .Params.title_en }}
+      <h1 data-i18n-ja class="text-center">{{ .Title }}</h1>
+      <h1 data-i18n-en class="text-center">{{ .Params.title_en }}</h1>
+      {{ else }}
       <h1 class="text-center">{{ .Title }}</h1>
+      {{ end }}
       <div class="text-center">{{ .Content }}</div>
   </div>
 </div>
@@ -14,10 +19,16 @@
 				<div class="gallery-img border-bottom" style="background-image: url({{ $image.Permalink }})">
 				</div>
 				<!-- <h2 class="h6 mt-4 mb-n2"><a class="stretched-link text-body" href="{{ .RelPermalink }}">{{ .Params.title }}</a></h2> -->
+				{{ if .Params.title_en }}
+				<h2 data-i18n-ja class="h6 mt-4 mb-n2">{{ .Params.title }}</h2>
+				<h2 data-i18n-en class="h6 mt-4 mb-n2">{{ .Params.title_en }}</h2>
+				{{ else }}
 				<h2 class="h6 mt-4 mb-n2">{{ .Params.title }}</h2>
+				{{ end }}
 				<p>{{ .Params.lead | safeHTML }}</p>
 				<p class="fs-6 mb-1 text-secondary">{{ .Params.chartType | safeHTML }}</p>
-				<p class="fs-6 mb-0"><a target="_blank" href="/app?project={{.Params.msc}}">サンプルを開く</a> | <a target="_blank" href="{{ .RelPermalink }}">デモを見る</a></p>
+				<p data-i18n-ja class="fs-6 mb-0"><a target="_blank" href="/app?project={{.Params.msc}}">サンプルを開く</a> | <a target="_blank" href="{{ .RelPermalink }}">デモを見る</a></p>
+				<p data-i18n-en class="fs-6 mb-0"><a target="_blank" href="/app?project={{.Params.msc}}">Open Sample</a> | <a target="_blank" href="{{ .RelPermalink }}">View Demo</a></p>
 				<!-- <p>{{ .Params.excerpt | safeHTML }}</p> -->
 				<!-- {{ partial "main/blog-meta.html" . -}} -->
 			</div>

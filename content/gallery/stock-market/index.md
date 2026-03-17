@@ -1,5 +1,6 @@
 ---
 title: "株価"
+title_en: "Stock Prices"
 description: "2000年1月1日から2010年3月1日までの、Amazon、Apple、IBM、Microsoftの4社の月次株価。[d3noob.org](https://bl.ocks.org/d3noob/08af723fe615c08f9536f656b55755b4)でd3.jsを使用して作成された元の視覚化。"
 excerpt: "2000年1月1日から2010年3月1日までの4社の月次平均株価。"
 date: 2020-11-04T09:19:42+01:00

@@ -1,5 +1,6 @@
 ---
 title: "米国の州における肥満と教育"
+title_en: "Obesity vs. Education in U.S. States"
 description: "米国の各州において、肥満は教育レベルと反比例の関係にあります。"
 excerpt: "米国の各州にわたる肥満レベルと教育レベルの反比例関係。"
 date: 2020-11-04T09:19:42+01:00

@@ -1,5 +1,6 @@
 ---
 title: "新車の色の人気度"
+title_en: "Color Popularity among New Cars"
 description: "北米における新車の色のランキングの経年変化。"
 excerpt: "北米における新車の色のランキングの経年変化。"
 date: 2020-11-04T09:19:42+01:00

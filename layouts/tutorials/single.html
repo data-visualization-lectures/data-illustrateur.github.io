@@ -25,7 +25,12 @@
 					</ol>
 				</nav>
 			{{ end }}
+			{{ if .Params.title_en }}
+			<h1 data-i18n-ja>{{ .Title }}</h1>
+			<h1 data-i18n-en>{{ .Params.title_en }}</h1>
+			{{ else }}
 			<h1>{{ .Title }}</h1>
+			{{ end }}
 			<p class="lead">{{ .Params.lead | safeHTML }}</p>
 			{{ partial "main/headline-hash.html" .Content }}
 			{{ if .Site.Params.editPage -}}

@@ -1,5 +1,6 @@
 ---
 title: "職務レベル別の女性の割合"
+title_en: "Share of Women Across Job Levels"
 description: "職務レベルが上がるにつれて、女性の割合は低下します。"
 excerpt: "米国の企業において職務レベルが上がるにつれて、女性の割合は低下します。"
 date: 2020-11-04T09:19:42+01:00
