@@ -100,13 +100,13 @@
         }
     }
 
-    function showToast(msg) {
+    function showToast(msg, type = 'info', duration = 3000) {
         const toolHeader = document.querySelector('dataviz-tool-header');
         if (toolHeader && toolHeader.showMessage) {
-            toolHeader.showMessage(msg);
+            toolHeader.showMessage(msg, type, duration);
         } else {
             // Fallback (e.g. during initial load if header not ready)
-            console.log('Toast:', msg);
+            console.log('Toast:', msg, type);
         }
     }
 
@@ -161,7 +161,7 @@
                     jsonData = JSON.parse(textData);
                 } catch (e) {
                     console.error("Not a JSON file?", textData.substring(0, 100));
-                    showToast(t('not_valid_json'));
+                    showToast(t('not_valid_json'), 'error');
                     return;
                 }
 
@@ -254,7 +254,7 @@
     async function saveProject(data, thumbnail) {
         const toolHeader = document.querySelector('dataviz-tool-header');
         if (!toolHeader) {
-            showToast(t('error_header_not_ready'));
+            showToast(t('error_header_not_ready'), 'error');
             return;
         }
 
@@ -279,7 +279,7 @@
     function loadProjects() {
         const toolHeader = document.querySelector('dataviz-tool-header');
         if (!toolHeader) {
-            showToast(t('error_header_not_ready'));
+            showToast(t('error_header_not_ready'), 'error');
             return;
         }
 
@@ -407,16 +407,17 @@
                     onProjectLoad: (projectData) => {
                         // Called when user loads a project from the modal
                         injectData(projectData);
+                        showToast(t('project_loaded'), 'success');
                     },
                     onProjectSave: (projectMeta) => {
                         // Called when user saves a project
                         console.log('[CloudUI] Project saved:', projectMeta);
-                        showToast(t('saved'));
+                        showToast(t('saved'), 'success');
                     },
                     onProjectDelete: (projectId) => {
                         // Called when user deletes a project
                         console.log('[CloudUI] Project deleted:', projectId);
-                        showToast(t('deleted'));
+                        showToast(t('deleted'), 'success');
                     }
                 });
 
@@ -446,7 +447,7 @@
             }
         } catch (e) {
             console.error(e);
-            showToast(t('load_failed') + e.message);
+            showToast(t('load_failed') + e.message, 'error');
         }
     }
 
