@@ -50,64 +50,13 @@
         FileReader.prototype.readAsArrayBuffer.call(tempReader, blob);
     };
 
-    // === Styles ===
-    const styles = `
-      /* UI Container removed - reusing existing buttons */
-      
-      .cloud-modal-overlay {
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0,0,0,0.5);
-        z-index: 10000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .cloud-modal {
-        background: white;
-        width: 600px;
-        max-height: 80vh;
-        border-radius: 8px;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        font-family: sans-serif;
-      }
-      .cloud-modal-header { font-size: 18px; font-weight: bold; margin-bottom: 15px; display: flex; justify-content: space-between; }
-      .cloud-modal-body { flex: 1; overflow-y: auto; }
-      .cloud-modal-footer { margin-top: 15px; text-align: right; }
-      
-      .project-list-item {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        border-bottom: 1px solid #eee;
-        cursor: pointer;
-      }
-      .project-list-item:hover { background: #f5f5f5; }
-      .project-thumb { width: 80px; height: 60px; object-fit: cover; background: #ddd; margin-right: 15px; border-radius: 4px; }
-      .project-info { flex: 1; }
-      .project-name { font-weight: bold; }
-      .project-date { font-size: 12px; color: #666; }
-      .project-actions button { margin-left: 5px; padding: 4px 8px; cursor: pointer; }
-      .delete-btn { background: #ff4d4f; color: white; border: none; border-radius: 3px; }
-      .load-btn { background: #3ecf8e; color: white; border: none; border-radius: 3px; }
-      
-
-    `;
-
-    const styleEl = document.createElement('style');
-    styleEl.textContent = styles;
-    document.head.appendChild(styleEl);
+    // Styles are now handled by dataviz-tool-header
 
     // === i18n helper ===
     const t = (key) => (typeof DI18n !== 'undefined') ? DI18n.t(key) : key;
 
     // === State ===
     let capturedBlob = null;
-    let projects = [];
-    let currentUserId = null;
 
     // === UI Setup ===
     function bindUI() {
@@ -120,7 +69,7 @@
             const newOpenBtn = openBtn.cloneNode(true);
             newOpenBtn.id = 'openBtn';
             newOpenBtn.textContent = t('load_project_file');
-            newOpenBtn.onclick = openProjectList;
+            newOpenBtn.onclick = loadProjects;
             openBtn.parentNode.replaceChild(newOpenBtn, openBtn);
         } else {
             console.warn('[CloudUI] #openBtn not found');
@@ -220,7 +169,7 @@
                 const thumbDataUri = await generateThumbnail();
 
                 // Show Save Modal
-                showSaveModal(jsonData, thumbDataUri);
+                saveProject(jsonData, thumbDataUri);
                 return;
             }
 
@@ -301,8 +250,14 @@
         });
     }
 
-    function showSaveModal(data, thumbnail) {
-        // Simple Prompt for now
+    // === Bridge Logic: Save ===
+    async function saveProject(data, thumbnail) {
+        const toolHeader = document.querySelector('dataviz-tool-header');
+        if (!toolHeader) {
+            showToast(t('error_header_not_ready'));
+            return;
+        }
+
         const now = new Date();
         const year = now.getFullYear();
         const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -310,135 +265,26 @@
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
         const defaultName = `${year}-${month}-${day} ${hours}:${minutes}`;
-        const name = prompt(t('enter_project_name'), defaultName);
-        if (!name) return;
 
-        showToast(t('saving'));
-        CloudAPI.createProject(name, data, thumbnail)
-            .then(() => showToast(t('saved')))
-            .catch(e => {
-                console.error(e);
-                showToast(t('save_failed') + e.message);
-            });
+        // Use new dataviz-tool-header API
+        toolHeader.showSaveModal({
+            name: defaultName,
+            data: data,
+            thumbnailDataUri: thumbnail || null,
+            existingProjectId: null  // Pass currentProjectId if updating existing
+        });
     }
-
 
     // === Bridge Logic: Load ===
-
-    async function openProjectList() {
-        try {
-            showToast(t('loading_projects'));
-
-            // Get current user for thumbnail fallback
-            currentUserId = await CloudAPI.getCurrentUserId();
-            console.log('[CloudUI] Current User ID:', currentUserId);
-
-            const res = await CloudAPI.listProjects();
-            console.log('[CloudUI] listProjects response:', res);
-            projects = Array.isArray(res) ? res : (res.projects || []);
-
-            await renderProjectListModal();
-        } catch (e) {
-            console.error(e);
-            showToast(t('error_loading_projects') + e.message);
+    function loadProjects() {
+        const toolHeader = document.querySelector('dataviz-tool-header');
+        if (!toolHeader) {
+            showToast(t('error_header_not_ready'));
+            return;
         }
-    }
 
-    async function renderProjectListModal() {
-        // cleanup old
-        const old = document.querySelector('.cloud-modal-overlay');
-        if (old) old.remove();
-
-        const overlay = document.createElement('div');
-        overlay.className = 'cloud-modal-overlay';
-
-        const modal = document.createElement('div');
-        modal.className = 'cloud-modal';
-
-        const header = document.createElement('div');
-        header.className = 'cloud-modal-header';
-        header.innerHTML = `<span>${t('your_projects')}</span> <button onclick="this.closest('.cloud-modal-overlay').remove()">X</button>`;
-
-        const body = document.createElement('div');
-        body.className = 'cloud-modal-body';
-        body.innerHTML = `<p>${t('loading_thumbnails')}</p>`;
-
-        modal.appendChild(header);
-        modal.appendChild(body);
-        overlay.appendChild(modal);
-        document.body.appendChild(overlay);
-
-        if (projects.length === 0) {
-            body.innerHTML = `<p>${t('no_projects')}</p>`;
-        } else {
-            // Generate list items HTML with Signed URLs
-            const itemsHtml = await Promise.all(projects.map(async p => {
-                if (!p.thumbnail_path && currentUserId && p.id) {
-                    p.thumbnail_path = `${currentUserId}/${p.id}.png`;
-                }
-
-                let thumbHtml = '<div class="project-thumb no-image"></div>';
-                if (p.thumbnail_path) {
-                    const cleanPath = p.thumbnail_path.startsWith('/') ? p.thumbnail_path.slice(1) : p.thumbnail_path;
-                    // Attempt to sign URL
-                    const signedUrl = await CloudAPI.getSignedUrl('user_projects', cleanPath);
-                    if (signedUrl) {
-                        thumbHtml = `<img src="${signedUrl}" class="project-thumb" alt="${p.name}" />`;
-                    }
-                }
-
-                return `
-                  <div class="project-list-item">
-                    ${thumbHtml}
-                    <div class="project-info">
-                        <div class="project-name">${p.name}</div>
-                        <div class="project-date">${new Date(p.updated_at).toLocaleString()}</div>
-                    </div>
-                    <div class="project-actions">
-                        <button class="load-btn" data-id="${p.id}">Open</button>
-                        <button class="delete-btn" data-id="${p.id}">Delete</button>
-                    </div>
-                  </div>
-                `;
-            }));
-
-            body.innerHTML = itemsHtml.join('');
-
-            // Bind events
-            body.querySelectorAll('.load-btn').forEach(btn => {
-                btn.onclick = () => loadProject(btn.dataset.id);
-            });
-            body.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.onclick = (e) => {
-                    e.stopPropagation();
-                    if (confirm(t('confirm_delete'))) deleteProject(btn.dataset.id);
-                };
-            });
-        }
-    }
-
-    async function loadProject(id) {
-        showToast(t('loading_data'));
-        try {
-            const data = await CloudAPI.getProject(id);
-            injectData(data);
-            const overlay = document.querySelector('.cloud-modal-overlay');
-            if (overlay) overlay.remove();
-            showToast(t('project_loaded'));
-        } catch (e) {
-            console.error(e);
-            showToast(t('load_failed') + e.message);
-        }
-    }
-
-    async function deleteProject(id) {
-        try {
-            await CloudAPI.deleteProject(id);
-            // refresh
-            openProjectList();
-        } catch (e) {
-            showToast(t('delete_failed') + e.message);
-        }
+        // Use new dataviz-tool-header API
+        toolHeader.showLoadModal();
     }
 
     function injectData(jsonData) {
@@ -500,6 +346,7 @@
             // Initialize Tool Header
             const toolHeader = document.querySelector('dataviz-tool-header');
             if (toolHeader) {
+                // Configure UI buttons
                 toolHeader.setConfig({
                     logo: {
                         type: 'text',
@@ -554,6 +401,25 @@
                     ]
                 });
 
+                // Configure project management using new API
+                toolHeader.setProjectConfig({
+                    appName: 'data-illustrator',
+                    onProjectLoad: (projectData) => {
+                        // Called when user loads a project from the modal
+                        injectData(projectData);
+                    },
+                    onProjectSave: (projectMeta) => {
+                        // Called when user saves a project
+                        console.log('[CloudUI] Project saved:', projectMeta);
+                        showToast(t('saved'));
+                    },
+                    onProjectDelete: (projectId) => {
+                        // Called when user deletes a project
+                        console.log('[CloudUI] Project deleted:', projectId);
+                        showToast(t('deleted'));
+                    }
+                });
+
                 // Hide original navigation container as functionalities are moved to tool header
                 const navContainer = document.querySelector('.myBtnGroup');
                 if (navContainer) {
@@ -564,10 +430,25 @@
             const projectId = params.get('project_id');
             if (projectId) {
                 console.log('[CloudUI] Auto-loading project:', projectId);
-                loadProject(projectId);
+                loadProjectById(projectId);
             }
         }, 1000);
     };
+
+    // Helper function for auto-loading project by ID
+    async function loadProjectById(id) {
+        try {
+            const toolHeader = document.querySelector('dataviz-tool-header');
+            if (toolHeader && toolHeader.loadProject) {
+                const data = await toolHeader.loadProject(id);
+                injectData(data);
+                showToast(t('project_loaded'));
+            }
+        } catch (e) {
+            console.error(e);
+            showToast(t('load_failed') + e.message);
+        }
+    }
 
     window.addEventListener('load', init);
     if (document.readyState === 'complete') {
