@@ -421,6 +421,29 @@
                     }
                 });
 
+                // Sample data picker integration
+                toolHeader.setSampleConfig({
+                    toolId: 'data-illustrator',
+                    onSampleSelect: (detail) => {
+                        fetch(detail.url)
+                            .then(res => res.text())
+                            .then(text => {
+                                // Find CSV file input
+                                const fileInputs = Array.from(document.querySelectorAll('input[type="file"]'));
+                                const csvInput = fileInputs.find(i => i.accept && i.accept.includes('.csv')) || fileInputs[0];
+                                if (!csvInput) return;
+
+                                const blob = new Blob([text], { type: 'text/csv' });
+                                const file = new File([blob], (detail.name || 'sample') + '.csv', { type: 'text/csv' });
+                                const dataTransfer = new DataTransfer();
+                                dataTransfer.items.add(file);
+                                csvInput.files = dataTransfer.files;
+                                csvInput.dispatchEvent(new Event('input', { bubbles: true }));
+                                csvInput.dispatchEvent(new Event('change', { bubbles: true }));
+                            });
+                    }
+                });
+
                 // Hide original navigation container as functionalities are moved to tool header
                 const navContainer = document.querySelector('.myBtnGroup');
                 if (navContainer) {
@@ -428,6 +451,28 @@
                 }
             }
             const params = new URLSearchParams(window.location.search);
+
+            // ?data_url= support
+            const dataUrl = params.get('data_url');
+            if (dataUrl) {
+                fetch(dataUrl)
+                    .then(res => res.text())
+                    .then(text => {
+                        const fileInputs = Array.from(document.querySelectorAll('input[type="file"]'));
+                        const csvInput = fileInputs.find(i => i.accept && i.accept.includes('.csv')) || fileInputs[0];
+                        if (!csvInput) return;
+
+                        const blob = new Blob([text], { type: 'text/csv' });
+                        const file = new File([blob], dataUrl.split('/').pop() || 'data.csv', { type: 'text/csv' });
+                        const dataTransfer = new DataTransfer();
+                        dataTransfer.items.add(file);
+                        csvInput.files = dataTransfer.files;
+                        csvInput.dispatchEvent(new Event('input', { bubbles: true }));
+                        csvInput.dispatchEvent(new Event('change', { bubbles: true }));
+                    });
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+
             const projectId = params.get('project_id');
             if (projectId) {
                 console.log('[CloudUI] Auto-loading project:', projectId);
