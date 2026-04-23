@@ -15,7 +15,7 @@ npm install
 ```bash
 npm start
 
-http://localhost:1313?auth_debug=1
+http://localhost:1313?auth_debug
 http://localhost:1313/app/?auth_debug
 
 ```
@@ -23,8 +23,9 @@ http://localhost:1313/app/?auth_debug
 ### 4. Build and deploy
 
 ```bash
-npm run build
 npm run build:gh-pages
 ```
 
-GitHub Pages（`data-illustrator.dataviz.jp`）へ配置する際は `config/gh-pages/config.toml` をマージして `baseURL` を明示的にカスタムドメインへ向ける必要があります。`npm run build:gh-pages` は `config/_default/config.toml` に加えて `config/gh-pages/config.toml` を読み込むため、生成される HTML/CSS/JS のリンクがドメイン直下を指すようになり、404 エラーを回避できます。このコマンドで `docs/` を再生成してから `main` ブランチへ push してください。
+GitHub Pages（`data-illustrator.dataviz.jp`）へ配置する際は `config/gh-pages/config.toml` をマージして `baseURL` を明示的にカスタムドメインへ向ける必要があります。`npm run build:gh-pages` は `config/_default/config.toml` に加えて `config/gh-pages/config.toml` を読み込むため、生成される HTML/CSS/JS のリンクがドメイン直下を指すようになり、404 エラーを回避できます。
+
+このコマンドで `docs/` を再生成してから `save-cloud` ブランチへ push してください（本リポジトリでは `save-cloud` ブランチの `docs/` 配下が GitHub Pages の配信元になっています）。
