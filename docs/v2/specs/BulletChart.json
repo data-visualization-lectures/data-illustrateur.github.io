@@ -1,0 +1,280 @@
+[
+  {
+    "cmd": "scene",
+    "args": {}
+  },
+  {
+    "cmd": "data",
+    "url": "csv/Revenue.csv",
+    "output": "datatable157"
+  },
+  {
+    "cmd": "mark",
+    "type": "rect",
+    "output": "rect2251",
+    "args": {
+      "fillColor": "#eee",
+      "strokeWidth": 0,
+      "strokeColor": "#ccc",
+      "strokeDash": "none",
+      "vxWidth": 0,
+      "vxHeight": 0,
+      "vxRadius": 0,
+      "vxFillColor": "#555555",
+      "vxStrokeColor": "#aaaaaa",
+      "vxStrokeWidth": 0,
+      "vxOpacity": 1,
+      "width": 600,
+      "height": 40,
+      "left": 200,
+      "top": 110
+    }
+  },
+  {
+    "cmd": "mark",
+    "type": "rect",
+    "output": "rect2252",
+    "args": {
+      "fillColor": "#ddd",
+      "strokeWidth": 0,
+      "strokeColor": "#ccc",
+      "strokeDash": "none",
+      "vxWidth": 0,
+      "vxHeight": 0,
+      "vxRadius": 0,
+      "vxFillColor": "#555555",
+      "vxStrokeColor": "#aaaaaa",
+      "vxStrokeWidth": 0,
+      "vxOpacity": 1,
+      "width": 400,
+      "height": 40,
+      "left": 200,
+      "top": 110
+    }
+  },
+  {
+    "cmd": "mark",
+    "type": "rect",
+    "output": "rect2253",
+    "args": {
+      "fillColor": "#ccc",
+      "strokeWidth": 0,
+      "strokeColor": "#ccc",
+      "strokeDash": "none",
+      "vxWidth": 0,
+      "vxHeight": 0,
+      "vxRadius": 0,
+      "vxFillColor": "#555555",
+      "vxStrokeColor": "#aaaaaa",
+      "vxStrokeWidth": 0,
+      "vxOpacity": 1,
+      "width": 300,
+      "height": 40,
+      "left": 200,
+      "top": 110
+    }
+  },
+  {
+    "cmd": "mark",
+    "type": "rect",
+    "output": "rect2254",
+    "args": {
+      "fillColor": "steelblue",
+      "strokeWidth": 0,
+      "strokeColor": "#ccc",
+      "strokeDash": "none",
+      "vxWidth": 0,
+      "vxHeight": 0,
+      "vxRadius": 0,
+      "vxFillColor": "#555555",
+      "vxStrokeColor": "#aaaaaa",
+      "vxStrokeWidth": 0,
+      "vxOpacity": 1,
+      "width": 415,
+      "height": 10,
+      "left": 200,
+      "top": 125
+    }
+  },
+  {
+    "cmd": "mark",
+    "type": "line",
+    "output": "line617",
+    "args": {
+      "strokeColor": "red",
+      "strokeWidth": 3,
+      "strokeDash": "none",
+      "vxWidth": 0,
+      "vxHeight": 0,
+      "vxRadius": 0,
+      "vxFillColor": "#555555",
+      "vxStrokeColor": "#aaaaaa",
+      "vxStrokeWidth": 0,
+      "vxOpacity": 1,
+      "x1": 400,
+      "y1": 115,
+      "x2": 400,
+      "y2": 145
+    }
+  },
+  {
+    "cmd": "glyph",
+    "output": "glyph187",
+    "input": [
+      "rect2251",
+      "rect2252",
+      "rect2253",
+      "rect2254",
+      "line617"
+    ],
+    "args": {}
+  },
+  {
+    "cmd": "repeat",
+    "input": "glyph187",
+    "output": "collection323",
+    "data": "datatable157",
+    "args": {
+      "field": "Region"
+    }
+  },
+  {
+    "cmd": "layout",
+    "type": "grid",
+    "input": "collection323",
+    "args": {
+      "numCols": 1,
+      "colGap": 5,
+      "rowGap": 25,
+      "horzCellAlignment": "left",
+      "vertCellAlignment": "bottom"
+    }
+  },
+  {
+    "cmd": "attach",
+    "input": "collection323",
+    "data": "datatable157"
+  },
+  {
+    "type": "linear",
+    "id": "scale220",
+    "domain": [
+      0,
+      120
+    ],
+    "range": [
+      0,
+      600
+    ],
+    "clamp": false,
+    "isFlipped": false,
+    "cmd": "scale"
+  },
+  {
+    "cmd": "encode",
+    "input": "rect2251",
+    "scale": "scale220",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "field": "Good",
+      "channel": "width"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "rect2252",
+    "scale": "scale220",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "scaleType": "linear",
+      "field": "Satisfactory",
+      "channel": "width"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "rect2253",
+    "scale": "scale220",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "scaleType": "linear",
+      "field": "Poor",
+      "channel": "width"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "rect2254",
+    "scale": "scale220",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "scaleType": "linear",
+      "field": "Measure",
+      "channel": "width"
+    }
+  },
+  {
+    "cmd": "encode",
+    "input": "line617",
+    "scale": "scale220",
+    "args": {
+      "aggregator": "sum",
+      "includeZero": false,
+      "scaleType": "linear",
+      "field": "Target",
+      "channel": "x"
+    }
+  },
+  {
+    "cmd": "axis",
+    "channel": "y",
+    "field": "Region",
+    "args": {
+      "orientation": "left",
+      "strokeColor": "#555",
+      "textColor": "#555",
+      "tickOffset": 0,
+      "tickSize": 5,
+      "tickAnchor": "middle",
+      "tickVisible": false,
+      "pathVisible": false,
+      "labelOffset": 15,
+      "labelFormat": "",
+      "showTitle": false,
+      "titleAnchor": [
+        "right",
+        "middle"
+      ],
+      "titleOffset": 40,
+      "rotateTitle": true
+    }
+  },
+  {
+    "cmd": "axis",
+    "channel": "x",
+    "field": "Target",
+    "args": {
+      "orientation": "bottom",
+      "strokeColor": "#555",
+      "textColor": "#555",
+      "tickOffset": 0,
+      "tickSize": 5,
+      "tickAnchor": "middle",
+      "tickVisible": true,
+      "pathVisible": true,
+      "labelOffset": 15,
+      "labelFormat": "",
+      "showTitle": true,
+      "titleAnchor": [
+        "left",
+        "middle"
+      ],
+      "titleOffset": 40,
+      "rotateTitle": true
+    }
+  }
+]
