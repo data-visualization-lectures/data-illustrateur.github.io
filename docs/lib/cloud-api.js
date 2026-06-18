@@ -4,8 +4,18 @@
  */
 
 (function () {
-    const API_BASE_URL = window.datavizApiUrl ? `${window.datavizApiUrl}/api` : 'https://api.dataviz.jp/api';
-    const APP_NAME = 'data-illustrator';
+    const config = window.datavizCloudApiConfig || {};
+
+    function withApiPath(baseUrl) {
+        const normalized = baseUrl.replace(/\/+$/, '');
+        return normalized.endsWith('/api') ? normalized : `${normalized}/api`;
+    }
+
+    const API_BASE_URL = withApiPath(config.apiBaseUrl || window.datavizApiUrl || 'https://api.dataviz.jp');
+    const APP_NAME = config.appName || 'data-illustrator';
+    const AUTH_COOKIE_NAME = config.authCookieName || 'sb-dataviz-auth-token';
+    const SUPABASE_URL = (config.supabaseUrl || 'https://vebhoeiltxspsurqoxvl.supabase.co').replace(/\/+$/, '');
+    const STORAGE_SIGN_EXPIRY_SECONDS = Number(config.storageSignExpirySeconds) || 3600;
 
     const CloudAPI = {
         /**
@@ -25,15 +35,13 @@
             }
 
             // 2. Fallback: Parse cookies for 'sb-dataviz-auth-token' (matching dataviz-auth-client.js)
-            const COOKIE_NAME = 'sb-dataviz-auth-token';
-
             function getCookie(name) {
                 const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
                 if (match) return match[2];
                 return null;
             }
 
-            const tokenCookie = getCookie(COOKIE_NAME);
+            const tokenCookie = getCookie(AUTH_COOKIE_NAME);
             if (tokenCookie) {
                 try {
                     // Decode: Cookie -> URL Decode -> Base64 Decode -> JSON
@@ -209,7 +217,6 @@
          */
         async getSignedUrl(bucket, path) {
             const headers = await this.getAuthHeaders();
-            const SUPABASE_URL = 'https://vebhoeiltxspsurqoxvl.supabase.co';
 
             // Storage API: POST /storage/v1/object/sign/{bucket}/{path}
             // Note: path might contain slashes, verify if they need encoding. 
@@ -222,7 +229,7 @@
             const response = await fetch(url, {
                 method: 'POST',
                 headers,
-                body: JSON.stringify({ expiresIn: 3600 })
+                body: JSON.stringify({ expiresIn: STORAGE_SIGN_EXPIRY_SECONDS })
             });
 
             if (!response.ok) {

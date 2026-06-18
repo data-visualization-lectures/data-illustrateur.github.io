@@ -32,3 +32,22 @@ GitHub Pages（`data-illustrator.dataviz.jp`）へ配置する際は `config/gh-
 `docs/` は配信用の生成物です。`assets/`、`content/`、`layouts/`、`static/` を変更した場合は `npm run build:gh-pages` で `docs/` をクリーン再生成してから、`npm run check:generated` で現在のソースと `docs/` が一致していることを確認してください。
 
 このコマンドで `docs/` を再生成してから `save-cloud` ブランチへ push してください（本リポジトリでは `save-cloud` ブランチの `docs/` 配下が GitHub Pages の配信元になっています）。
+
+### Cloud API client
+
+現在の `/app/` は `dataviz-tool-header` 経由でクラウド保存・読込を扱っており、`/lib/cloud-api.js` は直接読み込んでいません。このファイルは外部利用や旧実装との互換用 public client として残しています。
+
+再利用する場合は、`/lib/cloud-api.js` を読み込む前に必要な値を設定できます。
+
+```html
+<script>
+  window.datavizCloudApiConfig = {
+    apiBaseUrl: 'https://api.dataviz.jp',
+    appName: 'data-illustrator',
+    authCookieName: 'sb-dataviz-auth-token',
+    supabaseUrl: 'https://vebhoeiltxspsurqoxvl.supabase.co',
+    storageSignExpirySeconds: 3600
+  };
+</script>
+<script src="/lib/cloud-api.js"></script>
+```
