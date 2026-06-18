@@ -338,6 +338,135 @@
         return true;
     }
 
+    function loadSampleCsv(detail) {
+        showProcessingToast(t('processing_sample'));
+        fetch(detail.url)
+            .then(res => res.text())
+            .then(text => {
+                injectCsvData(text, (detail.name || 'sample') + '.csv');
+            });
+    }
+
+    function loadCsvFromUrl(dataUrl) {
+        showProcessingToast(t('processing_sample'));
+        fetch(dataUrl)
+            .then(res => res.text())
+            .then(text => {
+                injectCsvData(text, dataUrl.split('/').pop() || 'data.csv');
+            });
+    }
+
+    function hideOriginalNavigation() {
+        const navContainer = document.querySelector('.myBtnGroup');
+        if (navContainer) {
+            navContainer.style.display = 'none';
+        }
+    }
+
+    function configureToolHeader(toolHeader) {
+        installHeaderProcessingToasts(toolHeader);
+
+        // Configure UI buttons
+        toolHeader.setConfig({
+            logo: {
+                type: 'text',
+                text: 'Data Illustrator',
+                textClass: 'font-bold text-lg'
+            },
+            buttons: [
+                {
+                    label: t('load_sample_project'),
+                    type: 'link',
+                    align: 'left',
+                    href: 'https://data-illustrator.dataviz.jp/gallery/',
+                    target: '_blank'
+                },
+                {
+                    label: t('save_project'),
+                    action: () => {
+                        const btn = document.getElementById('saveBtn');
+                        if (btn) btn.click();
+                    },
+                    align: 'right'
+                },
+                {
+                    label: t('load_project'),
+                    action: () => {
+                        const btn = document.getElementById('openBtn');
+                        if (btn) btn.click();
+                    },
+                    align: 'right'
+                },
+                {
+                    label: t('export'),
+                    type: 'dropdown',
+                    align: 'right',
+                    items: [
+                        {
+                            label: t('export_svg'),
+                            action: () => {
+                                const btn = document.getElementById('exportBtn');
+                                if (btn) btn.click();
+                            }
+                        }
+                    ]
+                },
+                {
+                    label: t('help'),
+                    type: 'link',
+                    align: 'right',
+                    href: '/tutorials/interface/overview/',
+                    target: '_blank'
+                }
+            ]
+        });
+
+        // Configure project management using new API
+        toolHeader.setProjectConfig({
+            appName: 'data-illustrator',
+            onProjectLoad: (projectData) => {
+                // Called when user loads a project from the modal
+                injectData(projectData);
+                showToast(t('project_loaded'), 'success');
+            },
+            onProjectSave: (projectMeta) => {
+                // Called when user saves a project
+                console.log('[CloudUI] Project saved:', projectMeta);
+                showToast(t('saved'), 'success');
+            },
+            onProjectDelete: (projectId) => {
+                // Called when user deletes a project
+                console.log('[CloudUI] Project deleted:', projectId);
+                showToast(t('deleted'), 'success');
+            }
+        });
+
+        // Sample data picker integration
+        toolHeader.setSampleConfig({
+            toolId: 'data-illustrator',
+            onSampleSelect: loadSampleCsv
+        });
+
+        hideOriginalNavigation();
+    }
+
+    function handleUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+
+        // ?data_url= support
+        const dataUrl = params.get('data_url');
+        if (dataUrl) {
+            loadCsvFromUrl(dataUrl);
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        const projectId = params.get('project_id');
+        if (projectId) {
+            console.log('[CloudUI] Auto-loading project:', projectId);
+            loadProjectById(projectId);
+        }
+    }
+
     // === Init ===
     let initialized = false;
     const init = () => {
@@ -351,121 +480,9 @@
             // Initialize Tool Header
             const toolHeader = document.querySelector('dataviz-tool-header');
             if (toolHeader) {
-                installHeaderProcessingToasts(toolHeader);
-
-                // Configure UI buttons
-                toolHeader.setConfig({
-                    logo: {
-                        type: 'text',
-                        text: 'Data Illustrator',
-                        textClass: 'font-bold text-lg'
-                    },
-                    buttons: [
-                        {
-                            label: t('load_sample_project'),
-                            type: 'link',
-                            align: 'left',
-                            href: 'https://data-illustrator.dataviz.jp/gallery/',
-                            target: '_blank'
-                        },
-                        {
-                            label: t('save_project'),
-                            action: () => {
-                                const btn = document.getElementById('saveBtn');
-                                if (btn) btn.click();
-                            },
-                            align: 'right'
-                        },
-                        {
-                            label: t('load_project'),
-                            action: () => {
-                                const btn = document.getElementById('openBtn');
-                                if (btn) btn.click();
-                            },
-                            align: 'right'
-                        },
-                        {
-                            label: t('export'),
-                            type: 'dropdown',
-                            align: 'right',
-                            items: [
-                                {
-                                    label: t('export_svg'),
-                                    action: () => {
-                                        const btn = document.getElementById('exportBtn');
-                                        if (btn) btn.click();
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            label: t('help'),
-                            type: 'link',
-                            align: 'right',
-                            href: '/tutorials/interface/overview/',
-                            target: '_blank'
-                        }
-                    ]
-                });
-
-                // Configure project management using new API
-                toolHeader.setProjectConfig({
-                    appName: 'data-illustrator',
-                    onProjectLoad: (projectData) => {
-                        // Called when user loads a project from the modal
-                        injectData(projectData);
-                        showToast(t('project_loaded'), 'success');
-                    },
-                    onProjectSave: (projectMeta) => {
-                        // Called when user saves a project
-                        console.log('[CloudUI] Project saved:', projectMeta);
-                        showToast(t('saved'), 'success');
-                    },
-                    onProjectDelete: (projectId) => {
-                        // Called when user deletes a project
-                        console.log('[CloudUI] Project deleted:', projectId);
-                        showToast(t('deleted'), 'success');
-                    }
-                });
-
-                // Sample data picker integration
-                toolHeader.setSampleConfig({
-                    toolId: 'data-illustrator',
-                    onSampleSelect: (detail) => {
-                        showProcessingToast(t('processing_sample'));
-                        fetch(detail.url)
-                            .then(res => res.text())
-                            .then(text => {
-                                injectCsvData(text, (detail.name || 'sample') + '.csv');
-                            });
-                    }
-                });
-
-                // Hide original navigation container as functionalities are moved to tool header
-                const navContainer = document.querySelector('.myBtnGroup');
-                if (navContainer) {
-                    navContainer.style.display = 'none';
-                }
+                configureToolHeader(toolHeader);
             }
-            const params = new URLSearchParams(window.location.search);
-
-            // ?data_url= support
-            const dataUrl = params.get('data_url');
-            if (dataUrl) {
-                showProcessingToast(t('processing_sample'));
-                fetch(dataUrl)
-                    .then(res => res.text())
-                    .then(text => {
-                        injectCsvData(text, dataUrl.split('/').pop() || 'data.csv');
-                    });
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-
-            const projectId = params.get('project_id');
-            if (projectId) {
-                console.log('[CloudUI] Auto-loading project:', projectId);
-                loadProjectById(projectId);
-            }
+            handleUrlParams();
         }, 1000);
     };
 
