@@ -323,6 +323,21 @@
         fileInput.dispatchEvent(event);
     }
 
+    function injectCsvData(text, fileName) {
+        const fileInputs = Array.from(document.querySelectorAll('input[type="file"]'));
+        const csvInput = fileInputs.find(i => i.accept && i.accept.includes('.csv')) || fileInputs[0];
+        if (!csvInput) return false;
+
+        const blob = new Blob([text], { type: 'text/csv' });
+        const file = new File([blob], fileName || 'data.csv', { type: 'text/csv' });
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+        csvInput.files = dataTransfer.files;
+        csvInput.dispatchEvent(new Event('input', { bubbles: true }));
+        csvInput.dispatchEvent(new Event('change', { bubbles: true }));
+        return true;
+    }
+
     // === Init ===
     let initialized = false;
     const init = () => {
@@ -421,18 +436,7 @@
                         fetch(detail.url)
                             .then(res => res.text())
                             .then(text => {
-                                // Find CSV file input
-                                const fileInputs = Array.from(document.querySelectorAll('input[type="file"]'));
-                                const csvInput = fileInputs.find(i => i.accept && i.accept.includes('.csv')) || fileInputs[0];
-                                if (!csvInput) return;
-
-                                const blob = new Blob([text], { type: 'text/csv' });
-                                const file = new File([blob], (detail.name || 'sample') + '.csv', { type: 'text/csv' });
-                                const dataTransfer = new DataTransfer();
-                                dataTransfer.items.add(file);
-                                csvInput.files = dataTransfer.files;
-                                csvInput.dispatchEvent(new Event('input', { bubbles: true }));
-                                csvInput.dispatchEvent(new Event('change', { bubbles: true }));
+                                injectCsvData(text, (detail.name || 'sample') + '.csv');
                             });
                     }
                 });
@@ -452,17 +456,7 @@
                 fetch(dataUrl)
                     .then(res => res.text())
                     .then(text => {
-                        const fileInputs = Array.from(document.querySelectorAll('input[type="file"]'));
-                        const csvInput = fileInputs.find(i => i.accept && i.accept.includes('.csv')) || fileInputs[0];
-                        if (!csvInput) return;
-
-                        const blob = new Blob([text], { type: 'text/csv' });
-                        const file = new File([blob], dataUrl.split('/').pop() || 'data.csv', { type: 'text/csv' });
-                        const dataTransfer = new DataTransfer();
-                        dataTransfer.items.add(file);
-                        csvInput.files = dataTransfer.files;
-                        csvInput.dispatchEvent(new Event('input', { bubbles: true }));
-                        csvInput.dispatchEvent(new Event('change', { bubbles: true }));
+                        injectCsvData(text, dataUrl.split('/').pop() || 'data.csv');
                     });
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
