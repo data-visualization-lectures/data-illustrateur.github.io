@@ -34,16 +34,16 @@
 @import "layouts/sidebar";
 
 .gallery-img {
-    background-size:  contain;
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-clip: content-box;
-    min-height: 200px;
-    max-height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-clip: content-box;
+  min-height: 200px;
+  max-height: 200px;
 }
 
 .tutorial-video {
-    display:block;
-    margin: 0 auto 25px;
-    border: solid 1px #eee;
+  display: block;
+  margin: 0 auto 25px;
+  border: solid 1px #eee;
 }

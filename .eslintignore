@@ -1,0 +1,9 @@
+docs/
+node_modules/
+static/app/
+static/v2/
+
+assets/js/index.js
+assets/js/instant.page.js
+assets/js/lazysizes.js
+assets/js/vendor/
