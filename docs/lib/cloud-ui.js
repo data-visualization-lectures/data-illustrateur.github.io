@@ -7,6 +7,8 @@
     const _originalReadAsText = FileReader.prototype.readAsText;
 
     FileReader.prototype.readAsText = function (blob, encoding) {
+        showProcessingToast(t('processing_file'));
+
         // Fallback if encoding-japanese is not loaded or explicit non-UTF-8 encoding is specified
         if (typeof Encoding === 'undefined' || (encoding && encoding.toLowerCase() !== 'utf-8')) {
             return _originalReadAsText.call(this, blob, encoding);
@@ -81,6 +83,7 @@
             saveBtn.textContent = t('save_project_file');
             // Use Capture phase to ensure we monitor before the native handler fires
             saveBtn.addEventListener('click', () => {
+                showProcessingToast(t('processing_save_prep'));
                 // Reset capture & Start interception
                 capturedBlob = null;
                 isInterceptingDownload = true;
@@ -110,6 +113,40 @@
         }
     }
 
+    function showProcessingToast(message, duration = 5000) {
+        showToast(message, 'info', duration);
+    }
+
+    function installHeaderProcessingToasts(header) {
+        if (!header || header.__dvzProcessingToastsInstalled === '1') return;
+
+        if (typeof header.showLoadModal === 'function') {
+            const originalShowLoadModal = header.showLoadModal.bind(header);
+            header.showLoadModal = (...args) => {
+                showProcessingToast(t('processing_project_list'));
+                return originalShowLoadModal(...args);
+            };
+        }
+
+        if (typeof header.loadProject === 'function') {
+            const originalLoadProject = header.loadProject.bind(header);
+            header.loadProject = (...args) => {
+                showProcessingToast(t('processing_project_load'));
+                return originalLoadProject(...args);
+            };
+        }
+
+        if (typeof header.saveProject === 'function') {
+            const originalSaveProject = header.saveProject.bind(header);
+            header.saveProject = (...args) => {
+                showProcessingToast(t('processing_project_save'));
+                return originalSaveProject(...args);
+            };
+        }
+
+        header.__dvzProcessingToastsInstalled = '1';
+    }
+
     // === Bridge Logic: Save ===
 
     let isInterceptingDownload = false;
@@ -128,6 +165,7 @@
         }
 
         // Fallback for normal downloads (e.g. Export button)
+        showProcessingToast(t('processing_export'));
         console.log('[CloudUI] Passthrough saveAs for local download');
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -282,6 +320,7 @@
             showToast(t('error_header_not_ready'), 'error');
             return;
         }
+        installHeaderProcessingToasts(toolHeader);
 
         // Use new dataviz-tool-header API
         toolHeader.showLoadModal();
@@ -346,6 +385,8 @@
             // Initialize Tool Header
             const toolHeader = document.querySelector('dataviz-tool-header');
             if (toolHeader) {
+                installHeaderProcessingToasts(toolHeader);
+
                 // Configure UI buttons
                 toolHeader.setConfig({
                     logo: {
@@ -425,6 +466,7 @@
                 toolHeader.setSampleConfig({
                     toolId: 'data-illustrator',
                     onSampleSelect: (detail) => {
+                        showProcessingToast(t('processing_sample'));
                         fetch(detail.url)
                             .then(res => res.text())
                             .then(text => {
@@ -455,6 +497,7 @@
             // ?data_url= support
             const dataUrl = params.get('data_url');
             if (dataUrl) {
+                showProcessingToast(t('processing_sample'));
                 fetch(dataUrl)
                     .then(res => res.text())
                     .then(text => {
@@ -486,6 +529,7 @@
         try {
             const toolHeader = document.querySelector('dataviz-tool-header');
             if (toolHeader && toolHeader.loadProject) {
+                installHeaderProcessingToasts(toolHeader);
                 const data = await toolHeader.loadProject(id);
                 injectData(data);
                 showToast(t('project_loaded'));
