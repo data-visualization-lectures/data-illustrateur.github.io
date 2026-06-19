@@ -125,22 +125,52 @@
         return window.CloudDataBridge.injectCsvData(text, fileName);
     }
 
-    function loadSampleCsv(detail) {
-        showProcessingToast(t('processing_sample'));
-        fetch(detail.url)
-            .then(res => res.text())
-            .then(text => {
-                injectCsvData(text, (detail.name || 'sample') + '.csv');
-            });
+    function getSampleFileName(detail) {
+        const format = (detail && detail.format ? detail.format : 'csv').toLowerCase();
+        const fallbackName = detail && detail.url ? detail.url.split('/').pop() : 'sample';
+        const name = detail && (detail.name || detail.nameEn) ? (detail.name || detail.nameEn) : fallbackName;
+        return name.toLowerCase().endsWith('.' + format) ? name : name + '.' + format;
     }
 
-    function loadCsvFromUrl(dataUrl) {
+    async function fetchText(url) {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('HTTP ' + response.status);
+        }
+        return response.text();
+    }
+
+    async function loadSampleCsv(detail) {
+        if (!detail || !detail.url) {
+            showToast(t('load_failed') + 'Sample URL is missing', 'error');
+            return;
+        }
+
         showProcessingToast(t('processing_sample'));
-        fetch(dataUrl)
-            .then(res => res.text())
-            .then(text => {
-                injectCsvData(text, dataUrl.split('/').pop() || 'data.csv');
-            });
+        try {
+            const text = await fetchText(detail.url);
+            if (injectCsvData(text, getSampleFileName(detail))) {
+                showToast(t('sample_loaded'), 'success');
+            } else {
+                showToast(t('load_failed') + t('error_no_file_loader'), 'error');
+            }
+        } catch (e) {
+            console.error('[CloudUI] Sample data load failed:', e, detail);
+            showToast(t('load_failed') + e.message, 'error');
+        }
+    }
+
+    async function loadCsvFromUrl(dataUrl) {
+        showProcessingToast(t('processing_sample'));
+        try {
+            const text = await fetchText(dataUrl);
+            if (!injectCsvData(text, dataUrl.split('/').pop() || 'data.csv')) {
+                showToast(t('load_failed') + t('error_no_file_loader'), 'error');
+            }
+        } catch (e) {
+            console.error('[CloudUI] URL data load failed:', e, dataUrl);
+            showToast(t('load_failed') + e.message, 'error');
+        }
     }
 
     function hideOriginalNavigation() {
