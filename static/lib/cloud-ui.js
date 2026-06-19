@@ -8,6 +8,19 @@
     // === i18n helper ===
     const t = (key) => (typeof DI18n !== 'undefined') ? DI18n.t(key) : key;
 
+    function installCloudUiStyles() {
+        if (document.getElementById('di-cloud-ui-styles')) return;
+
+        const style = document.createElement('style');
+        style.id = 'di-cloud-ui-styles';
+        style.textContent = [
+            '#csvBtn {',
+            '  display: none !important;',
+            '}'
+        ].join('\n');
+        document.head.appendChild(style);
+    }
+
     // === UI Setup ===
     function bindUI() {
         console.log('[CloudUI] Binding UI...');
@@ -307,6 +320,7 @@
 
         // Wait a bit to ensure target buttons are rendered and app is ready
         setTimeout(() => {
+            installCloudUiStyles();
             bindUI();
 
             // Initialize Tool Header
