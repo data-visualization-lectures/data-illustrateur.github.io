@@ -107,65 +107,22 @@
         toolHeader.showLoadModal();
     }
 
-    function injectData(jsonData) {
-        // Need to find the input file element.
-        // Data Illustrator structure usually has one main input for loading projects (.msc) and one for data (.csv).
-        const fileInputs = Array.from(document.querySelectorAll('input[type="file"]'));
-
-        if (fileInputs.length === 0) {
-            console.error('CloudUI: input[type="file"] not found');
-            alert(t('error_no_file_loader'));
-            return;
+    function injectProjectData(projectData) {
+        if (!window.CloudDataBridge) {
+            showToast(t('load_failed') + 'CloudDataBridge not loaded', 'error');
+            return false;
         }
 
-        // Logic to find the Project Loader (not CSV loader)
-        // 1. Look for .msc or .json in accept
-        let fileInput = fileInputs.find(i => i.accept && (i.accept.includes('.msc') || i.accept.includes('.json')));
-
-        // 2. If not found, find one that is NOT .csv
-        if (!fileInput) {
-            fileInput = fileInputs.find(i => !i.accept || !i.accept.includes('.csv'));
-        }
-
-        // 3. Last resort
-        if (!fileInput && fileInputs.length > 1) {
-            fileInput = fileInputs[1];
-        } else if (!fileInput) {
-            fileInput = fileInputs[0];
-        }
-
-        console.log('[CloudUI] Selected target input:', fileInput);
-
-        // Create a File object
-        const blob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
-        const file = new File([blob], "project.msc", { type: 'application/json' });
-
-        // Override files property
-        const dataTransfer = new DataTransfer();
-        dataTransfer.items.add(file);
-        fileInput.files = dataTransfer.files;
-
-        // Dispatch events
-        const event = new Event('change', { bubbles: true });
-        const inputEvent = new Event('input', { bubbles: true });
-
-        fileInput.dispatchEvent(inputEvent);
-        fileInput.dispatchEvent(event);
+        return window.CloudDataBridge.injectProjectData(projectData);
     }
 
     function injectCsvData(text, fileName) {
-        const fileInputs = Array.from(document.querySelectorAll('input[type="file"]'));
-        const csvInput = fileInputs.find(i => i.accept && i.accept.includes('.csv')) || fileInputs[0];
-        if (!csvInput) return false;
+        if (!window.CloudDataBridge) {
+            showToast(t('load_failed') + 'CloudDataBridge not loaded', 'error');
+            return false;
+        }
 
-        const blob = new Blob([text], { type: 'text/csv' });
-        const file = new File([blob], fileName || 'data.csv', { type: 'text/csv' });
-        const dataTransfer = new DataTransfer();
-        dataTransfer.items.add(file);
-        csvInput.files = dataTransfer.files;
-        csvInput.dispatchEvent(new Event('input', { bubbles: true }));
-        csvInput.dispatchEvent(new Event('change', { bubbles: true }));
-        return true;
+        return window.CloudDataBridge.injectCsvData(text, fileName);
     }
 
     function loadSampleCsv(detail) {
@@ -256,8 +213,9 @@
             appName: 'data-illustrator',
             onProjectLoad: (projectData) => {
                 // Called when user loads a project from the modal
-                injectData(projectData);
-                showToast(t('project_loaded'), 'success');
+                if (injectProjectData(projectData)) {
+                    showToast(t('project_loaded'), 'success');
+                }
             },
             onProjectSave: (projectMeta) => {
                 // Called when user saves a project
@@ -323,8 +281,9 @@
             if (toolHeader && toolHeader.loadProject) {
                 installHeaderProcessingToasts(toolHeader);
                 const data = await toolHeader.loadProject(id);
-                injectData(data);
-                showToast(t('project_loaded'));
+                if (injectProjectData(data)) {
+                    showToast(t('project_loaded'));
+                }
             }
         } catch (e) {
             console.error(e);
