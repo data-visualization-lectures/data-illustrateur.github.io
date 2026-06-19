@@ -173,6 +173,15 @@
         }
     }
 
+    function openCsvFilePicker() {
+        const csvBtn = document.getElementById('csvBtn');
+        if (csvBtn) {
+            csvBtn.click();
+        } else {
+            showToast(t('load_failed') + t('error_no_file_loader'), 'error');
+        }
+    }
+
     function hideOriginalNavigation() {
         const navContainer = document.querySelector('.myBtnGroup');
         if (navContainer) {
@@ -191,6 +200,11 @@
                 textClass: 'font-bold text-lg'
             },
             buttons: [
+                {
+                    label: t('load_data_file'),
+                    action: openCsvFilePicker,
+                    align: 'left'
+                },
                 {
                     label: t('load_sample_project'),
                     type: 'link',
