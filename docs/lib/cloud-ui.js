@@ -77,6 +77,60 @@
         showToast(message, 'info', duration);
     }
 
+    function delay(ms) {
+        return new Promise((resolve) => {
+            setTimeout(resolve, ms);
+        });
+    }
+
+    async function waitForValue(getValue, timeoutMs, intervalMs) {
+        const startedAt = Date.now();
+
+        while (Date.now() - startedAt < timeoutMs) {
+            const value = getValue();
+            if (value) return value;
+            await delay(intervalMs);
+        }
+
+        return getValue();
+    }
+
+    async function waitForToolHeader(timeoutMs = 10000) {
+        return waitForValue(() => {
+            const toolHeader = document.querySelector('dataviz-tool-header');
+            if (toolHeader && typeof toolHeader.setConfig === 'function' && typeof toolHeader.loadProject === 'function') {
+                return toolHeader;
+            }
+            return null;
+        }, timeoutMs, 100);
+    }
+
+    async function waitForProjectInput(timeoutMs = 10000) {
+        return waitForValue(() => {
+            if (!window.CloudDataBridge) return null;
+            return document.querySelector('input[type="file"]');
+        }, timeoutMs, 100);
+    }
+
+    async function waitForAccessToken(timeoutMs = 8000) {
+        const startedAt = Date.now();
+
+        while (Date.now() - startedAt < timeoutMs) {
+            const sb = window.datavizSupabase;
+            if (sb && sb.auth && typeof sb.auth.getSession === 'function') {
+                try {
+                    const { data } = await sb.auth.getSession();
+                    if (data && data.session && data.session.access_token) return data.session.access_token;
+                } catch (e) {
+                    console.warn('[CloudUI] Waiting for auth session failed:', e);
+                }
+            }
+            await delay(250);
+        }
+
+        return null;
+    }
+
     function installHeaderProcessingToasts(header) {
         if (!header || header.__dvzNativeProjectProcessingToasts === '1' || header.__dvzProcessingToastsInstalled === '1') return;
 
@@ -297,18 +351,19 @@
 
     function handleUrlParams() {
         const params = new URLSearchParams(window.location.search);
+        const projectId = params.get('projectId');
+
+        if (projectId) {
+            console.log('[CloudUI] Auto-loading project:', projectId);
+            loadProjectById(projectId);
+            return;
+        }
 
         // ?data_url= support
         const dataUrl = params.get('data_url');
         if (dataUrl) {
             loadCsvFromUrl(dataUrl);
             window.history.replaceState({}, document.title, window.location.pathname);
-        }
-
-        const projectId = params.get('projectId');
-        if (projectId) {
-            console.log('[CloudUI] Auto-loading project:', projectId);
-            loadProjectById(projectId);
         }
     }
 
@@ -319,14 +374,16 @@
         initialized = true;
 
         // Wait a bit to ensure target buttons are rendered and app is ready
-        setTimeout(() => {
+        setTimeout(async () => {
             installCloudUiStyles();
             bindUI();
 
             // Initialize Tool Header
-            const toolHeader = document.querySelector('dataviz-tool-header');
+            const toolHeader = await waitForToolHeader();
             if (toolHeader) {
                 configureToolHeader(toolHeader);
+            } else {
+                console.warn('[CloudUI] dataviz-tool-header was not ready before URL handling');
             }
             handleUrlParams();
         }, 1000);
@@ -335,13 +392,22 @@
     // Helper function for auto-loading project by ID
     async function loadProjectById(id) {
         try {
-            const toolHeader = document.querySelector('dataviz-tool-header');
-            if (toolHeader && toolHeader.loadProject) {
-                installHeaderProcessingToasts(toolHeader);
-                const data = await toolHeader.loadProject(id);
-                if (injectProjectData(data)) {
-                    showToast(t('project_loaded'));
-                }
+            const toolHeader = await waitForToolHeader();
+            if (!toolHeader) {
+                throw new Error('dataviz-tool-header not ready');
+            }
+
+            installHeaderProcessingToasts(toolHeader);
+            await waitForAccessToken();
+
+            const data = await toolHeader.loadProject(id);
+            const projectInput = await waitForProjectInput();
+            if (!projectInput) {
+                throw new Error('Project file loader not ready');
+            }
+
+            if (injectProjectData(data)) {
+                showToast(t('project_loaded'), 'success');
             }
         } catch (e) {
             console.error(e);
