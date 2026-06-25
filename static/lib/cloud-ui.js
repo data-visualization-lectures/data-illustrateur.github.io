@@ -305,7 +305,7 @@
             window.history.replaceState({}, document.title, window.location.pathname);
         }
 
-        const projectId = params.get('project_id');
+        const projectId = params.get('projectId');
         if (projectId) {
             console.log('[CloudUI] Auto-loading project:', projectId);
             loadProjectById(projectId);
